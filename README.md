@@ -14,3 +14,7 @@
 ![dashboard](https://user-images.githubusercontent.com/33270746/69934874-f1903100-1505-11ea-9aa0-aad7f2cc8789.png)
 
 ![toko](https://user-images.githubusercontent.com/33270746/69934875-f1903100-1505-11ea-9bf8-bfe75bd2f142.png)
+
+![frontend](https://user-images.githubusercontent.com/33270746/72970571-8888b380-3dfa-11ea-8973-c0ed77e1c649.png)
+
+![restapi](https://user-images.githubusercontent.com/33270746/72970572-89214a00-3dfa-11ea-91f8-7b4bee91422f.png)
