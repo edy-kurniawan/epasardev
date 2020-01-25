@@ -6,6 +6,13 @@
   - Bootstrap 4
   - Datatables 4
   - Sweetalert2
+
+# System Features 
+  - form-validation
+  - server side ajax
+  - csrf protection
+  - xss-clean
+  - query builder
   
 # Screenshot
 
