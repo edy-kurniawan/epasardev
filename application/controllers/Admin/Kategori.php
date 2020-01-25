@@ -23,7 +23,7 @@ class Kategori extends CI_Controller {
         $this->load->view('admin/v_kategori');
     }
 
- public function setView(){
+    public function setView(){
         $result = $this->M_kategori->getSemua()->result();
         $list   = array();
         $No     = 1;
@@ -52,6 +52,17 @@ class Kategori extends CI_Controller {
 
     function ajax_add(){
 
+        $this->form_validation->set_rules('kode','kode','trim|required|xss_clean');
+        $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|xss_clean');
+        $this->form_validation->set_rules('ket','ket','trim|xss_clean');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
+        
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
         $nama = $this->security->sanitize_filename($this->input->post('nama'));
         $ket = $this->security->sanitize_filename($this->input->post('ket'));
@@ -64,7 +75,7 @@ class Kategori extends CI_Controller {
 
         $this->M_kategori->inputdata($data,'kategori');
         echo json_encode(array("status" => TRUE));    
-           
+        }  
     }
     
        public function ajax_edit($id)
@@ -75,6 +86,17 @@ class Kategori extends CI_Controller {
 
     function ajax_update(){
         
+        $this->form_validation->set_rules('kode','kode','trim|required|xss_clean');
+        $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|xss_clean');
+        $this->form_validation->set_rules('ket','ket','trim|xss_clean');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
+
         $id = $this->security->sanitize_filename($this->input->post('id'));
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
         $nama = $this->security->sanitize_filename($this->input->post('nama'));
@@ -88,14 +110,12 @@ class Kategori extends CI_Controller {
 
         $where = array(
         'ID' => $id
-    );
+        );
  
         $this->M_kategori->update($where,$data);
         echo json_encode(array("status" => TRUE));
+        }
 
 }
 
- 
-   
-	
 }

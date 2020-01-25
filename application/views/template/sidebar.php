@@ -88,7 +88,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('user/user'); ?>" class="nav-link">
+                <a href="<?php echo site_url('admin/user'); ?>" class="nav-link">
                   <i class="far fas fa-user-lock nav-icon"></i>
                   <p>User</p>
                 </a>

@@ -55,4 +55,5 @@ class M_login extends CI_Model{
     {
         $this->db->update('login', $data, $where);
     }
+
 }

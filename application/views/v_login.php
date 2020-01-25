@@ -34,6 +34,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="<?php echo base_url('login/aksi_login'); ?>" method="post">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username" name="nama_user">
           <div class="input-group-append">

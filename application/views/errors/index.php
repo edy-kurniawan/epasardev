@@ -42,7 +42,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">404 <br> 
-                	<div class="ket">Directory access is forbidden
+                	<div class="ket">Oops! Page not found.
 					</div>
                 </div>
             </div>

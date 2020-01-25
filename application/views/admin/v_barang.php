@@ -32,6 +32,7 @@
           <div class="box-body pad">
             <form id="form" class="needs-validation" novalidate>
               <input type="hidden" name="id">
+              <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
               <div class="form-row">
                 <div class="col-md-7 mb-3">
                   <label for="validationCustom01">Kode</label>
@@ -42,9 +43,11 @@
                 </div>
                 <div class="col-md-5 mb-3">
                   <label for="validationCustom01">Toko</label>
+                  <div form-control>
                     <?php
                       echo form_dropdown('toko', $toko, '', 'class="form-control" id="combobox" name="toko" required'); 
                     ?>
+                  </div>
                 </div>
               </div>
               <div class="form-row">
@@ -74,7 +77,7 @@
                 <div class="col-md-4 mb-3">
                   <label for="validationCustom03">Kategori</label>
                     <?php
-                      echo form_dropdown('kat', $ktg, '', 'class="form-control" id="combobox" name="kat" required'); 
+                      echo form_dropdown('kat', $ktg, '', 'class="form-control" id="" name="kat" required'); 
                     ?>
                   <div class="invalid-feedback">
                     Masukan Jam!
@@ -93,7 +96,7 @@
                       <option value="">-</option>
                       <option value="T">TRUE</option>
                       <option value="F">FALSE</option>                      
-                      </select>
+                  </select>
                   <div class="invalid-feedback">
                     Pilih Status !
                   </div>
@@ -272,7 +275,7 @@
 
             "ajax": {
                 "url": "<?php echo base_url('admin/barang/setView'); ?>",
-                "type": "POST",
+                "type": "GET",
             },
             "columns": [
 
@@ -448,7 +451,7 @@
       if (result.value) {
         $.ajax({
                  url : "<?php echo base_url('admin/barang/ajax_delete')?>/" +id,
-                 type: "POST",
+                 type: "DELETE",
                  dataType: "JSON",
                  })
                   reload_table();
@@ -496,7 +499,7 @@
     $(document).ready(function() {
       $.ajax({
           url : "<?php echo site_url('admin/barang/getcount'); ?>",
-          type: "POST",
+          type: "GET",
           data: "",
           dataType: "json",
           cache:false,

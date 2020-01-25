@@ -79,6 +79,21 @@ class Barang extends CI_Controller {
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required');
+        $this->form_validation->set_rules('toko','toko','trim');
+        $this->form_validation->set_rules('stok','stok','trim|required');
+        $this->form_validation->set_rules('status','status','trim|required');
+        $this->form_validation->set_rules('satuan','satuan','trim|required');
+        $this->form_validation->set_rules('kat','kat','trim|required');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
+
         //upload photo
         $config['upload_path'] = './assets/upload/';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -123,6 +138,8 @@ class Barang extends CI_Controller {
             
         $this->M_barang->inputdata($data,'barang');
         echo json_encode(array("status" => TRUE));
+        }
+
     }
     
        public function ajax_edit($id)
@@ -135,6 +152,21 @@ class Barang extends CI_Controller {
         
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
+
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required');
+        $this->form_validation->set_rules('toko','toko','trim');
+        $this->form_validation->set_rules('stok','stok','trim|required');
+        $this->form_validation->set_rules('status','status','trim|required');
+        $this->form_validation->set_rules('satuan','satuan','trim|required');
+        $this->form_validation->set_rules('kat','kat','trim|required');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
         
         $id = $this->security->sanitize_filename($this->input->post('id'));
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
@@ -165,6 +197,7 @@ class Barang extends CI_Controller {
  
         $this->M_barang->update($where,$data);
         echo json_encode(array("status" => TRUE));
+    }
 
 }
     

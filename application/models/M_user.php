@@ -12,7 +12,7 @@ class M_user extends CI_Model{
     function getSemua(){
                         $sql    =   "SELECT
                     user.ID,
-                    user.Kode,
+                    user.Username,
                     user.Nama,
                     user.Alamat,
                     user.Tgllahir,
@@ -22,7 +22,7 @@ class M_user extends CI_Model{
                     login.Username
                 FROM
                     user
-                    LEFT OUTER JOIN login ON user.Kode = login.Refuser
+                    LEFT OUTER JOIN login ON user.Username = login.Username
                         ";
         return $this-> DbHelper->execQuery($sql);
 
@@ -37,7 +37,7 @@ class M_user extends CI_Model{
                         barang.Nama
                     FROM
                         user 
-                    LEFT OUTER JOIN login ON user.Kode = login.Refuser
+                    LEFT OUTER JOIN login ON user.Username = login.Username
                     LEFT OUTER JOIN cart ON login.Refcart = cart.Kode
                     LEFT OUTER JOIN barang ON cart.Refbarang = barang.Kode
                     WHERE user.ID='$id'";

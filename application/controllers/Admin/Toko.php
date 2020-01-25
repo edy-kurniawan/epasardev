@@ -76,6 +76,22 @@ class Toko extends CI_Controller {
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required');
+        $this->form_validation->set_rules('lokasi','lokasi','trim|required');
+        $this->form_validation->set_rules('pemilik','pemilik','trim|required');
+        $this->form_validation->set_rules('status','status','trim|required');
+        $this->form_validation->set_rules('telp','telp','trim|required');
+        $this->form_validation->set_rules('jambuka','jambuka','trim|required');
+        $this->form_validation->set_rules('jamtutup','jamtutup','trim|required');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
+
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
         $lokasi = $this->security->sanitize_filename($this->input->post('lokasi'));
         $nama = $this->security->sanitize_filename($this->input->post('nama'));
@@ -103,6 +119,7 @@ class Toko extends CI_Controller {
             
         $this->M_toko->inputdata($data);
         echo json_encode(array("status" => TRUE));
+        }
     }
     
        public function ajax_edit($id)
@@ -115,6 +132,22 @@ class Toko extends CI_Controller {
 
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
+
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required');
+        $this->form_validation->set_rules('lokasi','lokasi','trim|required');
+        $this->form_validation->set_rules('pemilik','pemilik','trim|required');
+        $this->form_validation->set_rules('status','status','trim|required');
+        $this->form_validation->set_rules('telp','telp','trim|required');
+        $this->form_validation->set_rules('jambuka','jambuka','trim|required');
+        $this->form_validation->set_rules('jamtutup','jamtutup','trim|required');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
         
         $id = $this->security->sanitize_filename($this->input->post('id'));
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
@@ -147,10 +180,8 @@ class Toko extends CI_Controller {
  
         $this->M_toko->update($where,$data);
         echo json_encode(array("status" => TRUE));
+    }
 
-}
-
- 
-   
+} 
 	
 }

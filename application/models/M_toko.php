@@ -10,12 +10,8 @@ class M_toko extends CI_Model{
     }
 
     function getSemua(){
-        $sql    =   "SELECT
-                        *
-                    FROM
-                        toko";
-        return $this-> DbHelper->execQuery($sql);
-
+        $query = $this->db->get('toko');
+        return $query;
     }
 
 

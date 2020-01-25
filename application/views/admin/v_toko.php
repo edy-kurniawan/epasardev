@@ -31,6 +31,7 @@
             <div class="modal-body">
           <div class="box-body pad">
             <form id="form" class="needs-validation" novalidate>
+              <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
               <input type="hidden" name="id">
               <div class="form-row">
                 <div class="col-md-3 mb-3">
@@ -257,7 +258,7 @@
 
             "ajax": {
                 "url": "<?php echo base_url('admin/toko/setView'); ?>",
-                "type": "POST",
+                "type": "GET",
             },
             "columns": [
 
@@ -453,7 +454,7 @@
       if (result.value) {
         $.ajax({
                  url : "<?php echo base_url('admin/toko/ajax_delete')?>/" +id,
-                 type: "POST",
+                 type: "DELETE",
                  dataType: "JSON",
                  })
                   reload_table();
@@ -509,7 +510,7 @@
     $(document).ready(function() {
       $.ajax({
           url : "<?php echo site_url('admin/toko/getcount'); ?>",
-          type: "POST",
+          type: "GET",
           data: "",
           dataType: "json",
           cache:false,

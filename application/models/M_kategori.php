@@ -9,15 +9,8 @@ class M_kategori extends CI_Model{
         $this->load->model('DbHelper');
     }
     function getSemua(){
-        $sql    =   "SELECT
-                        kategori.ID,
-                        kategori.Kode,
-                        kategori.Nama,
-                        kategori.Ket
-                    FROM
-                        kategori";
-        return $this-> DbHelper->execQuery($sql);
-
+        $query = $this->db->get('kategori');
+        return $query;
     }
 
 

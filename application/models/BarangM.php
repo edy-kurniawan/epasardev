@@ -15,9 +15,7 @@ class BarangM extends CI_Model{
   public function all(){
 
     $all = $this->db->get("barang")->result();
-    $response['status']=200;
-    $response['error']=false;
-    $response['']=$all;
+    $response=$all;
     return $response;
 
   }
