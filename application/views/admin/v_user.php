@@ -242,7 +242,7 @@
 
               { "data": "no" },  
               { "data": "nama" },
-              { "data": "username" },
+              { "data": "kode" },
               { "data": "jenis" },
               { "data": "tgllahir" },
               { "data": "alamat" },  
