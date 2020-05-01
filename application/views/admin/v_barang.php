@@ -30,7 +30,7 @@
             </div>
             <div class="modal-body">
           <div class="box-body pad">
-            <form id="form" class="needs-validation" novalidate>
+            <form id="form" enctype="multipart/form-data" action="#" method="post" class="needs-validation" novalidate>
               <input type="hidden" name="id">
               <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
               <div class="form-row">
@@ -104,11 +104,17 @@
               </div>
               <div class="form-row">
                 <div class="col-md-12 mb-3">
+                  <div class="form-group" id="photo-preview">
+                    <label class="control-label">Photo</label>
+                      <div class="col-md-9">
+                        (No photo)
+                      <span class="help-block"></span>
+                      </div>
+                  </div>
                   <div class="form-group">
-                    <label for="customFile">Upload Gambar</label>
+                    <label for="customFile" id="label-photo">Upload Gambar</label>
                     <div class="custom-file">
-                      <input type="file" name="img" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                      <input name="photo" type="file" id="photo">
                     </div>
                   </div>
                 </div>
@@ -349,6 +355,8 @@
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Input Barang'); // Set Title to Bootstrap modal title
+    $('#photo-preview').hide(); // hide photo preview modal
+    $('#label-photo').text('Upload Photo'); // label photo upload
     }
     
     function edit_data(id)
@@ -377,6 +385,20 @@
     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
     $('.modal-title').text('Edit Data toko'); // Set title to Bootstrap modal title
     
+    $('#photo-preview').show(); // show photo preview modal
+    if(data.Img)
+    {
+        $('#label-photo').text('Change Photo'); // label photo upload
+        $('#photo-preview div').html('<img src="<?php echo base_url();?>/assets/upload/barang/'+data.Img+'" style="width:100px;">'); // show photo
+        $('#photo-preview div').append('</br><input type="checkbox" name="remove_photo" value="'+data.Img+'"/> Remove photo when saving'); // remove photo
+    }
+    else
+    {
+        $('#label-photo').text('Upload Photo'); // label photo upload
+        $('#photo-preview div').text('(No photo)');
+    }
+
+    
     },
     error: function (jqXHR, textStatus , errorThrown)
     {
@@ -398,12 +420,15 @@
     url = "<?php echo base_url('admin/barang/ajax_update')?>";
     }
     // ajax adding data to database
+    var formData = new FormData($('#form')[0]);
     $.ajax({
-    url : url,
-    type: "POST",
-    data: $('#form').serialize(),
-    dataType: "JSON",
-    success: function(data)
+        url : url,
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data)
     {
     if(data.status) //if success close modal and reload ajax table
     {

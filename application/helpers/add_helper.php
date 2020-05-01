@@ -2,7 +2,7 @@
  
 function add($text)
 {
-    $text = "<img src='http://localhost/epasardev/assets/upload/default.jpg' style='width:80px;'>";
+    $text = "<img src='http://localhost/epasardev/assets/upload/barang/".$text."' style='width:80px;'>";
  
     return $text;
 }

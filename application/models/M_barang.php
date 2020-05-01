@@ -8,6 +8,7 @@ class M_barang extends CI_Model{
         
         $this->load->model('DbHelper');
     }
+
     function getSemua(){
         $sql    =   "SELECT
                         barang.ID,
@@ -31,7 +32,7 @@ class M_barang extends CI_Model{
     }
 
 
-function hapus_data($where,$table){
+    function hapus_data($where,$table){
         $this->db->where($where);
         $this->db->delete($table);
     }
@@ -51,6 +52,7 @@ function hapus_data($where,$table){
                         barang.Status,
                         barang.Satuan,
                         barang.Ket,
+                        barang.Img,
                         barang.Refkategori,
                         barang.Reftoko,
                         toko.Nama toko,
