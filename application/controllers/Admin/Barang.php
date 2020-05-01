@@ -147,9 +147,7 @@ class Barang extends CI_Controller {
             unlink('./assets/upload/barang/'.$barang->Img);
  
             $data['Img'] = $upload;
-        } else {
-            $data['Img'] = "default.jpg";
-        }
+        } 
  
         $this->M_barang->update($where,$data);
         echo json_encode(array("status" => TRUE));
@@ -197,7 +195,7 @@ class Barang extends CI_Controller {
     {
         $config['upload_path']          = './assets/upload/barang/';
         $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100; //set max size allowed in Kilobyte
+        $config['max_size']             = 1000; //set max size allowed in Kilobyte
         $config['max_width']            = 1000; // set max width image allowed
         $config['max_height']           = 1000; // set max height allowed
         $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
