@@ -135,20 +135,21 @@ class Barang extends CI_Controller {
         {
             if(file_exists('./assets/upload/barang/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
                 unlink('./assets/upload/barang/'.$this->input->post('remove_photo'));
-            $data['Img'] = '';
+            $data['Img'] = 'default.jpg'; 
         }
  
         if(!empty($_FILES['photo']['name']))
         {
             $upload = $this->_do_upload();
-             
             //delete file
             $barang= $this->M_barang->edit($id);
             if(file_exists('./assets/upload/barang/'.$barang->Img) && $barang->Img)
             unlink('./assets/upload/barang/'.$barang->Img);
  
             $data['Img'] = $upload;
-        } 
+        } else {
+            $data['Img'] = "default.jpg";
+        }
  
         $this->M_barang->update($where,$data);
         echo json_encode(array("status" => TRUE));
@@ -184,6 +185,8 @@ class Barang extends CI_Controller {
             {
                 $upload = $this->_do_upload();
                 $data['Img'] = $upload;
+            } else {
+                $data['Img'] = "default.jpg";
             }
  
         $this->M_barang->inputdata($data,'barang');
