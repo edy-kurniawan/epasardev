@@ -47,7 +47,7 @@ class User extends CI_Controller {
             $row    = array(
                         "no"        => $No,
                         "id"       => $r->ID,
-                        "kode"       => $r->Kode,
+                        "username"       => $r->Username,
                         "nama"    => $r->Nama,
                         "jenis"    => $r->Jenis,
                         "alamat"      => $r->Alamat,

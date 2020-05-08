@@ -111,8 +111,8 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Nama</th>
                             <th>Username</th>
+                            <th>Nama</th>
                             <th>Jenis Kelamin</th>
                             <th>Tgl Lahir</th>
                             <th>Alamat</th>
@@ -241,8 +241,8 @@
             "columns": [
 
               { "data": "no" },  
+              { "data": "username" },
               { "data": "nama" },
-              { "data": "kode" },
               { "data": "jenis" },
               { "data": "tgllahir" },
               { "data": "alamat" },  

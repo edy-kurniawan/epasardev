@@ -1,6 +1,3 @@
-<!-- Toastr -->
-  
-  <?php echo $this->session->flashdata('message');?>
 <!-- Breadcrumb Start -->
         <div class="breadcrumb-area mt-30">
             <div class="container">
@@ -62,15 +59,17 @@
                                 <div class="form-group d-md-flex align-items-md-center">
                                     <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Password:</label>
                                     <div class="col-md-10">
-                                        <input type="password" name="pass" class="form-control" id="pwd" placeholder="Masukan password" required>
+                                        <input type="password" name="password" class="form-control" id="pwd" placeholder="Masukan password" required>
                                     </div>
                                 </div>
                                 <div class="form-group d-md-flex align-items-md-center">
                                     <label class="control-label col-md-2" for="pwd-confirm"><span class="require">*</span>Password</label>
                                     <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pwd-confirm" placeholder="Ulangi password" required>
+                                        <input type="password" name="password2" class="form-control" id="pwd-confirm" placeholder="Ulangi password" required>
                                     </div>
-                                </div>
+                                </div> 
+                                <?php echo $this->session->flashdata('message');?></br>
+                                <?php echo validation_errors(); ?>
                             </fieldset>
                             <div class="terms">
                                 <div class="float-md-right">

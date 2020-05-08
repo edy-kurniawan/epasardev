@@ -12,17 +12,17 @@ class M_user extends CI_Model{
     function getSemua(){
                         $sql    =   "SELECT
                     user.ID,
-                    user.Kode,
+                    user.Refuser,
                     user.Nama,
                     user.Alamat,
                     user.Tgllahir,
                     user.Jenis,
                     user.Telp,
                     user.Email,
-                    login.Refuser
+                    login.Username
                 FROM
                     user
-                    LEFT OUTER JOIN login ON user.Kode = login.Refuser
+                    LEFT OUTER JOIN login ON user.Refuser = login.Username
                         ";
         return $this-> DbHelper->execQuery($sql);
 
@@ -98,6 +98,26 @@ function hapus_data($where,$table){
         $query = $this->db->query("SELECT count(Username) jml from login");
         return $query->row();
     }
+
+    // Check username exists
+  public function check_username_exists($username){
+    $query = $this->db->get_where('login', array('Username' => $username));
+    if(empty($query->row_array())){
+     return true;
+    } else {
+     return false;
+    }
+   }
+ 
+   // Check email exists
+   public function check_email_exists($email){
+    $query = $this->db->get_where('user', array('Email' => $email));
+    if(empty($query->row_array())){
+     return true;
+    } else {
+     return false;
+    }
+   }
  
 
 }

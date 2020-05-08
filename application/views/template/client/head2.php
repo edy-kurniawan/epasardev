@@ -35,6 +35,9 @@
     <!-- Responsive css -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/truemart/css/responsive.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/AdminLTE/plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') ?>">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
 
     <!-- Modernizer js -->
     <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -51,7 +54,7 @@
         <div class="popup_banner">
             <span class="popup_off_banner">×</span>
             <div class="banner_popup_area">
-                    <img src="<?php echo base_url(); ?>assets/truemart/img/head/pop-banner.jpg" alt="">
+                    <img src="<?php echo base_url(); ?>assets/truemart/img/head/header.png" alt="">
             </div>
         </div>
         <!-- Banner Popup End -->
@@ -89,7 +92,7 @@
                     <div class="row align-items-center no-gutters">
                         <div class="col-lg-3 col-md-12">
                             <div class="logo mb-all-30">
-                                <a href="<?php echo site_url('client/home'); ?>"><img src="<?php echo base_url(); ?>assets/truemart/img/head/logo.png" alt="logo-image"></a>
+                                <a href="<?php echo site_url('client/home'); ?>"><img src="<?php echo base_url(); ?>assets/truemart/img/logo/logo3.png" alt="logo-image"></a>
                             </div>
                         </div>
                         <!-- Categorie Search Box Start Here -->
@@ -354,7 +357,7 @@
         </header>
         <!-- Main Header Area End Here -->
         <!-- Categorie Menu & Slider Area Start Here -->
-        <div class="main-page-banner ">
+        <div class="main-page-banner home-3">
             <div class="container">
                 <div class="row">
                     <!-- Vertical Menu Start Here -->

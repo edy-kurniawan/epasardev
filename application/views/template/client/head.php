@@ -50,7 +50,7 @@
         <div class="popup_banner">
             <span class="popup_off_banner">×</span>
             <div class="banner_popup_area">
-                    <img src="<?php echo base_url(); ?>assets/truemart/img/head/pop-banner.jpg" alt="">
+                    <img src="<?php echo base_url(); ?>assets/truemart/img/head/header.png" alt="">
             </div>
         </div>
         <!-- Banner Popup End -->
@@ -82,7 +82,7 @@
                     <div class="row align-items-center no-gutters">
                         <div class="col-lg-3 col-md-12">
                             <div class="logo mb-all-30">
-                                <a href="index.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/logo.png" alt="logo-image"></a>
+                                <a href="index.html"><img src="<?php echo base_url(); ?>assets/truemart/img/logo/logo3.png" alt="logo-image"></a>
                             </div>
                         </div>
                         <!-- Categorie Search Box Start Here -->
@@ -438,8 +438,9 @@
                         <div class="slider-wrapper theme-default">
                             <!-- Slider Background  Image Start-->
                             <div id="slider" class="nivoSlider">
-                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/1.jpg" data-thumb="img/slider/1.jpg" alt="" title="#htmlcaption" /></a>
-                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/2.jpg" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
+                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/3.png" data-thumb="img/slider/1.jpg" alt="" title="#htmlcaption" /></a>
+                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/4.png" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
+                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/5.png" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
                             </div>
                             <!-- Slider Background  Image Start-->
                         </div>
@@ -455,7 +456,7 @@
         <div class="image-banner pb-50 off-white-bg">
             <div class="container">
                 <div class="col-img">
-                    <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/head/h1-banner.jpg" alt="image banner"></a>
+                    <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/head/h2-banner.png" alt="image banner"></a>
                 </div>
             </div>
             <!-- Container End -->

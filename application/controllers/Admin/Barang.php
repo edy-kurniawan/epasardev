@@ -131,10 +131,10 @@ class Barang extends CI_Controller {
     );
 
         //Update img
-        if($this->input->post('remove_photo')) // if remove photo checked
+        if($this->input->post('remove_photo')) // if remove photo checked 
         {
             if(file_exists('./assets/upload/barang/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
-                unlink('./assets/upload/barang/'.$this->input->post('remove_photo'));
+            unlink('./assets/upload/barang/'.$this->input->post('remove_photo'));
             $data['Img'] = 'default.jpg'; 
         }
  

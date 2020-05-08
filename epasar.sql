@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2020 at 04:46 PM
+-- Generation Time: May 08, 2020 at 08:47 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -68,11 +68,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`ID`, `Kode`, `Reftoko`, `Nama`, `Stok`, `Harga`, `Refkategori`, `Satuan`, `Status`, `Ket`, `Img`, `Datei`, `Dateu`) VALUES
-(32, '1121', 'T01', 'Beras Premium', 100, 12000, 'KAT1', 'Kg', 'F', 'Beras Premium Kualitas Terjamin', '1588339312348.png', NULL, '2020-05-01 13:52:36'),
+(32, '1121', 'T01', 'Beras Premium', 100, 12000, 'KAT1', 'Kg', 'T', 'Beras Premium Kualitas Terjamin', '1588339312348.png', NULL, '2020-05-04 06:43:39'),
 (34, '1122', 'T01', 'Beras Termurah', 100, 9000, 'KAT1', 'Kg', 'T', 'Beras Termurah Subsidi Bulog', '1588339858640.jpg', NULL, '2020-05-01 13:30:58'),
 (33, '1123', 'C1', 'Beras Medium', 100, 10000, 'KAT1', 'Kg', 'T', 'Beras Medium Tanpa Pemutih', '1588339748209.jpg', NULL, '2020-05-01 13:29:08'),
 (35, '2111', 'T01', 'Gula Kristal Putih', 50, 17000, 'KAT1', 'Kg', 'T', 'Gula kristal putih tanpa pemutih', '1588340038692.jpg', NULL, NULL),
-(36, '3111', 'T01', 'Minyak Kemasan Sovia 2L', 20, 13500, 'KAT1', 'Buah', 'T', 'Minyak Kemasan Sovia 2L', '1588340457745.jpg', NULL, NULL),
+(36, '3111', 'T01', 'Minyak Kemasan Sovia 2L', 20, 13500, 'KAT1', 'Buah', 'T', 'Minyak Kemasan Sovia 2L', 'default.jpg', NULL, '2020-05-04 06:27:23'),
 (37, '4111', 'C1', 'Sapi Paha Depan', 10, 100000, 'KAT2', 'Kg', 'T', 'Sapi Paha Depan Kualitas Terbaik Dan Segar', '1588340851160.jpg', NULL, NULL),
 (38, '4112', 'C1', 'Sapi Has Dalam (Tenderloi', 10, 110000, 'KAT2', 'Kg', 'T', 'Tenderloin sapi', '1588340975769.png', NULL, NULL),
 (39, '5111', 'C1', 'Daging Ayam Boiler', 20, 26000, 'KAT2', 'Kg', 'T', 'Daging ayam boiler segar', '1588341067964.jpg', NULL, NULL),
@@ -86,7 +86,7 @@ INSERT INTO `barang` (`ID`, `Kode`, `Reftoko`, `Nama`, `Stok`, `Harga`, `Refkate
 
 CREATE TABLE `cart` (
   `ID` int(6) NOT NULL,
-  `Kode` varchar(15) NOT NULL,
+  `Refuser` varchar(15) NOT NULL,
   `Refbarang` varchar(15) NOT NULL,
   `Jumlah` int(11) NOT NULL,
   `Subtotal` int(11) NOT NULL,
@@ -122,20 +122,19 @@ INSERT INTO `kategori` (`ID`, `Kode`, `Nama`, `Ket`) VALUES
 
 CREATE TABLE `login` (
   `ID` int(6) NOT NULL,
-  `Username` varchar(20) NOT NULL,
+  `Username` varchar(15) NOT NULL,
   `Pass` varchar(50) NOT NULL,
-  `Refuser` varchar(15) NOT NULL,
-  `Status` varchar(2) NOT NULL,
-  `Refcart` varchar(15) NOT NULL
+  `Status` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`ID`, `Username`, `Pass`, `Refuser`, `Status`, `Refcart`) VALUES
-(1, 'root', 'd033e22ae348aeb5660fc2140aec35850c4da997', '000', 'T', 'cart0'),
-(5, 'trial', 'd033e22ae348aeb5660fc2140aec35850c4da997', '111', 'T', 'cart1');
+INSERT INTO `login` (`ID`, `Username`, `Pass`, `Status`) VALUES
+(11, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'T'),
+(10, 'duta', '798fa27c4d4fb5b1158a1d5f2339edc0a21b14b6', 'T'),
+(9, 'trial', '069fd3a44db682e9a4ea4bf495c0ffbee58c8431', 'T');
 
 -- --------------------------------------------------------
 
@@ -175,11 +174,11 @@ INSERT INTO `toko` (`ID`, `Kode`, `Nama`, `Pemilik`, `Lokasi`, `Telp`, `Status`,
 
 CREATE TABLE `user` (
   `ID` int(6) NOT NULL,
-  `Kode` varchar(15) NOT NULL,
+  `Refuser` varchar(15) NOT NULL,
   `Nama` char(25) NOT NULL,
-  `Jenis` char(10) NOT NULL,
-  `Alamat` char(30) NOT NULL,
-  `Tgllahir` date NOT NULL,
+  `Jenis` char(10) DEFAULT NULL,
+  `Alamat` char(30) DEFAULT NULL,
+  `Tgllahir` date DEFAULT NULL,
   `Telp` varchar(13) NOT NULL,
   `Email` varchar(30) NOT NULL,
   `Datei` timestamp NULL DEFAULT NULL,
@@ -190,9 +189,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`ID`, `Kode`, `Nama`, `Jenis`, `Alamat`, `Tgllahir`, `Telp`, `Email`, `Datei`, `Dateu`) VALUES
-(1, '000', 'root', '', '', '0000-00-00', '', '', '2019-11-25 03:10:38', '2019-11-25 03:11:03'),
-(2, '111', 'trial', '', '', '0000-00-00', '', '', NULL, NULL);
+INSERT INTO `user` (`ID`, `Refuser`, `Nama`, `Jenis`, `Alamat`, `Tgllahir`, `Telp`, `Email`, `Datei`, `Dateu`) VALUES
+(6, 'admin', 'edy kurniawan', NULL, NULL, NULL, '027172712', 'admin@epasar.com', '2020-05-07 01:23:36', NULL),
+(5, 'duta', 'duta bangsa', '', '', '0000-00-00', '02719921', 'udb@ac.id', '2020-05-07 00:36:10', NULL),
+(4, 'trial', 'trial', '', '', '0000-00-00', '082312312', 'trial@gmail.com', '2020-05-06 13:45:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -269,7 +269,7 @@ ALTER TABLE `barang`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Refcart` (`Kode`),
+  ADD KEY `Refcart` (`Refuser`),
   ADD KEY `ID` (`ID`),
   ADD KEY `Refbarang` (`Refbarang`);
 
@@ -285,9 +285,7 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`Username`),
-  ADD KEY `Refuser` (`Refuser`),
-  ADD KEY `ID` (`ID`),
-  ADD KEY `Refcart` (`Refcart`);
+  ADD KEY `ID` (`ID`);
 
 --
 -- Indexes for table `toko`
@@ -300,7 +298,8 @@ ALTER TABLE `toko`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`Kode`),
+  ADD PRIMARY KEY (`Refuser`),
+  ADD UNIQUE KEY `Email` (`Email`),
   ADD KEY `ID` (`ID`);
 
 --
@@ -360,7 +359,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `toko`
@@ -372,7 +371,7 @@ ALTER TABLE `toko`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `xpembayaran`
@@ -407,21 +406,21 @@ ALTER TABLE `barang`
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `Refcart` FOREIGN KEY (`Kode`) REFERENCES `login` (`Refcart`),
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`Refbarang`) REFERENCES `barang` (`Kode`) ON DELETE CASCADE;
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`Refbarang`) REFERENCES `barang` (`Kode`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`Refuser`) REFERENCES `login` (`Username`) ON DELETE CASCADE;
 
 --
--- Constraints for table `login`
+-- Constraints for table `user`
 --
-ALTER TABLE `login`
-  ADD CONSTRAINT `Refuser` FOREIGN KEY (`Refuser`) REFERENCES `user` (`Kode`);
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`Refuser`) REFERENCES `login` (`Username`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `xpenjualan`
 --
 ALTER TABLE `xpenjualan`
   ADD CONSTRAINT `xpenjualan_ibfk_1` FOREIGN KEY (`Refbayar`) REFERENCES `xpembayaran` (`Kode`),
-  ADD CONSTRAINT `xpenjualan_ibfk_2` FOREIGN KEY (`Refuser`) REFERENCES `user` (`Kode`);
+  ADD CONSTRAINT `xpenjualan_ibfk_2` FOREIGN KEY (`Refuser`) REFERENCES `login` (`Username`);
 
 --
 -- Constraints for table `xpenjualand`
