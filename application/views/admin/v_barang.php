@@ -122,7 +122,7 @@
               <div class="form-row">
                 <div class="col-md-12 mb-3">
                   <label for="validationCustom05">Deskripsi</label>
-                  <textarea type="text" class="form-control" placeholder="Deskripsi" name="ket" ></textarea> 
+                  <textarea type="text" rows="5" class="form-control" placeholder="Deskripsi" name="ket" ></textarea> 
                 </div>
               </div>
           </div>

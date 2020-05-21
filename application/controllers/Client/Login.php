@@ -29,15 +29,14 @@ class Login extends CI_Controller{
                                     where login.Username='$username' and login.Status='T'
                                     ");
             $row = $query->row();
-            $data_session = array(
-                'username' => $username,
+            $data_session_user = array(
+                'username'  => $username,
                 'status'    => "online",
-                'logged'    => TRUE,
+                'logged_user'    => TRUE,
                 
             );
 
-            $this->session->set_userdata($data_session);
-
+            $this->session->set_userdata($data_session_user);
             $this->session->set_flashdata('message', '<div  class="col-md-8 alert-success alert-dismissible" data-dismiss="alert" aria-hidden="true" ><br>
                 <i class="icon fa fa-check"></i>
                 <strong>Sukses Login</strong>
@@ -51,7 +50,7 @@ class Login extends CI_Controller{
     }
     
     function logout(){
-        $this->session->unset_userdata('logged');
+        $this->session->unset_userdata('logged_user');
         redirect(base_url('client/home'));
     }
 

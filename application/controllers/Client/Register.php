@@ -57,6 +57,7 @@ class Register extends CI_Controller{
             "Refuser"   => $username,
             "Email"      => $email,
             "Telp"       => $telp,
+            "Img"       => "default.png",
             "Datei"      => $now
             );
 
