@@ -37,13 +37,50 @@
                                  <h3 class="sidebar-title"><?php echo $this->session->userdata("username"); ?></h3>
                                  <ul class="sidbar-style">
                                      <li><a href="login.html">History Transaksi</a></li>
-                                     <li><a href="#">Ubah Password</a></li>
+                                     <li><a href="" data-toggle="modal" data-target="#modal-pass">Ubah Password</a></li>
                                      <li><a href="<?php echo site_url('client/login/logout'); ?>">Logout</a></li>
+                                     <li><?php echo $this->session->flashdata('message');?></br></li>
                                  </ul>
                             </div>
                         </aside>
                     </div>
                     <!-- Single Blog Sidebar End -->
+                    <!-- script load here <crash nice select & select2> -->
+                    <!-- jquery 3.2.1 -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/jquery-3.2.1.min.js"></script>
+                    <!-- Countdown js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.countdown.min.js"></script>
+                    <!-- Mobile menu js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.meanmenu.min.js"></script>
+                    <!-- ScrollUp js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.scrollUp.js"></script>
+                    <!-- Nivo slider js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.nivo.slider.js"></script>
+                    <!-- Fancybox js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.fancybox.min.js"></script>
+                    <!-- Jquery nice select js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.nice-select.min.js"></script>
+                    <!-- Jquery ui price slider js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery-ui.min.js"></script>
+                    <!-- Owl carousel -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/owl.carousel.min.js"></script>
+                    <!-- Bootstrap popper js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/popper.min.js"></script>
+                    <!-- Bootstrap js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/bootstrap.min.js"></script>
+                    <!-- Plugin js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/plugins.js"></script>
+                    <!-- Main activaion js -->
+                    <script src="<?php echo base_url(); ?>assets/truemart/js/main.js"></script>
+                    <!-- Toastr -->
+                    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/toastr/toastr.min.js"></script>
+                    <!-- DataTables -->
+                    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/moment/moment.min.js"></script>
+                    <!-- jQuery -->
+                    <script src="<?php echo base_url('assets/AdminLTE/plugins/jquery/jquery.min.js') ?>"></script>
+                    <script src="<?php echo base_url('assets/AdminLTE/plugins/select2/js/select2.full.min.js')?>"></script>
+                    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> 
+                    <!-- end script load here <crash nice select & select2> -->
                     <!-- Single Blog Sidebar Description Start -->
                     <div class="col-lg-9 order-1 order-lg-2">
                         <div class="single-sidebar-desc mb-all-40">
@@ -51,35 +88,62 @@
                             <div class="blog-detail-contact">
                                 <h3 class="mb-15 leave-reply">Profil Anda</h3>
                                 <div class="submit-review">
-                                    <form action="<?php echo site_url('Client/Profile/ajax_update'); ?>" method="post">
+                                    <form action="<?php echo site_url('client/profile/ajax_update'); ?>" method="post">
                                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                         <input type="hidden" name="id" id="id">
                                         <div class="form-group">
-                                            <label for="usr">Nama</label>
+                                            <label for="nama">Nama</label>
                                             <input type="text" name="nama" class="form-control" id="nama" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="usr">Email</label>
+                                            <label for="email">Email</label>
                                             <input type="email" name="email" class="form-control" id="email" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="web-address">Jenis Kelamin</label>
-                                            <select name="jenis" class="form-control" id="jenis">
-                                                <option value="L">Laki-Laki</option>
-                                                <option value="P">Perempuan</option>                      
+                                            <label for="jenis">Jenis Kelamin</label>
+                                            <select name="jenis" class="form-control jenis" id="jenis">
+                                                <option value="0">Laki-Laki</option>
+                                                <option value="1">Perempuan</option>                      
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="web-address">Alamat</label>
-                                            <input type="text" name="alamat" class="form-control" id="alamat">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sub">Telp:</label>
+                                            <label for="telp">Telp:</label>
                                             <input type="number" name="telp" class="form-control" id="telp" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="comment">Tanggal Lahir</label>
+                                            <label for="tgl">Tanggal Lahir</label>
                                             <input name="tgl" class="form-control datepicker" id="tgl" disabled>
+                                        </div>
+                                        <label for="prov">Provinsi</label>
+                                        <div class="form-control">
+                                            <select class="form-control select2" name="prov" id="prov" required>
+                                                <option>Pilih Provinsi</option>
+                                                <?php foreach($prov as $row):?>
+                                                <option value="<?php echo $row->id_prov;?>"><?php echo $row->nama;?></option>
+                                                <?php endforeach;?>
+                                            </select>
+                                        </div>
+                                        <label for="kab">Kabupaten</label>
+                                        <div class="form-control">
+                                            <select class="form-control select2" id="kab" name="kab" required>
+                                                <option value="">Pilih Kabupaten</option>
+                                            </select>
+                                        </div>
+                                        <label for="kec">Kecamatan</label>
+                                        <div class="form-control">
+                                            <select class="form-control select2" id="kec" name="kec" required>
+                                                <option value="">Pilih Kecamatan</option>
+                                            </select>
+                                        </div>
+                                        <label for="kel">Kelurahan</label>
+                                        <div class="form-control">
+                                            <select class="form-control select2" id="kel" name="kel" required>
+                                                <option value="">Pilih Kelurahan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">Alamat</label>
+                                            <input type="textarea" name="alamat" class="form-control" id="alamat" disabled>
                                         </div>
                                         <div class="sbumit-reveiew">
                                             <input value="Simpan Data" class="return-customer-btn" type="submit">
@@ -126,6 +190,43 @@
                 </br><input type="checkbox" name="remove_photo" /> <strong>Remove photo when saving </strong>
             </div>
         </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit"  class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+          </form>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+      <div class="modal fade" id="modal-pass">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Ubah Password</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <?php echo form_open_multipart('client/profile/pass_update');?>
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                <div class="form-group">
+                    <label for="sub">Masukan Password Lama</label>
+                    <input type="password" name="oldpass" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="sub">Masukan Password Baru</label>
+                    <input type="password" name="pass" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="sub">Ulangi Password Baru</label>
+                    <input type="password" name="pass2" class="form-control">
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -254,40 +355,6 @@
         </footer>
         <!-- Footer Area End Here -->
        
-
-    <!-- jquery 3.2.1 -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/jquery-3.2.1.min.js"></script>
-    <!-- Countdown js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.countdown.min.js"></script>
-    <!-- Mobile menu js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.meanmenu.min.js"></script>
-    <!-- ScrollUp js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.scrollUp.js"></script>
-    <!-- Nivo slider js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.nivo.slider.js"></script>
-    <!-- Fancybox js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.fancybox.min.js"></script>
-    <!-- Jquery nice select js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery.nice-select.min.js"></script>
-    <!-- Jquery ui price slider js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/jquery-ui.min.js"></script>
-    <!-- Owl carousel -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/owl.carousel.min.js"></script>
-    <!-- Bootstrap popper js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/bootstrap.min.js"></script>
-    <!-- Plugin js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/plugins.js"></script>
-    <!-- Main activaion js -->
-    <script src="<?php echo base_url(); ?>assets/truemart/js/main.js"></script>
-    <!-- Toastr -->
-    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/toastr/toastr.min.js"></script>
-      <!-- DataTables -->
-    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/moment/moment.min.js"></script>
-     <!-- jQuery -->
-    <script src="<?php echo base_url('assets/AdminLTE/plugins/jquery/jquery.min.js') ?>"></script>
-    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> 
         <script type="text/javascript">
             $(function(){
             $(".datepicker").datetimepicker({
@@ -309,7 +376,7 @@
             $('[name="telp"]').val(data.Telp);
             $('[name="tgl"]').val(data.Tgllahir);
             $('[name="jenis"]').val(data.Jenis);
-            $('[name="alamat"]').val(data.Alamat);
+            $('[name="alamat"]').val(data.Alamat+ data.Kec+ data.Kab+ data.Prov);
             $('[name="img"]').val(data.Img);
             $('#photo-preview').show(); // show photo preview modal
                 if(data.Img)
@@ -331,14 +398,106 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#prov').change(function(){ 
+                var id=$(this).val();
+                $.ajax({
+                    url : "<?php echo base_url();?>client/profile/get_kab",
+                    method : "POST",
+                    data : {
+                        '<?php echo $this->security->get_csrf_token_name(); ?>':'<?php echo $this->security->get_csrf_hash(); ?>',
+                        "id":id
+                        },
+                    async : true,
+                    dataType : 'json',
+                    success: function(data){
+                         
+                        var html = '';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<option value='+data[i].id_kab+'>'+data[i].nama+'</option>';
+                        }
+                        $('#kab').html(html);
+ 
+                    }
+                });
+                return false;
+            });
+
+            $('#kab').change(function(){ 
+                var id=$(this).val();
+                $.ajax({
+                    url : "<?php echo base_url();?>client/profile/get_kec",
+                    method : "POST",
+                    data : {
+                        '<?php echo $this->security->get_csrf_token_name(); ?>':'<?php echo $this->security->get_csrf_hash(); ?>',
+                        "id":id
+                        },
+                    async : true,
+                    dataType : 'json',
+                    success: function(data){
+                         
+                        var html = '';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<option value='+data[i].id_kec+'>'+data[i].nama+'</option>';
+                        }
+                        $('#kec').html(html);
+ 
+                    }
+                });
+                return false;
+            }); 
+
+            $('#kec').change(function(){ 
+                var id=$(this).val();
+                $.ajax({
+                    url : "<?php echo base_url();?>client/profile/get_kel",
+                    method : "POST",
+                    data : {
+                        '<?php echo $this->security->get_csrf_token_name(); ?>':'<?php echo $this->security->get_csrf_hash(); ?>',
+                        "id":id
+                        },
+                    async : true,
+                    dataType : 'json',
+                    success: function(data){
+                         
+                        var html = '';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<option value='+data[i].id_kel+'>'+data[i].nama+'</option>';
+                        }
+                        $('#kel').html(html);
+ 
+                    }
+                });
+                return false;
+            });
+             
+        });
+    </script>
 
     <script type="text/javascript">
-
     function enable() {
     $('#nama').attr('disabled',false); //set button enable
     $('#telp').attr('disabled',false); //set button enable
     $('#tgl').attr('disabled',false); //set button enable
+    $('#prov').attr('disabled',false); //set button enable
+    $('#kab').attr('disabled',false); //set button enable
+    $('#kec').attr('disabled',false); //set button enable
+    $('#kel').attr('disabled',false); //set button enable
+    $('#alamat').attr('disabled',false); //set button enable
     }
 
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".select2").select2({
+                theme:"bootstrap",
+                allowClear: true,
+                minimumInputLength: 2,
+            });
+        });
     </script>
 </body>

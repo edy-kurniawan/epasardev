@@ -43,9 +43,9 @@
                 </div>
                 <div class="col-md-5 mb-3">
                   <label for="validationCustom01">Toko</label>
-                  <div form-control>
+                  <div class="form-control">
                     <?php
-                      echo form_dropdown('toko', $toko, '', 'class="form-control" id="combobox" name="toko" required'); 
+                      echo form_dropdown('toko', $toko, '', 'class="form-control select2-single" id="combobox" name="toko"'); 
                     ?>
                   </div>
                 </div>
@@ -375,7 +375,8 @@
     $('[name="id"]').val(data.ID);
     $('[name="kode"]').val(data.Kode);
     $('[name="nama"]').val(data.Nama);
-    $('[name="toko"]').val(data.Reftoko);
+    $('#combobox').val(data.Reftoko);
+    $('#combobox').select2().trigger('change');
     $('[name="harga"]').val(data.Harga);
     $('[name="stok"]').val(data.Stok);
     $('[name="status"]').val(data.Status);
@@ -544,7 +545,11 @@
 
   <script type="text/javascript">
   $("#combobox").select2({
-    allowClear: true
+    theme:"bootstrap",
+		placeholder: "Pilih Toko",
+		width: 'auto',
+		dropdownAutoWidth: true,
+		allowClear: true,
   });
   </script>
 

@@ -10,6 +10,7 @@ class DbHelper extends CI_Model{
 
     public $toko            = 'toko';
     public $kat             = 'kategori';
+    public $prov            = 'provinsi';
     
     function __construct() {
         parent::__construct();
@@ -125,8 +126,8 @@ class DbHelper extends CI_Model{
         return $result;
     }
 
-    function getIdcNamaCust($table, $str, $where = NULL){
-        $sql    = "select idc, nama from ".$table." ";
+    function getprov($table, $str, $where = NULL){
+        $sql    = "select id_prov, nama from ".$table." ";
         if ($where) {
 
             $sql .= $where;
@@ -142,10 +143,37 @@ class DbHelper extends CI_Model{
 
         $result['']     = $str;
         if (count($row) == 1) {
-            $result[$row->idc] = $row->nama;
+            $result[$row->id_prov] = $row->nama;
         }else{
             foreach ($row as $r) {
-                $result[$r->idc] = $r->nama;
+                $result[$r->id_prov] = $r->nama;
+            }
+        }
+        
+        return $result;
+    }
+
+    function getkab($table, $str, $where = NULL){
+        $sql    = "select id_kab, nama from ".$table." where ";
+        if ($where) {
+
+            $sql .= $where;
+        }
+        $sql    .= " order by nama asc";
+        
+        $data   = $this->execQuery($sql);
+        if ($data->num_rows() == 1) {
+            $row = $data->row();
+        } else {
+            $row = $data->result();
+        } 
+
+        $result['']     = $str;
+        if (count($row) == 1) {
+            $result[$row->id_prov] = $row->nama;
+        }else{
+            foreach ($row as $r) {
+                $result[$r->id_prov] = $r->nama;
             }
         }
         

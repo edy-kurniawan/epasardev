@@ -38,9 +38,11 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') ?>">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
-
-    <!-- Modernizer js -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/select2/css/select2.css')?>">
+   <!-- Modernizer js -->
     <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/modernizr-3.5.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -70,14 +72,8 @@
                             <li><a href="#">Keranjang Belanja</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
                         </ul>
-                        <ul>                                          
-                            <li><a href="#">Akun Saya<i class="lnr lnr-chevron-down"></i></a>
-                                <!-- Dropdown Start -->
-                                <ul class="ht-dropdown">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Daftar</a></li>
-                                </ul>
-                                <!-- Dropdown End -->
+                        <ul>     
+                            <li><a href="#"><strong>#Dirumahaja</strong><i class="lnr lnr-chevron-right"></i></a>
                             </li> 
                         </ul>
                     </div>
@@ -172,10 +168,13 @@
                                     </li>
                                     <li><a href="#"><i class="lnr lnr-heart"></i><span class="my-cart"><span>Wish</span><span>list (0)</span></span></a>
                                     </li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Sign in</strong> Or</span><span> Join My Site</span></span></a>
-
-
-
+                                    <li>
+                                    <?php if($this->session->userdata('logged_user') == TRUE): ?> 
+                                        <a href="<?php echo site_url('client/profile'); ?>"><i class="lnr lnr-user"></i><span class="my-cart"><span>Welcome</span><span><strong><?php echo $this->session->userdata("username"); ?></strong></span></span></a>
+                                    <?php endif; ?>
+                                    <?php if($this->session->userdata('logged_user') != TRUE): ?> 
+                                        <a href="<?php echo site_url('client/login'); ?>"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Sign in</strong> Or</span><span> Join My Site</span></span></a>
+                                    <?php endif; ?>
                                     </li>
                                 </ul>
                             </div>
@@ -481,3 +480,4 @@
             </div>
             <!-- Container End -->
         </div>
+        
