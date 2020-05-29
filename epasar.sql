@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 06:06 PM
+-- Generation Time: May 29, 2020 at 05:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -45216,7 +45216,7 @@ CREATE TABLE `user` (
   `Prov` varchar(2) DEFAULT NULL,
   `Kab` varchar(4) DEFAULT NULL,
   `Kec` varchar(6) DEFAULT NULL,
-  `Kel` varchar(8) DEFAULT NULL,
+  `Kel` varchar(10) DEFAULT NULL,
   `Datei` timestamp NULL DEFAULT NULL,
   `Dateu` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45226,7 +45226,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Refuser`, `Nama`, `Jenis`, `Tgllahir`, `Telp`, `Email`, `Img`, `Alamat`, `Prov`, `Kab`, `Kec`, `Kel`, `Datei`, `Dateu`) VALUES
-(6, 'admin', 'edy kurniawan', '0', '2020-05-02', '027172712', 'edy.kurniawan280898@gmail.com', 'default.png', 'Godog Rt.0109', '33', '3311', '331106', '11010120', '2020-05-07 01:23:36', '2020-05-28 13:57:02'),
+(6, 'admin', 'edy kurniawan', '0', '2020-05-03', '0271727123', 'edy.kurniawan280898@gmail.com', 'default.png', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', '2020-05-07 01:23:36', '2020-05-29 15:09:46'),
 (5, 'duta', 'duta bangsa', '', '0000-00-00', '02719921', 'udb@ac.id', NULL, '', NULL, NULL, NULL, '33110620', '2020-05-07 00:36:10', NULL),
 (4, 'trial', 'trial', '', '0000-00-00', '082312312', 'trial@gmail.com', NULL, '', NULL, NULL, NULL, NULL, '2020-05-06 13:45:02', NULL);
 

@@ -45,7 +45,7 @@
                   <label for="validationCustom01">Toko</label>
                   <div class="form-control">
                     <?php
-                      echo form_dropdown('toko', $toko, '', 'class="form-control select2-single" id="combobox" name="toko"'); 
+                      echo form_dropdown('toko', $toko, '', 'class="form-control" id="combobox" name="toko"'); 
                     ?>
                   </div>
                 </div>
@@ -357,6 +357,7 @@
     $('.modal-title').text('Input Barang'); // Set Title to Bootstrap modal title
     $('#photo-preview').hide(); // hide photo preview modal
     $('#label-photo').text('Upload Photo'); // label photo upload
+    $('#combobox').val(null).trigger('change');
     }
     
     function edit_data(id)
@@ -547,7 +548,7 @@
   $("#combobox").select2({
     theme:"bootstrap",
 		placeholder: "Pilih Toko",
-		width: 'auto',
+		width: 'resolve',
 		dropdownAutoWidth: true,
 		allowClear: true,
   });

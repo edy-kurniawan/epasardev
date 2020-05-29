@@ -48,7 +48,7 @@ class Profile extends CI_Controller{
         $this->form_validation->set_rules('kab','kab','required');
         $this->form_validation->set_rules('kec','kec','required');
         $this->form_validation->set_rules('kel','kel','required');
-        $this->form_validation->set_rules('alamat','alamat','required');
+        $this->form_validation->set_rules('alamat2','alamat2','required');
         
             if($this->form_validation->run() == false)
         {
@@ -67,7 +67,7 @@ class Profile extends CI_Controller{
         $kab    = $this->security->sanitize_filename($this->input->post('kab'));
         $kec    = $this->security->sanitize_filename($this->input->post('kec'));
         $kel    = $this->security->sanitize_filename($this->input->post('kel'));
-        $alamat = $this->security->sanitize_filename($this->input->post('alamat'));
+        $alamat = $this->security->sanitize_filename($this->input->post('alamat2'));
 
         $data = array(  
             "Nama"       => $nama,
@@ -118,9 +118,13 @@ class Profile extends CI_Controller{
 
                 $this->M_profile->update($where,$data);
                 echo json_encode(array("status" => TRUE));
+                
+                if($this->input->post('img')=="default.png"){
 
-                if(file_exists('./assets/upload/user/'.$this->input->post('img')) && $this->input->post('img'))
-                unlink('./assets/upload/user/'.$this->input->post('img'));
+                }else{
+                    if(file_exists('./assets/upload/user/'.$this->input->post('img')) && $this->input->post('img'))
+                    unlink('./assets/upload/user/'.$this->input->post('img'));
+                }
 
                 redirect('client/profile'); 
             } else {
