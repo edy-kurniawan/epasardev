@@ -280,7 +280,7 @@
             "responsive": true,
 
             "ajax": {
-                "url": "<?php echo base_url('admin/barang/setView'); ?>",
+                "url": "<?php echo base_url('Admin/Barang/setView'); ?>",
                 "type": "GET",
             },
             "columns": [
@@ -368,7 +368,7 @@
     $('.help-block').empty(); // clear error string
     //Ajax Load data from ajax
     $.ajax({
-    url : "<?php echo base_url('admin/barang/ajax_edit')?>/" + id,
+    url : "<?php echo base_url('Admin/Barang/ajax_edit')?>/" + id,
     type: "GET",
     dataType: "JSON",
     success: function(data)
@@ -417,9 +417,9 @@
     var notif;
     
     if(save_method == 'add') {
-    url = "<?php echo base_url('admin/barang/ajax_add')?>";
+    url = "<?php echo base_url('Admin/Barang/ajax_add')?>";
     } else {
-    url = "<?php echo base_url('admin/barang/ajax_update')?>";
+    url = "<?php echo base_url('Admin/Barang/ajax_update')?>";
     }
     // ajax adding data to database
     var formData = new FormData($('#form')[0]);
@@ -477,7 +477,7 @@
     }).then((result) => {
       if (result.value) {
         $.ajax({
-                 url : "<?php echo base_url('admin/barang/ajax_delete')?>/" +id,
+                 url : "<?php echo base_url('Admin/Barang/ajax_delete')?>/" +id,
                  type: "DELETE",
                  dataType: "JSON",
                  })
@@ -525,7 +525,7 @@
  <script type="text/javascript">
     $(document).ready(function() {
       $.ajax({
-          url : "<?php echo site_url('admin/barang/getcount'); ?>",
+          url : "<?php echo site_url('Admin/Barang/getcount'); ?>",
           type: "GET",
           data: "",
           dataType: "json",

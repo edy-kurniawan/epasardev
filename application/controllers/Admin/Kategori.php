@@ -10,7 +10,7 @@ class Kategori extends CI_Controller {
         else
         {
             $this->session->set_flashdata('message', '<div style="color : red;">Login Terlebih Dahulu</div>');
-            redirect(base_url('login'));
+            redirect(base_url('Login'));
         }
          $this->load->helper(array('form', 'url','tombol')); 
          $this->load->model(array('DbHelper', 'M_kategori')); 
@@ -20,7 +20,7 @@ class Kategori extends CI_Controller {
     }
 
     public function index(){
-        $this->load->view('admin/v_kategori');
+        $this->load->view('Admin/v_kategori');
     }
 
     public function setView(){

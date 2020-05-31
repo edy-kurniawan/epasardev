@@ -6,7 +6,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo site_url('login/logout'); ?>" class="nav-link">Logout</a>
+        <a href="<?php echo site_url('Login/logout'); ?>" class="nav-link">Logout</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Lock</a>

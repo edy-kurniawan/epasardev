@@ -205,7 +205,7 @@
             "responsive": true,
 
             "ajax": {
-                "url": "<?php echo base_url('admin/kategori/setView'); ?>",
+                "url": "<?php echo base_url('Admin/Kategori/setView'); ?>",
                 "type": "GET",
             },
             "columns": [
@@ -283,7 +283,7 @@
     $('.help-block').empty(); // clear error string
     //Ajax Load data from ajax
     $.ajax({
-    url : "<?php echo base_url('admin/kategori/ajax_edit')?>/" + id,
+    url : "<?php echo base_url('Admin/Kategori/ajax_edit')?>/" + id,
     type: "GET",
     dataType: "JSON",
     success: function(data)
@@ -311,9 +311,9 @@
     var notif;
     
     if(save_method == 'add') {
-    url = "<?php echo base_url('admin/kategori/ajax_add')?>";
+    url = "<?php echo base_url('Admin/Kategori/ajax_add')?>";
     } else {
-    url = "<?php echo base_url('admin/kategori/ajax_update')?>";
+    url = "<?php echo base_url('Admin/Kategori/ajax_update')?>";
     }
     // ajax adding data to database
     $.ajax({
@@ -368,7 +368,7 @@
     }).then((result) => {
       if (result.value) {
         $.ajax({
-                 url : "<?php echo base_url('admin/kategori/ajax_delete')?>/" +id,
+                 url : "<?php echo base_url('Admin/Kategori/ajax_delete')?>/" +id,
                  type: "DELETE",
                  dataType: "JSON",
                  })
@@ -409,7 +409,7 @@
  <script type="text/javascript">
     $(document).ready(function() {
       $.ajax({
-          url : "<?php echo site_url('admin/toko/getcount'); ?>",
+          url : "<?php echo site_url('Admin/Toko/getcount'); ?>",
           type: "GET",
           data: "",
           dataType: "json",

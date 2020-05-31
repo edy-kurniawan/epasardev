@@ -3,8 +3,8 @@
             <div class="container">
                 <div class="breadcrumb">
                     <ul class="d-flex align-items-center">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="contact.html">Login</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                                 <h3 class="custom-title">Daftar Akun</h3>
                                 <p class="mtb-10"><strong></strong></p>
                                 <p>Jika anda belum mempunyai akun silahkan kunjungi halaman daftar</p>
-                                <a class="customer-btn" href="<?php echo site_url('client/register'); ?>">Daftar</a>
+                                <a class="customer-btn" href="<?php echo site_url('Client/Register'); ?>">Daftar</a>
                                 <p><?php echo $this->session->flashdata('message');?></p>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                             <div class="return-customer">
                                 <h3 class="mb-10 custom-title">Login Page</h3>
                                 <p class="mb-10"><strong>Saya sudah mempunyai akun</strong></p>
-                                <form action="<?php echo site_url('client/login/aksi_login'); ?>" method="post">
+                                <form action="<?php echo site_url('Client/Login/aksi_login'); ?>" method="post">
                                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <div class="form-group">
                                         <label>Username</label>

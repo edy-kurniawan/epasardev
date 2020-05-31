@@ -59,19 +59,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('admin/barang'); ?>" class="nav-link">
+                <a href="<?php echo site_url('Admin/Barang'); ?>" class="nav-link">
                   <i class="far fas fa-briefcase nav-icon"></i>
                   <p>Barang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('admin/toko'); ?>" class="nav-link">
+                <a href="<?php echo site_url('Admin/Toko'); ?>" class="nav-link">
                   <i class="far fas fa-store-alt nav-icon"></i>
                   <p>Toko</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('admin/kategori'); ?>" class="nav-link">
+                <a href="<?php echo site_url('Admin/Kategori'); ?>" class="nav-link">
                   <i class="far fas fa-list nav-icon"></i>
                   <p>Kategori</p>
                 </a>
@@ -88,7 +88,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('admin/user'); ?>" class="nav-link">
+                <a href="<?php echo site_url('Admin/User'); ?>" class="nav-link">
                   <i class="far fas fa-user-lock nav-icon"></i>
                   <p>User</p>
                 </a>

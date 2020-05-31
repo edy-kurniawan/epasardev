@@ -10,7 +10,7 @@ class Toko extends CI_Controller {
         else
         {
             $this->session->set_flashdata('message', '<div style="color : red;">Login Terlebih Dahulu</div>');
-            redirect(base_url('login'));
+            redirect(base_url('Login'));
         }
          $this->load->library('form_validation'); 
          $this->load->helper('security');
@@ -22,7 +22,7 @@ class Toko extends CI_Controller {
     }
 
     public function index(){
-        $this->load->view('admin/v_toko');
+        $this->load->view('Admin/v_toko');
     }
 
     public function getcount(){

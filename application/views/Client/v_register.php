@@ -3,8 +3,8 @@
             <div class="container">
                 <div class="breadcrumb">
                     <ul class="d-flex align-items-center">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="register.html">Register</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <div class="col-sm-12">
                         <div class="register-title">
                             <h3 class="mb-10">DAFTAR AKUN</h3>
-                            <p class="mb-10">Jika anda sudah mempunyai akun silahkan kunjungi <a href="<?php echo site_url('client/login'); ?>">login page</a></p>
+                            <p class="mb-10">Jika anda sudah mempunyai akun silahkan kunjungi <a href="<?php echo site_url('Client/Login'); ?>">login page</a></p>
                         </div>
                     </div>
                 </div>

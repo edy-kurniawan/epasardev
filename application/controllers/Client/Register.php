@@ -70,7 +70,7 @@ class Register extends CI_Controller{
                 <strong>Akun Berhasil Dibuat !</strong></font>
               ');
 
-        redirect('client/login');
+        redirect('Client/Login');
             }
            
     }

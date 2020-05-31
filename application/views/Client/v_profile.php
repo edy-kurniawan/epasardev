@@ -3,8 +3,8 @@
            <div class="container">
                <div class="breadcrumb">
                    <ul class="d-flex align-items-center">
-                       <li><a href="<?php echo site_url('client/home'); ?>">Home</a></li>
-                       <li class="active"><a href="<?php echo site_url('client/profile'); ?>">Profile</a></li>
+                       <li><a href="<?php echo site_url('Client/Home'); ?>">Home</a></li>
+                       <li class="active"><a href="<?php echo site_url('Client/Profile'); ?>">Profile</a></li>
                    </ul>
                </div>
            </div>
@@ -38,8 +38,8 @@
                                <ul class="sidbar-style">
                                    <li><a href="" data-toggle="modal" data-target="#modal-update">Ubah Data</a></li>
                                    <li><a href="" data-toggle="modal" data-target="#modal-pass">Ubah Password</a></li>
-                                   <li><a href="login.html">History Transaksi</a></li>
-                                   <li><a href="<?php echo site_url('client/login/logout'); ?>">Logout</a></li>
+                                   <li><a href="#">History Transaksi</a></li>
+                                   <li><a href="<?php echo site_url('Client/Login/logout'); ?>">Logout</a></li>
                                    <li><?php echo $this->session->flashdata('message'); ?></br></li>
                                </ul>
                            </div>
@@ -139,7 +139,7 @@
                        </button>
                    </div>
                    <div class="modal-body">
-                       <?php echo form_open_multipart('client/profile/img_update'); ?>
+                       <?php echo form_open_multipart('Client/Profile/img_update'); ?>
                        <input type="hidden" name="id">
                        <input type="hidden" name="img">
                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -186,7 +186,7 @@
                        </button>
                    </div>
                    <div class="modal-body">
-                       <?php echo form_open_multipart('client/profile/pass_update'); ?>
+                       <?php echo form_open_multipart('Client/Profile/pass_update'); ?>
                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                        <div class="form-group">
                            <label for="sub">Masukan Password Lama</label>
@@ -223,7 +223,7 @@
                        </button>
                    </div>
                    <div class="modal-body">
-                       <form action="<?php echo site_url('client/profile/ajax_update'); ?>" method="post">
+                       <form action="<?php echo site_url('Client/Profile/ajax_update'); ?>" method="post">
                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                            <input type="hidden" name="id" id="id">
                            <div class="form-group">
@@ -419,7 +419,7 @@
        <script type="text/javascript">
            $(document).ready(function() {
                $.ajax({
-                   url: "<?php echo base_url('client/profile/get_user') ?>",
+                   url: "<?php echo base_url('Client/Profile/get_user') ?>",
                    type: "GET",
                    dataType: "JSON",
                    success: function(data) {
@@ -458,7 +458,7 @@
                $('#prov').change(function() {
                    var id = $(this).val();
                    $.ajax({
-                       url: "<?php echo base_url(); ?>client/profile/get_kab",
+                       url: "<?php echo base_url(); ?>Client/Profile/get_kab",
                        method: "POST",
                        data: {
                            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
@@ -483,7 +483,7 @@
                $('#kab').change(function() {
                    var id = $(this).val();
                    $.ajax({
-                       url: "<?php echo base_url(); ?>client/profile/get_kec",
+                       url: "<?php echo base_url(); ?>Client/Profile/get_kec",
                        method: "POST",
                        data: {
                            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
@@ -508,7 +508,7 @@
                $('#kec').change(function() {
                    var id = $(this).val();
                    $.ajax({
-                       url: "<?php echo base_url(); ?>client/profile/get_kel",
+                       url: "<?php echo base_url(); ?>Client/Profile/get_kel",
                        method: "POST",
                        data: {
                            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',

@@ -235,7 +235,7 @@
             "responsive": true,
 
             "ajax": {
-                "url": "<?php echo base_url('admin/user/setView'); ?>",
+                "url": "<?php echo base_url('Admin/User/setView'); ?>",
                 "type": "GET",
             },
             "columns": [
@@ -262,7 +262,7 @@
     $('#modal-lg').modal('show'); // show bootstrap modal when complete loaded
     $('.modal-title').text('Detail Data Keranjang User');
           $.ajax({
-            url : "<?php echo base_url('user/user/cart')?>/" +id,
+            url : "<?php echo base_url('User/User/cart')?>/" +id,
             type: "POST",
             dataType: "JSON",
           })
@@ -272,7 +272,7 @@
             "responsive": true,
 
             "ajax": {
-                "url": "<?php echo base_url('user/user/cart'); ?>"+id,
+                "url": "<?php echo base_url('User/User/cart'); ?>"+id,
                 "type": "POST",
             },
             "columns": [
@@ -315,7 +315,7 @@
     $('.help-block').empty(); // clear error string
     //Ajax Load data from ajax
     $.ajax({
-    url : "<?php echo base_url('user/user/ajax_edit')?>/" + id,
+    url : "<?php echo base_url('User/User/ajax_edit')?>/" + id,
     type: "GET",
     dataType: "JSON",
     success: function(data)
@@ -338,7 +338,7 @@
  <script type="text/javascript">
     $(document).ready(function() {
       $.ajax({
-          url : "<?php echo site_url('user/user/getcount'); ?>",
+          url : "<?php echo site_url('User/User/getcount'); ?>",
           type: "GET",
           data: "",
           dataType: "json",

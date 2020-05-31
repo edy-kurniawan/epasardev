@@ -10,7 +10,7 @@ class Profile extends CI_Controller{
         else
         {
             $this->session->set_flashdata('message', '<div style="color : red;">Login Terlebih Dahulu</div>');
-            redirect(base_url('client/login'));
+            redirect(base_url('Client/Login'));
         }
 
          $this->load->helper(array('form', 'url')); 
@@ -23,7 +23,7 @@ class Profile extends CI_Controller{
         // $data['prov']   = $this->DbHelper->getprov($this->DbHelper->prov, 'Pilih Provinsi');
         $data['prov'] = $this->M_profile->get_prov()->result();
         $this->load->view('template/client/head2');
-        $this->load->view('client/v_profile', $data);
+        $this->load->view('Client/v_profile', $data);
     }
 
     function get_user(){
@@ -52,7 +52,7 @@ class Profile extends CI_Controller{
         
             if($this->form_validation->run() == false)
         {
-            redirect('client/profile');
+            redirect('Client/Profile');
         }
             else
         {
@@ -93,7 +93,7 @@ class Profile extends CI_Controller{
                 <strong>Data Berhasil Diupdate !</strong></font>
               ');
 
-        redirect('client/profile');
+        redirect('Client/Profile');
             
         }
     }
@@ -126,7 +126,7 @@ class Profile extends CI_Controller{
                     unlink('./assets/upload/user/'.$this->input->post('img'));
                 }
 
-                redirect('client/profile'); 
+                redirect('Client/Profile'); 
             } else {
                 if($this->input->post('remove_photo')) // if remove photo checked 
             {
@@ -143,9 +143,9 @@ class Profile extends CI_Controller{
                 
                 $this->M_profile->update($where,$data);
                 echo json_encode(array("status" => TRUE));
-                redirect('client/profile'); 
+                redirect('Client/Profile'); 
             }
-                redirect('client/profile'); 
+                redirect('Client/Profile'); 
             }
 
     }
@@ -185,7 +185,7 @@ class Profile extends CI_Controller{
                 <strong>Gagal update password, Masukan Data Dengan Benar !</strong></font>
             ');
         
-            redirect('client/profile'); 
+            redirect('Client/Profile'); 
 
         } else {
 
@@ -216,11 +216,11 @@ class Profile extends CI_Controller{
                     <i class="icon fa fa-check"></i>
                     <strong>Password Berhasil Diubah !</strong></font>
                   ');
-            redirect('client/profile');
+            redirect('Client/Profile');
 
         }else{
             $this->session->set_flashdata('message', '<div style="color : red;"><strong>Password salah !</strong></div>');
-            redirect('client/profile');
+            redirect('Client/Profile');
         }
         }
     }

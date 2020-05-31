@@ -10,7 +10,7 @@ class Barang extends CI_Controller {
         else
         {
             $this->session->set_flashdata('message', '<div style="color : red;">Login Terlebih Dahulu</div>');
-            redirect(base_url('login'));
+            redirect(base_url('Login'));
         }
          $this->load->library('form_validation'); 
          $this->load->helper('security');
@@ -23,7 +23,7 @@ class Barang extends CI_Controller {
     public function index(){
         $data['ktg']   = $this->DbHelper->getkategori($this->DbHelper->kat, 'Pilih Kategori');
         $data['toko']   = $this->DbHelper->gettoko($this->DbHelper->toko, 'Pilih Toko');
-        $this->load->view('admin/v_barang', $data);
+        $this->load->view('Admin/v_barang', $data);
     }
 
     public function getcount(){
