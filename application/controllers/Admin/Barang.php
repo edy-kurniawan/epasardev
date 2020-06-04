@@ -71,8 +71,15 @@ class Barang extends CI_Controller {
     public function ajax_delete($id)
     {
         $barang= $this->M_barang->edit($id);
-        if(file_exists('./assets/upload/barang/'.$barang->Img) && $barang->Img)
-        unlink('./assets/upload/barang/'.$barang->Img);
+        if($barang->Img=="default.jpg")
+        {
+
+        }else {
+            if(file_exists('./assets/upload/barang/'.$barang->Img) && $barang->Img)
+            unlink('./assets/upload/barang/'.$barang->Img);
+            if(file_exists('./assets/upload/temp/'.$barang->Img) && $barang->Img)
+            unlink('./assets/upload/temp/'.$barang->Img);
+        }
         $this->M_barang->delete_by_kode($id);
         echo json_encode(array("status" => TRUE));
     }
@@ -133,8 +140,12 @@ class Barang extends CI_Controller {
         //Update img
         if($this->input->post('remove_photo')) // if remove photo checked 
         {
-            if(file_exists('./assets/upload/barang/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
-            unlink('./assets/upload/barang/'.$this->input->post('remove_photo'));
+            if($this->input->post('remove_photo')=="default.jpg"){
+
+            }else{
+                if(file_exists('./assets/upload/barang/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
+                unlink('./assets/upload/barang/'.$this->input->post('remove_photo'));
+            }
             $data['Img'] = 'default.jpg'; 
         }
  
@@ -143,10 +154,20 @@ class Barang extends CI_Controller {
             $upload = $this->_do_upload();
             //delete file
             $barang= $this->M_barang->edit($id);
+            if($barang->Img=="default.jpg"){
+
+            }else{
             if(file_exists('./assets/upload/barang/'.$barang->Img) && $barang->Img)
             unlink('./assets/upload/barang/'.$barang->Img);
+            }
+            //delete temp
+            if(file_exists('./assets/upload/temp/'.$barang->Img) && $barang->Img)
+            unlink('./assets/upload/temp/'.$barang->Img);
  
             $data['Img'] = $upload;
+            //delete new temp
+            if(file_exists('./assets/upload/temp/'.$data['Img']) &&  $data['Img'])
+            unlink('./assets/upload/temp/'.$data['Img']);
         } 
  
         $this->M_barang->update($where,$data);
@@ -157,6 +178,9 @@ class Barang extends CI_Controller {
 
     public function ajax_add()
     { 
+        date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+        $now = date('Y-m-d H:i:s');
+
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
         $reftoko = $this->security->sanitize_filename($this->input->post('toko'));
         $nama = $this->security->sanitize_filename($this->input->post('nama'));
@@ -176,22 +200,61 @@ class Barang extends CI_Controller {
             'Refkategori'    => $refkat,
             'Status'      => $status,
             'Satuan'      => $satuan,
-            'Ket'        => $ket
+            'Ket'        => $ket,
+            'Datei'        => $now
                     );
  
-         if(!empty($_FILES['photo']['name']))
+        if(!empty($_FILES['photo']['name']))
             {
                 $upload = $this->_do_upload();
                 $data['Img'] = $upload;
             } else {
                 $data['Img'] = "default.jpg";
             }
+        
+        
  
         $this->M_barang->inputdata($data,'barang');
         echo json_encode(array("status" => TRUE));
     }
+    
+    function _do_upload(){
+        $config['upload_path'] = './assets/upload/temp/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+ 
+        $this->upload->initialize($config);
+        if(!empty($_FILES['photo']['name'])){
+ 
+            if ($this->upload->do_upload('photo')){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library']='gd2';
+                $config['source_image']='./assets/upload/temp/'.$gbr['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= FALSE;
+                $config['quality']= '100%';
+                $config['width']= 400;
+                $config['height']= 400;
+                $config['new_image']= './assets/upload/barang/'.$gbr['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+ 
+                $gambar=$gbr['file_name'];
+                return $gambar;
+            }
+                      
+        }else{
+            $data['inputerror'][] = 'photo';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+                 
+    }
 
-    private function _do_upload()
+   /*  private function _do_upload()
     {
         $config['upload_path']          = './assets/upload/barang/';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -212,6 +275,5 @@ class Barang extends CI_Controller {
             exit();
         }
         return $this->upload->data('file_name');
-    }
-    
+    } */
 }

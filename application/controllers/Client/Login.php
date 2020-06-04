@@ -41,17 +41,17 @@ class Login extends CI_Controller{
                 <i class="icon fa fa-check"></i>
                 <strong>Sukses Login</strong>
               </div>');
-                redirect('Client/Home');
+                redirect(base_url());
 
         }else{
             $this->session->set_flashdata('error', '<div style="color : red;"><strong>Username atau password salah !</strong></div>');
-            redirect('Client/Login');
+            redirect('signin');
         }
     }
     
     function logout(){
         $this->session->unset_userdata('logged_user');
-        redirect(base_url('Client/Home'));
+        redirect(base_url());
     }
 
 }

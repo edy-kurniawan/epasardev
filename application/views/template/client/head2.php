@@ -56,7 +56,7 @@
         <div class="popup_banner">
             <span class="popup_off_banner">×</span>
             <div class="banner_popup_area">
-                    <img src="<?php echo base_url(); ?>assets/truemart/img/head/header.png" alt="">
+                    <img src="<?php echo base_url(); ?>assets/truemart/img/head/header.jpg" alt="">
             </div>
         </div>
         <!-- Banner Popup End -->
@@ -88,7 +88,7 @@
                     <div class="row align-items-center no-gutters">
                         <div class="col-lg-3 col-md-12">
                             <div class="logo mb-all-30">
-                                <a href="<?php echo site_url('Client/Home'); ?>"><img src="<?php echo base_url(); ?>assets/truemart/img/logo/logo3.png" alt="logo-image"></a>
+                                <a href="<?php echo site_url(); ?>"><img src="<?php echo base_url(); ?>assets/truemart/img/logo/logo3.png" alt="logo-image"></a>
                             </div>
                         </div>
                         <!-- Categorie Search Box Start Here -->
@@ -127,7 +127,7 @@
                                                         <span class="pro-quantity">1X</span>
                                                     </div>
                                                     <div class="cart-content">
-                                                        <h6><a href="product.html">Printed Summer Red </a></h6>
+                                                        <h6><a href="#">Printed Summer Red </a></h6>
                                                         <span class="cart-price">27.45</span>
                                                         <span>Size: S</span>
                                                         <span>Color: Yellow</span>
@@ -142,7 +142,7 @@
                                                         <span class="pro-quantity">1X</span>
                                                     </div>
                                                     <div class="cart-content">
-                                                        <h6><a href="product.html">Printed Round Neck</a></h6>
+                                                        <h6><a href="#">Printed Round Neck</a></h6>
                                                         <span class="cart-price">45.00</span>
                                                         <span>Size: XL</span>
                                                         <span>Color: Green</span>
@@ -159,7 +159,7 @@
                                                        <li>Total <span>$64.95</span></li>
                                                    </ul>
                                                     <div class="cart-actions text-center">
-                                                        <a class="cart-checkout" href="checkout.html">Checkout</a>
+                                                        <a class="cart-checkout" href="#">Checkout</a>
                                                     </div>
                                                 </div>
                                                 <!-- Cart Footer Inner End -->
@@ -170,10 +170,10 @@
                                     </li>
                                     <li>
                                     <?php if($this->session->userdata('logged_user') == TRUE): ?> 
-                                        <a href="<?php echo site_url('Client/Profile'); ?>"><i class="lnr lnr-user"></i><span class="my-cart"><span>Welcome</span><span><strong><?php echo $this->session->userdata("username"); ?></strong></span></span></a>
+                                        <a href="<?php echo site_url('user'); ?>"><i class="lnr lnr-user"></i><span class="my-cart"><span>Welcome</span><span><strong><?php echo $this->session->userdata("username"); ?></strong></span></span></a>
                                     <?php endif; ?>
                                     <?php if($this->session->userdata('logged_user') != TRUE): ?> 
-                                        <a href="<?php echo site_url('Client/Login'); ?>"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Sign in</strong> Or</span><span> Join My Site</span></span></a>
+                                        <a href="<?php echo site_url('signin'); ?>"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Sign in</strong> Or</span><span> Join My Site</span></span></a>
                                     <?php endif; ?>
                                     </li>
                                 </ul>
@@ -196,75 +196,75 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 ">
                             <nav class="d-none d-lg-block">
                                 <ul class="header-bottom-list d-flex">
-                                    <li class="active"><a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+                                    <li class="active"><a href="#">Home<i class="fa fa-angle-down"></i></a>
                                         <!-- Home Version Dropdown Start -->
                                         <ul class="ht-dropdown">
-                                            <li><a href="index.html">Hot Sale</a></li>
-                                            <li><a href="index-2.html">Rekomendasi</a></li>
-                                            <li><a href="index-3.html">Terlaris</a></li>
+                                            <li><a href="#">Hot Sale</a></li>
+                                            <li><a href="#">Rekomendasi</a></li>
+                                            <li><a href="#">Terlaris</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
                                     </li>
-                                    <li><a href="shop.html">Voucher<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#">Voucher<i class="fa fa-angle-down"></i></a>
                                         <!-- Home Version Dropdown Start -->
                                         <ul class="ht-dropdown dropdown-style-two">
-                                            <li><a href="product.html">Cashback</a></li>
-                                            <li><a href="compare.html">Gratis Ongkir</a></li>
+                                            <li><a href="#">Cashback</a></li>
+                                            <li><a href="#">Gratis Ongkir</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
                                     </li>
-                                    <li><a href="shop.html">Akun<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#">Akun<i class="fa fa-angle-down"></i></a>
                                         <!-- Home Version Dropdown Start -->
                                         <ul class="ht-dropdown dropdown-style-two">
-                                            <li><a href="product.html">Profile</a></li>
-                                            <li><a href="compare.html">Keranjang Belanja</a></li>
-                                            <li><a href="checkout.html">checkout</a></li>
+                                            <li><a href="#">Profile</a></li>
+                                            <li><a href="#">Keranjang Belanja</a></li>
+                                            <li><a href="#">checkout</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
                                     </li>
-                                    <li><a href="blog.html">Bantuan<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#">Bantuan<i class="fa fa-angle-down"></i></a>
                                         <!-- Home Version Dropdown Start -->
                                         <ul class="ht-dropdown dropdown-style-two">
-                                            <li><a href="single-blog.html">Hubungi Kami</a></li>
-                                            <li><a href="single-blog.html">FAQ</a></li>
+                                            <li><a href="#">Hubungi Kami</a></li>
+                                            <li><a href="#">FAQ</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
                                     </li>
-                                    <li><a href="about.html">Tentang kami</a></li>
+                                    <li><a href="#">Tentang kami</a></li>
                                 </ul>
                             </nav>
                             <div class="mobile-menu d-block d-lg-none">
                                 <nav>
                                     <ul>
-                                        <li><a href="index.html">Home</a>
+                                        <li><a href="#">Home</a>
                                             <!-- Home Version Dropdown Start -->
                                             <ul>
-                                                <li><a href="index.html">Hot sale</a></li>
-                                                <li><a href="index-2.html">Rekomendasi</a></li>
-                                                <li><a href="index-3.html">Terlaris</a></li>
+                                                <li><a href="#">Hot sale</a></li>
+                                                <li><a href="#">Rekomendasi</a></li>
+                                                <li><a href="#">Terlaris</a></li>
                                             </ul>
                                             <!-- Home Version Dropdown End -->
                                         </li>
-                                        <li><a href="shop.html">Akun</a>
+                                        <li><a href="#">Akun</a>
                                             <!-- Mobile Menu Dropdown Start -->
                                             <ul>
-                                                <li><a href="product.html">Profile</a></li>
-                                                <li><a href="compare.html">Keranjang Belanja</a></li>
-                                                <li><a href="checkout.html">checkout</a></li>
+                                                <li><a href="#">Profile</a></li>
+                                                <li><a href="#">Keranjang Belanja</a></li>
+                                                <li><a href="#">checkout</a></li>
                                             </ul>
                                             <!-- Mobile Menu Dropdown End -->
                                         </li>
-                                        <li><a href="blog.html">Bantuan</a>
+                                        <li><a href="#">Bantuan</a>
                                             <!-- Mobile Menu Dropdown Start -->
                                             <ul>
-                                                <li><a href="single-blog.html">Hubungi Kami</a></li>
+                                                <li><a href="#">Hubungi Kami</a></li>
                                             </ul>
                                             <ul>
-                                                <li><a href="single-blog.html">FAQ</a></li>
+                                                <li><a href="#">FAQ</a></li>
                                             </ul>
                                             <!-- Mobile Menu Dropdown End -->
                                         </li>
-                                        <li><a href="contact.html">Tentang kami</a></li>
+                                        <li><a href="#">Tentang kami</a></li>
                                     </ul>
                                 </nav>
                             </div>

@@ -9,6 +9,8 @@ class M_barang extends CI_Model{
         $this->load->model('DbHelper');
     }
 
+    /* Model for admin */
+
     function getSemua(){
         $sql    =   "SELECT
                         barang.ID,
@@ -26,7 +28,9 @@ class M_barang extends CI_Model{
                         barang left outer join toko
                         on barang.Reftoko=toko.Kode
                         left outer join kategori
-                        on barang.Refkategori=kategori.Kode";
+                        on barang.Refkategori=kategori.Kode
+                    ORDER BY
+                        barang.Datei DESC";
         return $this-> DbHelper->execQuery($sql);
 
     }
@@ -100,6 +104,33 @@ class M_barang extends CI_Model{
         $query = $this->db->query("SELECT count(Kode) jml from kategori");
         return $query->row();
     }
+
+    /* Model for client */
+
+    function showbarang(){
+        $hasil=$this->db->query("SELECT
+                                    barang.ID,
+                                    barang.Nama,
+                                    barang.Stok,
+                                    barang.Harga,
+                                    barang.Satuan,
+                                    barang.Img,
+                                    kategori.Nama kat 
+                                FROM
+                                    barang
+                                    LEFT OUTER JOIN toko ON barang.Reftoko = toko.Kode
+                                    LEFT OUTER JOIN kategori ON barang.Refkategori = kategori.Kode 
+                                WHERE
+                                    barang.Status = 'T' 
+                                AND 
+                                    barang.Stok >='1'
+                                ORDER BY 
+                                    barang.Datei DESC
+                                LIMIT 7 ");
+        return $hasil;
+    }
+
+
  
 
 }

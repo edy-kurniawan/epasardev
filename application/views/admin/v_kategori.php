@@ -161,7 +161,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="table" class="table table-bordered table-striped" cellspacing="0" width="100%">      
+              <table id="table" class="table table-bordered table-striped nowrap" width="100%">      
                         <thead>
                           <tr>
                             <th>No</th>
@@ -218,6 +218,7 @@
             ],
             "order": [[0, 'asc']]
           });
+          new $.fn.dataTable.FixedHeader( table );
         });
 
     function info() {

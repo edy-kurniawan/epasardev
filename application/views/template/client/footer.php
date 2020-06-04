@@ -85,7 +85,7 @@
                                 <div class="footer-content">
                                     <ul class="footer-list address-content">
                                         <li><i class="lnr lnr-map-marker"></i> Alamat: Jl. Jend. Sudirman,  Larangan Kulon, Kec. Sukoharjo, Kabupaten Sukoharjo</li>
-                                        <li><i class="lnr lnr-envelope"></i><a href="#"> Email: Support@epasar.com </a></li>
+                                        <li><i class="lnr lnr-envelope"></i><a href="#"> Email: admin@epasar.it-cloud.net </a></li>
                                         <li>
                                             <i class="lnr lnr-phone-handset"></i> Telphone: (+0271) 123 456 789)
                                         </li>
@@ -107,8 +107,11 @@
                                 <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
                                 <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/icon/social-img1.png" alt="google play"></a></li>
-                                <li><a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/icon/social-img2.png" alt="app store"></a></li>
+                            </ul>
+                            <ul>
+                                </br>
+                                <li><a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/icon/social-img1.png" alt="google play"></a>
+                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/icon/social-img2.png" alt="app store"></a></li>
                             </ul>
                     </div>
                 </div>

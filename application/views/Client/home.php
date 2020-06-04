@@ -6,206 +6,47 @@
             <div class="container">
                <!-- Product Title Start -->
                <div class="post-title pb-30">
-                   <h2>hot deals</h2>
+                   <h2>Barang Terbaru</h2>
                </div>
                <!-- Product Title End -->
                 <!-- Hot Deal Product Activation Start -->
                 <div class="hot-deal-active owl-carousel">
+                <?php 
+                    foreach($barang as $x){ 
+                ?>
                     <!-- Single Product Start -->
                     <div class="single-product">
                         <!-- Product Image Start -->
                         <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/7.jpg" alt="single-product">
+                            <a href="#">
+                                <img class="primary-img" src="<?php echo base_url(); ?>assets/upload/barang/<?php echo $x->Img ?>" alt="single-product">
+                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/upload/barang/<?php echo $x->Img ?>" alt="single-product">
                             </a>
-                            <div class="countdown" data-countdown="2020/03/01"></div>
+                            <div class="countdown" data-countdown="2020/06/21"></div>
                             <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
                         </div>
                         <!-- Product Image End -->
                         <!-- Product Content Start -->
                         <div class="pro-content">
                             <div class="pro-info">
-                                <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                <p><span class="price">$84.45</span><del class="prev-price">$105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                                <h4><a href="#"><?php echo $x->Nama ?></a></h4>
+                                <p><span class="price">Rp. <?php echo number_format($x->Harga) ?></span><br>Stok <?php echo number_format($x->Stok) ?></p>
+                                <div class="label-product l_sale">/ <?php echo $x->Satuan ?></span></div>
                             </div>
                             <div class="pro-actions">
                                 <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+                                    <a href="#" title="Add to Cart"> + Add To Cart</a>
                                 </div>
                                 <div class="actions-secondary">
-                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
+                                    <a href="#" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
+                                    <a href="#" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
                                 </div>
                             </div>
                         </div>
                         <!-- Product Content End -->
                     </div>
                     <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/24.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/25.jpg" alt="single-product">
-                            </a>
-                            <div class="countdown" data-countdown="2020/03/01"></div>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Light Inverted Pendant Quick</a></h4>
-                                <p><span class="price">$84.45</span><del class="prev-price">$105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">+ Add To Cart</a>
-                                </div>
-                                <div class="actions-secondary">
-                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/42.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/43.jpg" alt="single-product">
-                            </a>
-                            <div class="countdown" data-countdown="2020/03/01"></div>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Terra Xpress HE Cooking </a></h4>
-                                <p><span class="price">$84.45</span><del class="prev-price">$105.50</del></p>
-                                <div class="label-product l_sale">15<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">+ Add To Cart</a>
-                                </div>
-                                <div class="actions-secondary">
-                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                        <span class="sticker-new">new</span>
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/30.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/31.jpg" alt="single-product">
-                            </a>
-                            <div class="countdown" data-countdown="2020/03/01"></div>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Calandiva Wrapped 12cm</a></h4>
-                                <p><span class="price">$84.45</span><del class="prev-price">$105.50</del></p>
-                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">+ Add To Cart</a>
-                                </div>
-                                <div class="actions-secondary">
-                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/8.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/9.jpg" alt="single-product">
-                            </a>
-                            <div class="countdown" data-countdown="2020/03/01"></div>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Gpoly and Bark Eames Styl...</a></h4>
-                                <p><span class="price">$84.45</span><del class="prev-price">$105.50</del></p>
-                                <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">+ Add To Cart</a>
-                                </div>
-                                <div class="actions-secondary">
-                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                        <span class="sticker-new">new</span>
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product.html">
-                                <img class="primary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/10.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?php echo base_url(); ?>assets/truemart/img/products/11.jpg" alt="single-product">
-                            </a>
-                            <div class="countdown" data-countdown="2020/03/01"></div>
-                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <div class="pro-info">
-                                <h4><a href="product.html">Poly and Bark Vortex Side</a></h4>
-                                <p><span class="price">$84.45</span><del class="prev-price">$105.50</del></p>
-                                <div class="label-product l_sale">37<span class="symbol-percent">%</span></div>
-                            </div>
-                            <div class="pro-actions">
-                                <div class="actions-primary">
-                                    <a href="cart.html" title="Add to Cart">+ Add To Cart</a>
-                                </div>
-                                <div class="actions-secondary">
-                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
-                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                        <span class="sticker-new">new</span>
-                    </div>
-                    <!-- Single Product End -->
+                    <?php } ?>
                 </div>
                 <!-- Hot Deal Product Active End -->
 
@@ -220,36 +61,36 @@
             <div class="container banner-2">
                 <div class="banner-box">
                     <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-1.jpg" alt="banner 3"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/psembako.jpg" alt="banner 3"></a>
                     </div>
                     <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-2.jpg" alt="banner 3"></a>
-                    </div>
-                </div>
-                <div class="banner-box">
-                    <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-3.jpg" alt="banner 3"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/telurdaging.jpg" alt="banner 3"></a>
                     </div>
                 </div>
                 <div class="banner-box">
                     <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-4.jpg" alt="banner 3"></a>
-                    </div>
-                    <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-5.jpg" alt="banner 3"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/promo.jpg" alt="banner 3"></a>
                     </div>
                 </div>
                 <div class="banner-box">
                     <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-6.jpg" alt="banner 3"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/bumbu.jpg" alt="banner 3"></a>
+                    </div>
+                    <div class="col-img">
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/ikan.jpg" alt="banner 3"></a>
                     </div>
                 </div>
                 <div class="banner-box">
                     <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-7.jpg" alt="banner 3"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/promo.jpg" alt="banner 3"></a>
+                    </div>
+                </div>
+                <div class="banner-box">
+                    <div class="col-img">
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/buah.jpg" alt="banner 3"></a>
                     </div>
                     <div class="col-img">
-                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/banner/banner3-8.jpg" alt="banner 3"></a>
+                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/sayur.jpg" alt="banner 3"></a>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2020 at 05:20 PM
+-- Generation Time: Jun 04, 2020 at 10:12 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -68,15 +68,14 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`ID`, `Kode`, `Reftoko`, `Nama`, `Stok`, `Harga`, `Refkategori`, `Satuan`, `Status`, `Ket`, `Img`, `Datei`, `Dateu`) VALUES
-(32, '1121', 'T01', 'Beras Premium', 100, 12000, 'KAT1', 'Kg', 'T', 'Beras Premium Kualitas Terjamin', '1588339312348.png', NULL, '2020-05-04 06:43:39'),
-(34, '1122', 'T01', 'Beras Termurah', 100, 9000, 'KAT1', 'Kg', 'T', 'Beras Termurah Subsidi Bulog', '1588339858640.jpg', NULL, '2020-05-01 13:30:58'),
-(33, '1123', 'T03', 'Beras Medium', 100, 10000, 'KAT1', 'Kg', 'T', 'Beras Medium Tanpa Pemutih', '1588339748209.jpg', NULL, '2020-05-28 14:28:38'),
-(35, '2111', 'T01', 'Gula Kristal Putih', 50, 17000, 'KAT1', 'Kg', 'T', 'Gula kristal putih tanpa pemutih', '1588340038692.jpg', NULL, NULL),
-(36, '3111', 'T01', 'Minyak Kemasan Sovia 2L', 20, 13500, 'KAT1', 'Buah', 'T', 'Minyak Kemasan Sovia 2L', 'default.jpg', NULL, '2020-05-04 06:27:23'),
-(37, '4111', 'C1', 'Sapi Paha Depan', 10, 100000, 'KAT2', 'Kg', 'T', 'Sapi Paha Depan Kualitas Terbaik Dan Segar', '1588340851160.jpg', NULL, NULL),
-(38, '4112', 'C1', 'Sapi Has Dalam (Tenderloi', 10, 110000, 'KAT2', 'Kg', 'T', 'Tenderloin sapi', '1588340975769.png', NULL, NULL),
-(39, '5111', 'C1', 'Daging Ayam Boiler', 20, 26000, 'KAT2', 'Kg', 'T', 'Daging ayam boiler segar', '1588341067964.jpg', NULL, NULL),
-(40, '5112', 'C1', 'Telur Ayam Ras', 20, 22000, 'KAT2', 'Kg', 'T', 'Telur ayam ras', '1588341126179.jpg', NULL, NULL);
+(32, '1121', 'T01', 'Beras Premium', 100, 12000, 'KAT1', 'Kg', 'T', 'Beras Premium Kualitas Terjamin', '1588339312348.jpg', '2020-06-04 06:29:33', '2020-05-04 06:43:39'),
+(34, '1122', 'T01', 'Beras Termurah', 100, 9000, 'KAT1', 'Kg', 'T', 'Beras Termurah Subsidi Bulog', '1588339858640.jpg', '2020-06-04 06:29:38', '2020-05-01 13:30:58'),
+(33, '1123', 'T03', 'Beras Medium', 100, 10000, 'KAT1', 'Kg', 'T', 'Beras Medium Tanpa Pemutih', '1588339748209.jpg', '2020-06-04 06:29:40', '2020-05-28 14:28:38'),
+(35, '2111', 'T01', 'Gula Kristal Putih', 50, 17000, 'KAT1', 'Kg', 'T', 'Gula kristal putih tanpa pemutih', '1588340038692.jpg', '2020-06-04 06:29:43', NULL),
+(37, '4111', 'C1', 'Sapi Paha Depan', 10, 100000, 'KAT2', 'Kg', 'T', 'Sapi Paha Depan Kualitas Terbaik Dan Segar', '1588340851160.jpg', '2020-06-04 06:29:51', NULL),
+(38, '4112', 'C1', 'Sapi Has Dalam (Tenderloi', 10, 110000, 'KAT2', 'Kg', 'T', 'Tenderloin sapi', '1588340975769.jpg', '2020-06-04 06:29:54', NULL),
+(39, '5111', 'C1', 'Daging Ayam Boiler', 20, 26000, 'KAT2', 'Kg', 'T', 'Daging ayam boiler segar', '1588341067964.jpg', '2020-06-04 06:29:57', NULL),
+(40, '5112', 'C1', 'Telur Ayam Ras', 20, 22000, 'KAT2', 'Kg', 'T', 'Telur ayam ras', '1588341126179.jpg', '2020-06-04 06:30:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -45226,7 +45225,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Refuser`, `Nama`, `Jenis`, `Tgllahir`, `Telp`, `Email`, `Img`, `Alamat`, `Prov`, `Kab`, `Kec`, `Kel`, `Datei`, `Dateu`) VALUES
-(6, 'admin', 'edy kurniawan', '0', '2020-05-03', '0271727123', 'edy.kurniawan280898@gmail.com', 'default.png', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', '2020-05-07 01:23:36', '2020-05-29 15:09:46'),
+(6, 'admin', 'edy kurniawan', '0', '2020-05-03', '0271727123', 'edy.kurniawan280898@gmail.com', 'default.png', 'Godog Rt 01 Rw 09', '33', '3311', '331106', '3311062011', '2020-05-07 01:23:36', '2020-06-04 07:54:14'),
 (5, 'duta', 'duta bangsa', '', '0000-00-00', '02719921', 'udb@ac.id', NULL, '', NULL, NULL, NULL, '33110620', '2020-05-07 00:36:10', NULL),
 (4, 'trial', 'trial', '', '0000-00-00', '082312312', 'trial@gmail.com', NULL, '', NULL, NULL, NULL, NULL, '2020-05-06 13:45:02', NULL);
 
@@ -45404,7 +45403,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `cart`

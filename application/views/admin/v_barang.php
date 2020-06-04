@@ -114,8 +114,9 @@
                   <div class="form-group">
                     <label for="customFile" id="label-photo">Upload Gambar</label>
                     <div class="custom-file">
-                      <input name="photo" type="file" id="photo">
+                      <input name="photo" type="file" id="photo" title="Masukan foto">
                     </div>
+                    <p>Rekomendasi ukuran 400x400, gif | jpg | png</p>
                   </div>
                 </div>
               </div>
@@ -229,7 +230,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="table" class="table table-bordered table-striped" cellspacing="0" width="100%">      
+              <table id="table" class="table table-bordered table-striped nowrap" cellspacing="0" width="100%">      
                         <thead>
                           <tr>
                             <th>No</th>

@@ -207,7 +207,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="table" class="table table-bordered table-striped" cellspacing="0" width="100%">      
+              <table id="table" class="table table-bordered table-striped nowrap" cellspacing="0" width="100%">      
                         <thead>
                           <tr>
                             <th>No</th>

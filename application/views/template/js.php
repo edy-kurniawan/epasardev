@@ -23,7 +23,8 @@
 <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/AdminLTE/dist/js/demo.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 
 
 

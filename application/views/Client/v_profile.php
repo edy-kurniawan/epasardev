@@ -39,7 +39,7 @@
                                    <li><a href="" data-toggle="modal" data-target="#modal-update">Ubah Data</a></li>
                                    <li><a href="" data-toggle="modal" data-target="#modal-pass">Ubah Password</a></li>
                                    <li><a href="#">History Transaksi</a></li>
-                                   <li><a href="<?php echo site_url('Client/Login/logout'); ?>">Logout</a></li>
+                                   <li><a href="<?php echo site_url('user/logout'); ?>">Logout</a></li>
                                    <li><?php echo $this->session->flashdata('message'); ?></br></li>
                                </ul>
                            </div>
@@ -115,7 +115,7 @@
                                        </div>
                                        <div class="form-group">
                                            <label for="alamat">Alamat</label>
-                                           <input type="textarea" name="alamat" class="form-control" disabled>
+                                           <textarea type="textarea" rows="3" name="alamat" class="form-control" disabled></textarea>
                                        </div>
                                    </form>
                                </div>

@@ -5,21 +5,28 @@ class Dashboard extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->model('M_dashboard');
+    }
+
+    public function index(){
         if ($this->session->userdata['logged'] == TRUE)
-        { }
-            
+        {
+            $this->load->view('dashboard/v_penjualan');
+         }
         else
         {
             $this->session->set_flashdata('message', '<div style="color : red;">Login Terlebih Dahulu</div>');
             redirect('Login');
         }
-
-        $this->load->model('M_dashboard');
     }
 
-    public function index(){
-         $this->load->view('dashboard/v_penjualan');
-    }
+    public function welcome(){
+        redirect('home');
+   }
+
+    public function error(){
+        $this->load->view('errors/404');
+   }
 
 
     public function getcount(){

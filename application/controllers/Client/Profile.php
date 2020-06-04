@@ -52,7 +52,7 @@ class Profile extends CI_Controller{
         
             if($this->form_validation->run() == false)
         {
-            redirect('Client/Profile');
+            redirect('user');
         }
             else
         {
@@ -93,7 +93,7 @@ class Profile extends CI_Controller{
                 <strong>Data Berhasil Diupdate !</strong></font>
               ');
 
-        redirect('Client/Profile');
+        redirect('user');
             
         }
     }
@@ -143,9 +143,9 @@ class Profile extends CI_Controller{
                 
                 $this->M_profile->update($where,$data);
                 echo json_encode(array("status" => TRUE));
-                redirect('Client/Profile'); 
+                redirect('user'); 
             }
-                redirect('Client/Profile'); 
+                redirect('user'); 
             }
 
     }
@@ -216,11 +216,11 @@ class Profile extends CI_Controller{
                     <i class="icon fa fa-check"></i>
                     <strong>Password Berhasil Diubah !</strong></font>
                   ');
-            redirect('Client/Profile');
+            redirect('user');
 
         }else{
             $this->session->set_flashdata('message', '<div style="color : red;"><strong>Password salah !</strong></div>');
-            redirect('Client/Profile');
+            redirect('user');
         }
         }
     }

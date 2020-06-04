@@ -34,14 +34,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('dashboard/penjualan'); ?>" class="nav-link active">
+                <a href="#" class="nav-link active">
                   <i class="far fas fa-shopping-cart nav-icon"></i>
                   <p>Penjualan</p>
                   <span class="right badge badge-danger">New</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fas fa-money-check-alt nav-icon"></i>
                   <p>Pembayaran</p>
                 </a>
@@ -59,19 +59,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('Admin/Barang'); ?>" class="nav-link">
+                <a href="<?php echo site_url('administrator/barang'); ?>" class="nav-link">
                   <i class="far fas fa-briefcase nav-icon"></i>
                   <p>Barang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('Admin/Toko'); ?>" class="nav-link">
+                <a href="<?php echo site_url('administrator/toko'); ?>" class="nav-link">
                   <i class="far fas fa-store-alt nav-icon"></i>
                   <p>Toko</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('Admin/Kategori'); ?>" class="nav-link">
+                <a href="<?php echo site_url('administrator/kategori'); ?>" class="nav-link">
                   <i class="far fas fa-list nav-icon"></i>
                   <p>Kategori</p>
                 </a>
@@ -88,7 +88,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('Admin/User'); ?>" class="nav-link">
+                <a href="<?php echo site_url('administrator/user'); ?>" class="nav-link">
                   <i class="far fas fa-user-lock nav-icon"></i>
                   <p>User</p>
                 </a>

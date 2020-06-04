@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/dist/css/adminlte.min.css') ?>">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
-
   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/sweetalert2/sweetalert2.min.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/sweetalert2/sweetalert2.css') ?>">
-
   <!-- ADMINLTE -->
    <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
+   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css') ?>">
+   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
