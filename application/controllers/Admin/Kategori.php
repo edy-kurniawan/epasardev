@@ -30,11 +30,11 @@ class Kategori extends CI_Controller {
         foreach ($result as $r) {
             $row    = array(
                         "no"        => $No,
-                        "id"       => $r->ID,
-                        "kode"       => $r->Kode,
-                        "nama"        => $r->Nama,
-                        "ket"    => $r->Ket,
-                        "action"     => tombol($r->ID)
+                        "id"        => html_escape($r->ID),
+                        "kode"      => html_escape($r->Kode),
+                        "nama"      => html_escape($r->Nama),
+                        "ket"       => html_escape($r->Ket),
+                        "action"    => tombol(html_escape($r->ID))
             );
 
             $list[] = $row;
@@ -52,9 +52,9 @@ class Kategori extends CI_Controller {
 
     function ajax_add(){
 
-        $this->form_validation->set_rules('kode','kode','trim|required|xss_clean');
-        $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|xss_clean');
-        $this->form_validation->set_rules('ket','ket','trim|xss_clean');
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]');
+        $this->form_validation->set_rules('ket','ket','trim');
 
         if($this->form_validation->run() == false)
         {
@@ -86,9 +86,9 @@ class Kategori extends CI_Controller {
 
     function ajax_update(){
         
-        $this->form_validation->set_rules('kode','kode','trim|required|xss_clean');
-        $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|xss_clean');
-        $this->form_validation->set_rules('ket','ket','trim|xss_clean');
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]');
+        $this->form_validation->set_rules('ket','ket','trim');
 
         if($this->form_validation->run() == false)
         {

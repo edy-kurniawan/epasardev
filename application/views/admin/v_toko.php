@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="validationCustom04">Telp</label>
-                  <input type="text" class="form-control" onkeypress="return angka(event)" name="telp" placeholder="Telp" required>
+                  <input type="number" class="form-control" onkeypress="return angka(event)" name="telp" placeholder="Telp" required>
                   <div class="invalid-feedback">
                     Masukan No Telp !
                   </div>
@@ -346,16 +346,16 @@
     dataType: "JSON",
     success: function(data)
     {
-    $('[name="id"]').val(data.ID);
-    $('[name="kode"]').val(data.Kode);
-    $('[name="nama"]').val(data.Nama);
-    $('[name="pemilik"]').val(data.Pemilik);
-    $('[name="lokasi"]').val(data.Lokasi);
-    $('[name="telp"]').val(data.Telp);
-    $('[name="status"]').val(data.Status);
-    $('[name="jambuka"]').val(data.Jambuka);
-    $('[name="jamtutup"]').val(data.Jamtutup);
-    $('[name="ket"]').val(data.Ket);
+    $('[name="id"]').val(escapeHtml(data.ID));
+    $('[name="kode"]').val(escapeHtml(data.Kode));
+    $('[name="nama"]').val(escapeHtml(data.Nama));
+    $('[name="pemilik"]').val(escapeHtml(data.Pemilik));
+    $('[name="lokasi"]').val(escapeHtml(data.Lokasi));
+    $('[name="telp"]').val(escapeHtml(data.Telp));
+    $('[name="status"]').val(escapeHtml(data.Status));
+    $('[name="jambuka"]').val(escapeHtml(data.Jambuka));
+    $('[name="jamtutup"]').val(escapeHtml(data.Jamtutup));
+    $('[name="ket"]').val(escapeHtml(data.Ket));
     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
     $('.modal-title').text('Edit Data toko'); // Set title to Bootstrap modal title
     
@@ -450,6 +450,15 @@
       }
     })
     }
+
+    function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
 </script>
   <script>
   $(document).ready(function(){

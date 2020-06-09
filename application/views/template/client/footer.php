@@ -165,12 +165,5 @@
     <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/moment/moment.min.js"></script>
      <!-- jQuery -->
     <script src="<?php echo base_url('assets/AdminLTE/plugins/jquery/jquery.min.js') ?>"></script>
-    <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> 
-        <script type="text/javascript">
-            $(function(){
-            $(".datepicker").datetimepicker({
-                format: 'YYYY-MM-DD',
-            });
-            });
-        </script>
+    
 </body>

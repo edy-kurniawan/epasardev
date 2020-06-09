@@ -1,6 +1,31 @@
 <?php
     $this->load->view('template/client/head');
 ?>
+<div class="modal fade" id="modal-qty">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Masukan Jumlah Beli</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p><center><input class="quantity mr-15" type="number" min="1" value="1"></center></p>
+                <input type="text" name="nama">
+                <input type="number" name="id">
+                <input type="text"  name="kode">
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+              <button type="button" class="btn btn-primary">Masukan keranjang</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 <!-- Hot Deal Products Start Here -->
         <div class="hot-deal-products off-white-bg pb-90 pb-sm-50">
             <div class="container">
@@ -29,13 +54,18 @@
                         <!-- Product Content Start -->
                         <div class="pro-content">
                             <div class="pro-info">
-                                <h4><a href="#"><?php echo $x->Nama ?></a></h4>
-                                <p><span class="price">Rp. <?php echo number_format($x->Harga) ?></span><br>Stok <?php echo number_format($x->Stok) ?></p>
-                                <div class="label-product l_sale">/ <?php echo $x->Satuan ?></span></div>
+                                <h4><a href="#"><?php echo html_escape($x->Nama) ?></a></h4>
+                                <p><span class="price">Rp. <?php echo html_escape(number_format($x->Harga)) ?></span><br>Stok <?php echo number_format($x->Stok) ?></p>
+                                <div class="label-product l_sale">/ <?php echo html_escape($x->Satuan) ?></span></div>
                             </div>
                             <div class="pro-actions">
                                 <div class="actions-primary">
-                                    <a href="#" title="Add to Cart"> + Add To Cart</a>
+                                    <?php if($this->session->userdata('logged_user') == TRUE): ?> 
+                                        <a href="<?php echo site_url('Client/Home/add_cart'); ?>" title="Add to Cart"> + Add To Cart</a>
+                                    <?php endif; ?>
+                                    <?php if($this->session->userdata('logged_user') != TRUE): ?> 
+                                        <a href="<?php echo site_url('Client/Home/add_cart'); ?>" title="Add to Cart"> + Add To Cart</a>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="actions-secondary">
                                     <a href="#" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
@@ -836,8 +866,35 @@
                     </div>
                 </div>
             </div>
-        </div>                     
-        
+        </div>     
+    
+<script>
+    function add_cart(id)
+    {
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+    //Ajax Load data from ajax
+    $.ajax({
+    url : "<?php echo base_url('Client/Home/add_cart')?>/" + id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data)
+    {
+    $('[name="nama"]').val(data.Nama);
+    $('[name="kode"]').val(data.Kode);
+    $('[name="total"]').val(data.Stok);
+    $('#modal-qty').modal('show'); // show bootstrap modal when complete loaded
+    
+    },
+    error: function (jqXHR, textStatus , errorThrown)
+    {
+    alert('Error get data from ajax');
+    }
+    });
+    }
+</script>
+                             
 <?php
     $this->load->view('template/client/footer');
 ?>

@@ -17,8 +17,6 @@ class Toko extends CI_Controller {
          $this->load->helper(array('form', 'url','tombol')); 
          $this->load->model(array('DbHelper', 'M_toko')); 
     
-
-        // $this->load->model('M_login');
     }
 
     public function index(){
@@ -26,12 +24,12 @@ class Toko extends CI_Controller {
     }
 
     public function getcount(){
-        $toko   = $this->M_toko->counttoko();
-        $aktif   = $this->M_toko->tokoaktif();
+        $toko  = $this->M_toko->counttoko();
+        $aktif = $this->M_toko->tokoaktif();
         $non   = $this->M_toko->tokononaktif();
         echo json_encode(array(
             'jml'    => $toko->jml,
-            'aktif'    => $aktif->jml,
+            'aktif'  => $aktif->jml,
             'non'    => $non->jml
             )
         );
@@ -44,18 +42,18 @@ class Toko extends CI_Controller {
         foreach ($result as $r) {
             $row    = array(
                         "no"        => $No,
-                        "id"       => $r->ID,
-                        "kode"       => $r->Kode,
-                        "nama"    => $r->Nama,
-                        "pemilik"    => $r->Pemilik,
-                        "ket"      => $r->Ket,
-                        "lokasi"       => $r->Lokasi,
-                        "telp"    => $r->Telp,
-                        "jambuka"      => $r->Jambuka,
-                        "jamtutup"       => $r->Jamtutup,
-                        "status"    => $r->Status,
-                        "ket"      => $r->Ket,
-                        "action"     => tombol($r->ID)
+                        "id"        => html_escape($r->ID),
+                        "kode"      => html_escape($r->Kode),
+                        "nama"      => html_escape($r->Nama),
+                        "pemilik"   => html_escape($r->Pemilik),
+                        "ket"       => html_escape($r->Ket),
+                        "lokasi"    => html_escape($r->Lokasi),
+                        "telp"      => html_escape($r->Telp),
+                        "jambuka"   => html_escape($r->Jambuka),
+                        "jamtutup"  => html_escape($r->Jamtutup),
+                        "status"    => html_escape($r->Status),
+                        "ket"       => html_escape($r->Ket),
+                        "action"    => tombol(html_escape($r->ID))
             );
 
             $list[] = $row;
@@ -80,8 +78,8 @@ class Toko extends CI_Controller {
         $this->form_validation->set_rules('nama','nama','trim|required');
         $this->form_validation->set_rules('lokasi','lokasi','trim|required');
         $this->form_validation->set_rules('pemilik','pemilik','trim|required');
-        $this->form_validation->set_rules('status','status','trim|required');
-        $this->form_validation->set_rules('telp','telp','trim|required');
+        $this->form_validation->set_rules('status','status','trim|required|in_list[T,F]');
+        $this->form_validation->set_rules('telp','telp','trim|required|is_natural|max_length[14]');
         $this->form_validation->set_rules('jambuka','jambuka','trim|required');
         $this->form_validation->set_rules('jamtutup','jamtutup','trim|required');
 
@@ -104,17 +102,17 @@ class Toko extends CI_Controller {
 
  
         $data = array(
-            "Kode"       => $kode,
-            "Nama"    => $nama,
-            "Pemilik"    => $pemilik,
-            "Ket"      => $ket,
-            "Lokasi"       => $lokasi,
-            "Telp"    => $telp,
-            "Jambuka"      => $jambuka,
-            "Jamtutup"       => $jamtutup,
+            "Kode"      => $kode,
+            "Nama"      => $nama,
+            "Pemilik"   => $pemilik,
+            "Ket"       => $ket,
+            "Lokasi"    => $lokasi,
+            "Telp"      => $telp,
+            "Jambuka"   => $jambuka,
+            "Jamtutup"  => $jamtutup,
             "Status"    => $status,
-            "Ket"    => $ket,
-            "Datei"      => $now
+            "Ket"       => $ket,
+            "Datei"     => $now
                     );
             
         $this->M_toko->inputdata($data);
@@ -137,8 +135,8 @@ class Toko extends CI_Controller {
         $this->form_validation->set_rules('nama','nama','trim|required');
         $this->form_validation->set_rules('lokasi','lokasi','trim|required');
         $this->form_validation->set_rules('pemilik','pemilik','trim|required');
-        $this->form_validation->set_rules('status','status','trim|required');
-        $this->form_validation->set_rules('telp','telp','trim|required');
+        $this->form_validation->set_rules('status','status','trim|required|in_list[T,F]');
+        $this->form_validation->set_rules('telp','telp','trim|required|is_natural|max_length[14]');
         $this->form_validation->set_rules('jambuka','jambuka','trim|required');
         $this->form_validation->set_rules('jamtutup','jamtutup','trim|required');
 
@@ -161,17 +159,17 @@ class Toko extends CI_Controller {
         $ket = $this->security->sanitize_filename($this->input->post('ket'));
 
     $data = array(  
-        "Kode"    => $kode,
-        "Nama"    => $nama,
-        "Pemilik"    => $pemilik,
-        "Ket"      => $ket,
-        "Lokasi"       => $lokasi,
-        "Telp"    => $telp,
-        "Jambuka"      => $jambuka,
-        "Jamtutup"       => $jamtutup,
+        "Kode"      => $kode,
+        "Nama"      => $nama,
+        "Pemilik"   => $pemilik,
+        "Ket"       => $ket,
+        "Lokasi"    => $lokasi,
+        "Telp"      => $telp,
+        "Jambuka"   => $jambuka,
+        "Jamtutup"  => $jamtutup,
         "Status"    => $status,
-        "Ket"    => $ket,
-        "Dateu"      => $now
+        "Ket"       => $ket,
+        "Dateu"     => $now
             );
 
         $where = array(

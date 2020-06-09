@@ -45,7 +45,7 @@
                   <label for="validationCustom01">Toko</label>
                   <div class="form-control">
                     <?php
-                      echo form_dropdown('toko', $toko, '', 'class="form-control" id="combobox" name="toko"'); 
+                      echo form_dropdown('toko', html_escape($toko), '', 'class="form-control" id="combobox" name="toko"'); 
                     ?>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                   <label for="validationCustom04">Stok</label>
-                  <input type="text" class="form-control" onkeypress="return angka(event)" name="stok" placeholder="Stok" required>
+                  <input type="number" class="form-control" onkeypress="return angka(event)" name="stok" min="1" placeholder="Stok" required>
                   <div class="invalid-feedback">
                     Masukan No Telp !
                   </div>
@@ -77,7 +77,7 @@
                 <div class="col-md-4 mb-3">
                   <label for="validationCustom03">Kategori</label>
                     <?php
-                      echo form_dropdown('kat', $ktg, '', 'class="form-control" id="" name="kat" required'); 
+                      echo form_dropdown('kat', html_escape($ktg), '', 'class="form-control" id="" name="kat" required'); 
                     ?>
                   <div class="invalid-feedback">
                     Masukan Jam!
@@ -374,17 +374,17 @@
     dataType: "JSON",
     success: function(data)
     {
-    $('[name="id"]').val(data.ID);
-    $('[name="kode"]').val(data.Kode);
-    $('[name="nama"]').val(data.Nama);
-    $('#combobox').val(data.Reftoko);
+    $('[name="id"]').val(escapeHtml(data.ID));
+    $('[name="kode"]').val(escapeHtml(data.Kode));
+    $('[name="nama"]').val(escapeHtml(data.Nama));
+    $('#combobox').val(escapeHtml(data.Reftoko));
     $('#combobox').select2().trigger('change');
-    $('[name="harga"]').val(data.Harga);
-    $('[name="stok"]').val(data.Stok);
-    $('[name="status"]').val(data.Status);
-    $('[name="satuan"]').val(data.Satuan);
-    $('[name="kat"]').val(data.Refkategori);
-    $('[name="ket"]').val(data.Ket);
+    $('[name="harga"]').val(escapeHtml(data.Harga));
+    $('[name="stok"]').val(escapeHtml(data.Stok));
+    $('[name="status"]').val(escapeHtml(data.Status));
+    $('[name="satuan"]').val(escapeHtml(data.Satuan));
+    $('[name="kat"]').val(escapeHtml(data.Refkategori));
+    $('[name="ket"]').val(escapeHtml(data.Ket));
     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
     $('.modal-title').text('Edit Data toko'); // Set title to Bootstrap modal title
     
@@ -392,8 +392,8 @@
     if(data.Img)
     {
         $('#label-photo').text('Change Photo'); // label photo upload
-        $('#photo-preview div').html('<img src="<?php echo base_url();?>/assets/upload/barang/'+data.Img+'" style="width:100px;">'); // show photo
-        $('#photo-preview div').append('</br><input type="checkbox" name="remove_photo" value="'+data.Img+'"/> Remove photo when saving'); // remove photo
+        $('#photo-preview div').html('<img src="<?php echo base_url();?>/assets/upload/barang/'+escapeHtml(data.Img)+'" style="width:100px;">'); // show photo
+        $('#photo-preview div').append('</br><input type="checkbox" name="remove_photo" value="'+escapeHtml(data.Img)+'"/> Remove photo when saving'); // remove photo
     }
     else
     {
@@ -496,6 +496,14 @@
       }
     })
     }
+    function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
 </script>
   <script>
   $(document).ready(function(){

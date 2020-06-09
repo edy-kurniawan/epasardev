@@ -130,6 +130,11 @@ class M_barang extends CI_Model{
         return $hasil;
     }
 
+    function add_cart($id){
+        $query = $this->db->get_where('barang', array('ID' => $id));
+        return $query->row(); 
+    }
+
 
  
 

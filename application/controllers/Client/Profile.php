@@ -27,27 +27,27 @@ class Profile extends CI_Controller{
     }
 
     function get_user(){
-        $username=$this->session->userdata("username");
-        $data=$this->M_profile->get_data($username);
+        $username   = $this->session->userdata("username");
+        $data       = $this->M_profile->get_data($username);
         echo json_encode($data);
     }
 
     public function ajax_edit()
     {
-        $refuser=$this->session->userdata("username");
-        $data = $this->M_barang->edit($refuser);
+        $refuser    = $this->session->userdata("username");
+        $data       = $this->M_barang->edit($refuser);
         echo json_encode($data);
     }
 
     function ajax_update(){
         $this->form_validation->set_rules('nama','nama','required');
-        $this->form_validation->set_rules('telp','telp','required|min_length[8]');
+        $this->form_validation->set_rules('telp','telp','required|min_length[8]|max_length[14]');
         $this->form_validation->set_rules('tgl','tgl','required');
-        $this->form_validation->set_rules('jenis','jenis','required');
-        $this->form_validation->set_rules('prov','prov','required');
-        $this->form_validation->set_rules('kab','kab','required');
-        $this->form_validation->set_rules('kec','kec','required');
-        $this->form_validation->set_rules('kel','kel','required');
+        $this->form_validation->set_rules('jenis','jenis','required|in_list[0,1]');
+        $this->form_validation->set_rules('prov','prov','required|is_natural');
+        $this->form_validation->set_rules('kab','kab','required|is_natural');
+        $this->form_validation->set_rules('kec','kec','required|is_natural');
+        $this->form_validation->set_rules('kel','kel','required|is_natural');
         $this->form_validation->set_rules('alamat2','alamat2','required');
         
             if($this->form_validation->run() == false)
@@ -174,7 +174,7 @@ class Profile extends CI_Controller{
     }
 
     function pass_update(){
-        $this->form_validation->set_rules('pass', 'pass', 'required');
+        $this->form_validation->set_rules('pass', 'pass', 'required|min_length[3]');
         $this->form_validation->set_rules('pass2', 'pass2', 'matches[pass]');
 
         if($this->form_validation->run() === FALSE){
@@ -195,7 +195,7 @@ class Profile extends CI_Controller{
 
         $where = array(
             'Username' => $refuser,
-            'Pass' => do_hash($password),
+            'Pass'     => do_hash($password),
             );
 
         $cek = $this->M_login->cek_login("login",$where)->num_rows();
@@ -226,19 +226,19 @@ class Profile extends CI_Controller{
     }
 
     function get_kab(){
-        $id   = $this->input->post('id');
+        $id   = $this->input->post('id',TRUE);
         $data = $this->M_profile->get_kab($id)->result();
         echo json_encode($data);
     }
 
     function get_kec(){
-        $id   = $this->input->post('id');
+        $id   = $this->input->post('id',TRUE);
         $data = $this->M_profile->get_kec($id)->result();
         echo json_encode($data);
     }
     
     function get_kel(){
-        $id   = $this->input->post('id');
+        $id   = $this->input->post('id',TRUE);
         $data = $this->M_profile->get_kel($id)->result();
         echo json_encode($data);
     }

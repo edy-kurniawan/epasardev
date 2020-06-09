@@ -14,11 +14,11 @@ class Login extends CI_Controller{
     }
 
     function aksi_login(){
-        $username = $this->input->post('username');
-        $password = $this->input->post('pass');
+        $username = $this->security->sanitize_filename($this->input->post('username'));
+        $password = $this->security->sanitize_filename($this->input->post('pass'));
         $where = array(
             'Username' => $username,
-            'Pass' => do_hash($password),
+            'Pass'     => do_hash($password),
             );
         $cek = $this->M_login->cek_login("login",$where)->num_rows();
         if($cek > 0){

@@ -19,8 +19,8 @@ class Register extends CI_Controller{
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
-        $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_email_exists');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]');
         $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
         if($this->form_validation->run() === FALSE){
@@ -54,10 +54,10 @@ class Register extends CI_Controller{
 
         $data2 = array(
             "Nama"       => $nama,
-            "Refuser"   => $username,
+            "Refuser"    => $username,
             "Email"      => $email,
             "Telp"       => $telp,
-            "Img"       => "default.png",
+            "Img"        => "default.png",
             "Datei"      => $now
             );
 

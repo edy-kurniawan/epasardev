@@ -27,14 +27,14 @@ class User extends CI_Controller {
 
     public function getcount(){
         $user   = $this->M_user->totaluser();
-        $aktif   = $this->M_user->useraktif();
-        $non   = $this->M_user->usernonaktif();
-        $pasif   = $this->M_user->userpasif();
+        $aktif  = $this->M_user->useraktif();
+        $non    = $this->M_user->usernonaktif();
+        $pasif  = $this->M_user->userpasif();
         echo json_encode(array(
             'jml'    => $user->jml,
-            'aktif'    => $aktif->jml,
+            'aktif'  => $aktif->jml,
             'non'    => $non->jml,
-            'pasif'    => $pasif->jml,
+            'pasif'  => $pasif->jml,
             )
         );
     }
@@ -46,15 +46,15 @@ class User extends CI_Controller {
         foreach ($result as $r) {
             $row    = array(
                         "no"        => $No,
-                        "id"       => $r->ID,
-                        "username"       => $r->Username,
-                        "nama"    => $r->Nama,
-                        "jenis"    => $r->Jenis,
-                        "alamat"      => $r->Alamat,
-                        "tgllahir"       => $r->Tgllahir,
-                        "telp"    => $r->Telp,
-                        "email"      => $r->Email,
-                        "action"     => detail($r->ID)
+                        "id"        => html_escape($r->ID),
+                        "username"  => html_escape($r->Username),
+                        "nama"      => html_escape($r->Nama),
+                        "jenis"     => html_escape($r->Jenis),
+                        "alamat"    => html_escape($r->Alamat),
+                        "tgllahir"  => html_escape($r->Tgllahir),
+                        "telp"      => html_escape($r->Telp),
+                        "email"     => html_escape($r->Email),
+                        "action"    => detail(html_escape($r->ID))
             );
 
             $list[] = $row;
@@ -72,10 +72,10 @@ class User extends CI_Controller {
         foreach ($result as $r) {
             $row    = array(
                         "no"        => $No,
-                        "id"       => $r->ID,
-                        "nama"       => $r->Nama,
-                        "jml"    => $r->Jumlah,
-                        "subtotal"    => $r->Subtotal
+                        "id"        => $r->ID,
+                        "nama"      => $r->Nama,
+                        "jml"       => $r->Jumlah,
+                        "subtotal"  => $r->Subtotal
             );
 
             $list[] = $row;

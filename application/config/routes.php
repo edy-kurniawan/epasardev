@@ -66,3 +66,4 @@ $route['signin'] = 'Client/Login';
 $route['signup'] = 'Client/Register';
 $route['user'] = 'Client/Profile';
 $route['user/logout'] = 'Client/Login/logout';
+$route['add-cart'] = 'Client/Home/add_cart';

@@ -408,6 +408,8 @@
            <!-- Footer Bottom End -->
        </footer>
        <!-- Footer Area End Here -->
+       
+<script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> 
 
        <script type="text/javascript">
            $(function() {
@@ -423,15 +425,15 @@
                    type: "GET",
                    dataType: "JSON",
                    success: function(data) {
-                       $('[name="id"]').val(data.ID);
-                       $('[name="nama"]').val(data.Nama);
-                       $('[name="email"]').val(data.Email);
-                       $('[name="telp"]').val(data.Telp);
-                       $('[name="tgl"]').val(data.Tgllahir);
-                       $('[name="jenis"]').val(data.Jenis);
-                       $('[name="alamat2"]').val(data.Alamat);
-                       $('[name="alamat"]').val(data.Alamat + ", " + data.Kel + ", " + data.Kec + ", " + data.Kab + ", " + data.Prov);
-                       $('[name="img"]').val(data.Img);
+                       $('[name="id"]').val(escapeHtml(data.ID));
+                       $('[name="nama"]').val(escapeHtml(data.Nama));
+                       $('[name="email"]').val(escapeHtml(data.Email));
+                       $('[name="telp"]').val(escapeHtml(data.Telp));
+                       $('[name="tgl"]').val(escapeHtml(data.Tgllahir));
+                       $('[name="jenis"]').val(escapeHtml(data.Jenis));
+                       $('[name="alamat2"]').val(escapeHtml(data.Alamat));
+                       $('[name="alamat"]').val(escapeHtml(data.Alamat + ", " + data.Kel + ", " + data.Kec + ", " + data.Kab + ", " + data.Prov));
+                       $('[name="img"]').val(escapeHtml(data.Img));
                        $('#photo-preview').show(); // show photo preview modal
                        if (data.Img) {
                            if (data.Img == "default.png") {
@@ -440,7 +442,7 @@
                                $('#remove_photo div').html('<input type="checkbox" name="remove_photo"/> <strong>Remove photo when saving </strong>');
                            }
                            $('#label-photo').text('Change Photo'); // label photo upload
-                           $('#photo-preview div').html('<img src="<?php echo base_url(); ?>/assets/upload/user/' + data.Img + '" style="width:150px;" title="Img" data-toggle="modal" data-target="#modal-default">'); // show photo// remove photo
+                           $('#photo-preview div').html('<img src="<?php echo base_url(); ?>/assets/upload/user/' + escapeHtml(data.Img) + '" style="width:150px;" title="Img" data-toggle="modal" data-target="#modal-default">'); // show photo// remove photo
                        } else {
                            $('#label-photo').text('Upload Photo'); // label photo upload
                            $('#photo-preview div').text('(No photo)');
@@ -452,6 +454,15 @@
                    }
                });
            });
+
+           function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
        </script>
        <script type="text/javascript">
            $(document).ready(function() {
@@ -543,4 +554,5 @@
                });
            });
        </script>
-       </body>
+
+</body>

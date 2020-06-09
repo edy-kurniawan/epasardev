@@ -289,10 +289,10 @@
     dataType: "JSON",
     success: function(data)
     {
-    $('[name="id"]').val(data.ID);
-    $('[name="kode"]').val(data.Kode);
-    $('[name="nama"]').val(data.Nama);
-    $('[name="ket"]').val(data.Ket);
+    $('[name="id"]').val(escapeHtml(data.ID));
+    $('[name="kode"]').val(escapeHtml(data.Kode));
+    $('[name="nama"]').val(escapeHtml(data.Nama));
+    $('[name="ket"]').val(escapeHtml(data.Ket));
     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
     $('.modal-title').text('Edit Data Kategori'); // Set title to Bootstrap modal title
     
@@ -387,6 +387,15 @@
       }
     })
     }
+
+    function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
 </script>
   <script>
   $(document).ready(function(){

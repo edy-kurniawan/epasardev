@@ -23,17 +23,17 @@ class Barang extends CI_Controller {
     public function index(){
         $data['ktg']   = $this->DbHelper->getkategori($this->DbHelper->kat, 'Pilih Kategori');
         $data['toko']   = $this->DbHelper->gettoko($this->DbHelper->toko, 'Pilih Toko');
-        $this->load->view('Admin/v_barang', $data);
+        $this->load->view('Admin/v_barang', html_escape($data));
     }
 
     public function getcount(){
-        $barang   = $this->M_barang->countbarang();
-        $aktif   = $this->M_barang->countaktif();
-        $non   = $this->M_barang->countnon();
-        $kat   = $this->M_barang->countkat();
+        $barang     = $this->M_barang->countbarang();
+        $aktif      = $this->M_barang->countaktif();
+        $non        = $this->M_barang->countnon();
+        $kat        = $this->M_barang->countkat();
         echo json_encode(array(
             'jml'    => $barang->jml,
-            'aktif'    => $aktif->jml,
+            'aktif'  => $aktif->jml,
             'non'    => $non->jml,
             'kat'    => $kat->jml
             )
@@ -47,18 +47,18 @@ class Barang extends CI_Controller {
         foreach ($result as $r) {
             $row    = array(
                         "no"        => $No,
-                        "id"       => $r->ID,
-                        "kode"       => $r->Kode,
-                        "img"       => add($r->Img),
-                        "nama"    => $r->Nama,
-                        "toko"    => $r->toko,
-                        "harga"      => $r->Harga,
-                        "stok"       => $r->Stok,
-                        "kat"    => $r->kat,
-                        "status"      => $r->Status,
-                        "satuan"      => $r->Satuan,
-                        "ket"      => $r->Ket,
-                        "action"     => tombol($r->ID)
+                        "id"        => html_escape($r->ID),
+                        "kode"      => html_escape($r->Kode),
+                        "img"       => add(html_escape($r->Img)),
+                        "nama"      => html_escape($r->Nama),
+                        "toko"      => html_escape($r->toko),
+                        "harga"     => html_escape($r->Harga),
+                        "stok"      => html_escape($r->Stok),
+                        "kat"       => html_escape($r->kat),
+                        "status"    => html_escape($r->Status),
+                        "satuan"    => html_escape($r->Satuan),
+                        "ket"       => html_escape($r->Ket),
+                        "action"    => tombol(html_escape($r->ID))
             );
 
             $list[] = $row;
@@ -97,8 +97,9 @@ class Barang extends CI_Controller {
 
         $this->form_validation->set_rules('kode','kode','trim|required');
         $this->form_validation->set_rules('nama','nama','trim|required');
-        $this->form_validation->set_rules('toko','toko','trim');
-        $this->form_validation->set_rules('stok','stok','trim|required');
+        $this->form_validation->set_rules('toko','toko','trim|required');
+        $this->form_validation->set_rules('harga','harga','trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('stok','stok','trim|required|is_natural_no_zero');
         $this->form_validation->set_rules('status','status','trim|required');
         $this->form_validation->set_rules('satuan','satuan','trim|required');
         $this->form_validation->set_rules('kat','kat','trim|required');
@@ -122,15 +123,15 @@ class Barang extends CI_Controller {
 
  
         $data = array(
-            "Kode"       => $kode,
-            "Nama"    => $nama,
-            "Reftoko"    => $reftoko,
-            "Harga"      => $harga,
-            "Stok"       => $stok,
-            "Refkategori"    => $refkat,
-            "Status"      => $status,
-            "Ket"    => $ket,
-            "Dateu"      => $now
+            "Kode"          => $kode,
+            "Nama"          => $nama,
+            "Reftoko"       => $reftoko,
+            "Harga"         => $harga,
+            "Stok"          => $stok,
+            "Refkategori"   => $refkat,
+            "Status"        => $status,
+            "Ket"           => $ket,
+            "Dateu"         => $now
             );
 
             $where = array(
@@ -181,6 +182,22 @@ class Barang extends CI_Controller {
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 
+        $this->form_validation->set_rules('kode','kode','trim|required');
+        $this->form_validation->set_rules('nama','nama','trim|required');
+        $this->form_validation->set_rules('toko','toko','trim|required');
+        $this->form_validation->set_rules('harga','harga','trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('stok','stok','trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('status','status','trim|required');
+        $this->form_validation->set_rules('satuan','satuan','trim|required');
+        $this->form_validation->set_rules('kat','kat','trim|required');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
+
         $kode = $this->security->sanitize_filename($this->input->post('kode'));
         $reftoko = $this->security->sanitize_filename($this->input->post('toko'));
         $nama = $this->security->sanitize_filename($this->input->post('nama'));
@@ -192,16 +209,16 @@ class Barang extends CI_Controller {
         $ket = $this->security->sanitize_filename($this->input->post('ket'));
  
         $data = array(
-            'Kode'       => $kode,
-            'Nama'       => $nama,
-            'Reftoko'    => $reftoko,
-            'Harga'      => $harga,
-            'Stok'       => $stok,
-            'Refkategori'    => $refkat,
-            'Status'      => $status,
-            'Satuan'      => $satuan,
-            'Ket'        => $ket,
-            'Datei'        => $now
+            'Kode'          => $kode,
+            'Nama'          => $nama,
+            'Reftoko'       => $reftoko,
+            'Harga'         => $harga,
+            'Stok'          => $stok,
+            'Refkategori'   => $refkat,
+            'Status'        => $status,
+            'Satuan'        => $satuan,
+            'Ket'           => $ket,
+            'Datei'         => $now
                     );
  
         if(!empty($_FILES['photo']['name']))
@@ -212,16 +229,15 @@ class Barang extends CI_Controller {
                 $data['Img'] = "default.jpg";
             }
         
-        
- 
         $this->M_barang->inputdata($data,'barang');
         echo json_encode(array("status" => TRUE));
+        }
     }
     
     function _do_upload(){
-        $config['upload_path'] = './assets/upload/temp/'; //path folder
+        $config['upload_path']   = './assets/upload/temp/'; //path folder
         $config['allowed_types'] = 'gif|jpg|png'; //type yang dapat diakses bisa anda sesuaikan
-        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        $config['encrypt_name']  = TRUE; //Enkripsi nama yang terupload
  
         $this->upload->initialize($config);
         if(!empty($_FILES['photo']['name'])){
