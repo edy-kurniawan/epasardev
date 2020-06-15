@@ -200,6 +200,7 @@
         var save_method;
 
         $(document).ready(function() {
+          get_count();
           table = $('#table').DataTable({  
             "processing": true, 
             "responsive": true,
@@ -264,6 +265,25 @@
     {
     table.ajax.reload(null,false); //reload datatable ajax
     info();
+    get_count();
+    }
+
+    function get_count(){
+      $.ajax({
+          url : "<?php echo site_url('Admin/Toko/getcount'); ?>",
+          type: "GET",
+          data: "",
+          dataType: "json",
+          cache:false,
+          success: function(data){
+            $('#toko').text(data.jml);
+            $('#aktif').text(data.aktif);
+            $('#non').text(data.non);
+          },
+          error: function (jqXHR, textStatus, errorThrown){
+              console.log(errorThrown);
+          }
+        });
     }
 
     function add_toko()
@@ -416,26 +436,7 @@
 
 </script>
 
- <script type="text/javascript">
-    $(document).ready(function() {
-      $.ajax({
-          url : "<?php echo site_url('Admin/Toko/getcount'); ?>",
-          type: "GET",
-          data: "",
-          dataType: "json",
-          cache:false,
-          success: function(data){
-            $('#toko').text(data.jml);
-            $('#aktif').text(data.aktif);
-            $('#non').text(data.non);
-          },
-          error: function (jqXHR, textStatus, errorThrown){
-              console.log(errorThrown);
-          }
-        });
-
-      });
-  </script>
+ 
 
   </body>
 </html>

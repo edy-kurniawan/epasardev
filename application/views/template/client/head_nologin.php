@@ -98,6 +98,7 @@
                                             <option value="<?php echo html_escape($x->Kode) ?>"><?php echo html_escape($x->Nama) ?></option>
                                         <?php } ?>
                                         </select>
+                                        </select>
                                     </div>
                                     <input type="text" name="search" placeholder="Cari Barang...">
                                     <button><i class="lnr lnr-magnifier"></i></button>
@@ -112,36 +113,18 @@
                                     <li><a href="#"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro" id="total-pro">0</span><span>cart</span></span></a>
                                         <ul class="ht-dropdown cart-box-width">
                                             <li>
-                                            <?php 
-                                                $subtotal = 0;
-                                                $idform = 1;
-                                                foreach($cart as $x){ 
-                                                    $subtotal += $x->Subtotal;
-                                                    $idform++;
-                                            ?>
                                                 <!-- Cart Box Start -->
                                                 <div class="single-cart-box">
-                                                    <div class="cart-img">
-                                                        <a href="#"><img src="<?php echo base_url(); ?>assets/upload/barang/<?php echo html_escape($x->Img) ?>" alt="cart-image"></a>
-                                                        <span class="pro-quantity"><?php echo html_escape($x->Jumlah) ?>X</span>
-                                                    </div>
+                                                
                                                     <div class="cart-content">
-                                                        <h6><a href="#"><?php echo html_escape($x->Nama) ?></a></h6>
-                                                        <span class="cart-price">Rp. <?php echo html_escape(number_format($x->Subtotal)) ?></span>
-                                                        <span>Rp. <?php echo html_escape(number_format($x->Harga)) ?> /<?php echo html_escape($x->Satuan) ?></span>
+                                                        <h6>Keranjang belanja kosong</h6>
                                                     </div>
-                                                    <form id="<?php echo $idform ?>" action="<?php echo site_url('Client/Home/delete_cart'); ?>" method="post">
-                                                    <input type="hidden" name="id" value="<?php echo html_escape($x->ID) ?>">
-                                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-                                                    <a class="del-icone" href="javascript:;" onclick="document.getElementById('<?php echo $idform ?>').submit();"><i class="ion-close"></i></a>
-                                                    </form>
                                                 </div>
                                                 <!-- Cart Box End -->
-                                            <?php } ?>
                                                 <!-- Cart Footer Inner Start -->
                                                 <div class="cart-footer">
                                                    <ul class="price-content">
-                                                       <li>Subtotal <span>Rp. <?php echo number_format($subtotal) ?></span></li>
+                                                       <li>Subtotal <span>Rp. 0</span></li>
                                                    </ul>
                                                     <div class="cart-actions text-center">
                                                         <a class="cart-checkout" href="#">Checkout</a>

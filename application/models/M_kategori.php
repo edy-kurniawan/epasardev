@@ -45,5 +45,8 @@ function hapus_data($where,$table){
         $this->db->update('kategori', $data, $where);
     }
  
+    /* Model for client */
+
+    
 
 }

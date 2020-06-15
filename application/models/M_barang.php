@@ -12,26 +12,14 @@ class M_barang extends CI_Model{
     /* Model for admin */
 
     function getSemua(){
-        $sql    =   "SELECT
-                        barang.ID,
-                        barang.Kode,
-                        barang.Nama,
-                        barang.Stok,            
-                        barang.Harga,
-                        barang.Status,
-                        barang.Satuan,
-                        barang.Img,
-                        barang.Ket,
-                        toko.Nama toko,
-                        kategori.Nama kat
-                    FROM
-                        barang left outer join toko
-                        on barang.Reftoko=toko.Kode
-                        left outer join kategori
-                        on barang.Refkategori=kategori.Kode
-                    ORDER BY
-                        barang.Datei DESC";
-        return $this-> DbHelper->execQuery($sql);
+
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Stok, barang.Harga, barang.Status, barang.Satuan, barang.Img, barang.Ket, toko.Nama toko, Kategori.Nama kat');
+        $this->db->from('barang');
+        $this->db->join('toko', 'toko.Kode=barang.Reftoko','left');
+        $this->db->join('kategori', 'kategori.Kode=barang.Refkategori','left');
+        $this->db->order_by('barang.Datei', 'DESC');
+        $query = $this->db->get();
+        return $query;
 
     }
 
@@ -68,12 +56,12 @@ class M_barang extends CI_Model{
                         on barang.Refkategori=kategori.Kode
                         where barang.ID='$id'");
 
-       return $query->row(); 
+       return $query->row();
     }
 
      public function delete_by_kode($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where('ID', $id);
         $this->db->delete('barang');
     }  
      public function update($where, $data)
@@ -131,7 +119,10 @@ class M_barang extends CI_Model{
     }
 
     function add_cart($id){
-        $query = $this->db->get_where('barang', array('ID' => $id));
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga');
+        $this->db->from('barang');
+        $this->db->where('barang.ID', $id);
+        $query = $this->db->get();
         return $query->row(); 
     }
 

@@ -59,11 +59,13 @@ $route['administrator/barang'] = 'Admin/Barang';
 $route['administrator/kategori'] = 'Admin/Kategori';
 $route['administrator/toko'] = 'Admin/Toko';
 $route['administrator/user'] = 'Admin/User';
-
+$route['auth'] = 'Login';
 /* --custom route client begin */
 $route['home'] = 'Client/Home';
+$route['welcome'] = 'Client/Home_nologin';
+$route['redirect-login'] = 'Client/Home_nologin/redirect';
 $route['signin'] = 'Client/Login';
 $route['signup'] = 'Client/Register';
 $route['user'] = 'Client/Profile';
-$route['user/logout'] = 'Client/Login/logout';
+$route['logout'] = 'Client/Login/logout';
 $route['add-cart'] = 'Client/Home/add_cart';

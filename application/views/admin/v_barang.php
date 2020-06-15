@@ -106,9 +106,9 @@
                 <div class="col-md-12 mb-3">
                   <div class="form-group" id="photo-preview">
                     <label class="control-label">Photo</label>
-                      <div class="col-md-9">
+                      <div class="col-md-12">
                         (No photo)
-                      <span class="help-block"></span>
+                        <span class="help-block"></span>
                       </div>
                   </div>
                   <div class="form-group">
@@ -276,6 +276,7 @@
         var save_method;
 
         $(document).ready(function() {
+          get_count();
           table = $('#table').DataTable({  
             "processing": true, 
             "responsive": true,
@@ -342,10 +343,30 @@
       })
     }
 
+    function get_count(){
+      $.ajax({
+          url : "<?php echo site_url('Admin/Barang/getcount'); ?>",
+          type: "GET",
+          data: "",
+          dataType: "json",
+          cache:false,
+          success: function(data){
+            $('#toko').text(data.jml);
+            $('#aktif').text(data.aktif);
+            $('#non').text(data.non);
+            $('#kat').text(data.kat);
+          },
+          error: function (jqXHR, textStatus, errorThrown){
+              console.log(errorThrown);
+          }
+        });
+    }
+
     function reload_table()
     {
     table.ajax.reload(null,false); //reload datatable ajax
     info();
+    get_count();
     }
 
     function add_toko()
@@ -531,29 +552,7 @@
 }
 </script>
 
- <script type="text/javascript">
-    $(document).ready(function() {
-      $.ajax({
-          url : "<?php echo site_url('Admin/Barang/getcount'); ?>",
-          type: "GET",
-          data: "",
-          dataType: "json",
-          cache:false,
-          success: function(data){
-            $('#toko').text(data.jml);
-            $('#aktif').text(data.aktif);
-            $('#non').text(data.non);
-            $('#kat').text(data.kat);
-          },
-          error: function (jqXHR, textStatus, errorThrown){
-              console.log(errorThrown);
-          }
-        });
-
-      });
-  </script>
-
-  <script type="text/javascript">
+<script type="text/javascript">
   $("#combobox").select2({
     theme:"bootstrap",
 		placeholder: "Pilih Toko",
@@ -561,7 +560,7 @@
 		dropdownAutoWidth: true,
 		allowClear: true,
   });
-  </script>
+</script>
 
   </body>
 </html>

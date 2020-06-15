@@ -1,7 +1,7 @@
-<?php
-    $this->load->view('template/client/head');
-?>
-<div class="modal fade" id="modal-qty">
+<link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/fontawesome-free/css/all.min.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/sweetalert2/sweetalert2.min.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/sweetalert2/sweetalert2.css') ?>">
+<div class="modal fade" id="modal_qty">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
@@ -11,14 +11,23 @@
               </button>
             </div>
             <div class="modal-body">
-                <p><center><input class="quantity mr-15" type="number" min="1" value="1"></center></p>
-                <input type="text" name="nama">
-                <input type="number" name="id">
-                <input type="text"  name="kode">
+            <form id="form" class="needs-validation" role="form" action="<?php echo site_url('Client/Home/save_cart'); ?>" method="post">
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                <input type="hidden" name="id">
+                <input type="hidden" name="kode">
+                <input type="hidden" name="harga">
+                <p><center>
+                <div class="btn-group">
+                    <button type="button" id="kurang" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <input type="number" class="quantity" name="qty" id="hasil" min="1" value="1">
+                    <button type="button" id="tambah" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                </div>
+                </center></p>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-              <button type="button" class="btn btn-primary">Masukan keranjang</button>
+              <button type="submit" id="btnSave" class="btn btn-primary">Masukan keranjang</button>
+            </form>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -31,7 +40,7 @@
             <div class="container">
                <!-- Product Title Start -->
                <div class="post-title pb-30">
-                   <h2>Barang Terbaru</h2>
+                   <h2>Produk Terbaru</h2>
                </div>
                <!-- Product Title End -->
                 <!-- Hot Deal Product Activation Start -->
@@ -61,10 +70,10 @@
                             <div class="pro-actions">
                                 <div class="actions-primary">
                                     <?php if($this->session->userdata('logged_user') == TRUE): ?> 
-                                        <a href="<?php echo site_url('Client/Home/add_cart'); ?>" title="Add to Cart"> + Add To Cart</a>
+                                        <a href="javascript:void(0)" onclick="add_cart('<?php echo html_escape($x->ID) ?>')" title="Add to Cart"> + Add To Cart</a>
                                     <?php endif; ?>
                                     <?php if($this->session->userdata('logged_user') != TRUE): ?> 
-                                        <a href="<?php echo site_url('Client/Home/add_cart'); ?>" title="Add to Cart"> + Add To Cart</a>
+                                        <a href="<?php echo site_url('redirect-login'); ?>" title="Add to Cart"> + Add To Cart</a>
                                     <?php endif; ?>
                                 </div>
                                 <div class="actions-secondary">
@@ -133,7 +142,7 @@
                 <div class="main-product-tab-area">
                     <div class="tab-menu mb-25">
                         <div class="section-ttitle">
-                            <h2>New Arrivals</h2>
+                            <h2>Semua Produk</h2>
                        </div>
                         <!-- Nav tabs -->
                         <ul class="nav tabs-area" role="tablist">
@@ -867,8 +876,16 @@
                 </div>
             </div>
         </div>     
-    
-<script>
+
+        <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<?php
+    $this->load->view('template/client/footer');
+?>
+  <script>
+    $(document).ready(function() {
+        count_cart();
+    });
+
     function add_cart(id)
     {
     $('#form')[0].reset(); // reset form on modals
@@ -881,20 +898,104 @@
     dataType: "JSON",
     success: function(data)
     {
-    $('[name="nama"]').val(data.Nama);
-    $('[name="kode"]').val(data.Kode);
-    $('[name="total"]').val(data.Stok);
-    $('#modal-qty').modal('show'); // show bootstrap modal when complete loaded
+    $('[name="id"]').val(escapeHtml(data.ID));
+    $('[name="kode"]').val(escapeHtml(data.Kode));
+    $('[name="harga"]').val(escapeHtml(data.Harga));
+    $('#modal_qty').modal('show'); // show bootstrap modal
     
     },
     error: function (jqXHR, textStatus , errorThrown)
     {
-    alert('Error get data from ajax');
+        console.log(errorThrown);
     }
     });
     }
+
+    function delete_cart(id){
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+    //Ajax Load data from ajax
+    $.ajax({
+    url : "<?php echo base_url('Client/Home/add_cart')?>/" + id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data)
+    {
+    $('[name="id"]').val(escapeHtml(data.ID));
+    $('[name="kode"]').val(escapeHtml(data.Kode));
+    $('[name="harga"]').val(escapeHtml(data.Harga));
+    $('#modal_qty').modal('show'); // show bootstrap modal
+    
+    },
+    error: function (jqXHR, textStatus , errorThrown)
+    {
+        console.log(errorThrown);
+    }
+    });
+    }
+
+    function count_cart(){
+      $.ajax({
+          url : "<?php echo site_url('Client/Home/count_cart'); ?>",
+          type: "GET",
+          data: "",
+          dataType: "json",
+          cache:false,
+          success: function(data){
+            $('#total-pro').text(data.jml);
+          },
+          error: function (jqXHR, textStatus, errorThrown){
+              console.log(errorThrown);
+          }
+        });
+    }
+
+    function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+</script>
+<script>
+    $(function () {
+    function reposition() {
+    var modal = $(this),
+    dialog = modal.find('.modal-dialog');
+    modal.css('display', 'block');
+    
+    // Dividing by two centers the modal exactly, but dividing by three 
+    // or four works better for larger screens.
+    dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+    }
+    // Reposition when a modal is shown
+    $('.modal').on('show.bs.modal', reposition);
+    // Reposition when the window is resized
+    $(window).on('resize', function () {
+    $('.modal:visible').each(reposition);
+    });
+    });
+</script>
+<script>
+    var tambah = document.getElementById("tambah");
+    var kurang = document.getElementById("kurang");
+    var hasil  = document.getElementById("hasil");
+    var no = 1;
+    tambah.onclick = function(){
+    hasil= no++;
+    $('#hasil').val(hasil);
+    }
+    kurang.onclick = function(){
+        if(hasil=='1'){
+            
+        }else{    
+            hasil= no--;
+            $('#hasil').val(hasil);
+        }
+    }
 </script>
                              
-<?php
-    $this->load->view('template/client/footer');
-?>
+</body>
