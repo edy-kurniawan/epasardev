@@ -35,7 +35,7 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-<!-- Hot Deal Products Start Here -->
+      <!-- Hot Deal Products Start Here -->
         <div class="hot-deal-products off-white-bg pb-90 pb-sm-50">
             <div class="container">
                <!-- Product Title Start -->
@@ -51,6 +51,7 @@
                     <!-- Single Product Start -->
                     <div class="single-product">
                         <!-- Product Image Start -->
+                        <span class="sticker-new">new</span>
                         <div class="pro-img">
                             <a href="#">
                                 <img class="primary-img" src="<?php echo base_url(); ?>assets/upload/barang/<?php echo $x->Img ?>" alt="single-product">
@@ -911,30 +912,6 @@
     });
     }
 
-    function delete_cart(id){
-    $('#form')[0].reset(); // reset form on modals
-    $('.form-group').removeClass('has-error'); // clear error class
-    $('.help-block').empty(); // clear error string
-    //Ajax Load data from ajax
-    $.ajax({
-    url : "<?php echo base_url('Client/Home/add_cart')?>/" + id,
-    type: "GET",
-    dataType: "JSON",
-    success: function(data)
-    {
-    $('[name="id"]').val(escapeHtml(data.ID));
-    $('[name="kode"]').val(escapeHtml(data.Kode));
-    $('[name="harga"]').val(escapeHtml(data.Harga));
-    $('#modal_qty').modal('show'); // show bootstrap modal
-    
-    },
-    error: function (jqXHR, textStatus , errorThrown)
-    {
-        console.log(errorThrown);
-    }
-    });
-    }
-
     function count_cart(){
       $.ajax({
           url : "<?php echo site_url('Client/Home/count_cart'); ?>",
@@ -983,7 +960,7 @@
     var tambah = document.getElementById("tambah");
     var kurang = document.getElementById("kurang");
     var hasil  = document.getElementById("hasil");
-    var no = 1;
+    var no     = 1;
     tambah.onclick = function(){
     hasil= no++;
     $('#hasil').val(hasil);
@@ -996,6 +973,5 @@
             $('#hasil').val(hasil);
         }
     }
-</script>
-                             
+</script>                  
 </body>

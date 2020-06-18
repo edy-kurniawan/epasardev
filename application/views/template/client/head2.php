@@ -94,21 +94,20 @@
                         <!-- Categorie Search Box Start Here -->
                         <div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
                             <div class="categorie-search-box">
-                                <form action="#">
+                            <form id="form" action="<?php echo site_url('search'); ?>" method="post">
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <div class="form-group">
                                         <select class="bootstrap-select" name="poscats">
-                                            <option value="0">Semua Kategori</option>
-                                            <option value="1">Bahan Pokok</option>
-                                            <option value="2">Bumbu</option>
-                                            <option value="3">Sayur & Buah</option>
-                                            <option value="4">Daging & Telur</option>
-                                            <option value="5">Lokal</option>
-                                            <option value="6">Import</option>
-                                            <option value="7">Lainnya</option>
+                                            <option value="">Semua Kategori</option>
+                                        <?php 
+                                            foreach($kat as $x){ 
+                                        ?>
+                                            <option value="<?php echo html_escape($x->Kode) ?>"><?php echo html_escape($x->Nama) ?></option>
+                                        <?php } ?>
                                         </select>
                                     </div>
-                                    <input type="text" name="search" placeholder="Cari Barang...">
-                                    <button><i class="lnr lnr-magnifier"></i></button>
+                                    <input type="text" name="keyword" placeholder="Cari Barang..." minlength="3" required>
+                                    <button type="submit"><i class="lnr lnr-magnifier"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -117,46 +116,39 @@
                         <div class="col-lg-4 col-md-12">
                             <div class="cart-box mt-all-30">
                                 <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
-                                    <li><a href="#"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">2</span><span>cart</span></span></a>
+                                    <li><a href="#"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro" id="total-pro">0</span><span>cart</span></span></a>
                                         <ul class="ht-dropdown cart-box-width">
                                             <li>
+                                            <?php 
+                                                $subtotal = 0;
+                                                $idform = 1;
+                                                foreach($cart as $x){ 
+                                                    $subtotal += $x->Subtotal;
+                                                    $idform++;
+                                            ?>
                                                 <!-- Cart Box Start -->
                                                 <div class="single-cart-box">
                                                     <div class="cart-img">
-                                                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/products/1.jpg" alt="cart-image"></a>
-                                                        <span class="pro-quantity">1X</span>
+                                                        <a href="#"><img src="<?php echo base_url(); ?>assets/upload/barang/<?php echo html_escape($x->Img) ?>" alt="cart-image"></a>
+                                                        <span class="pro-quantity"><?php echo html_escape($x->Jumlah) ?>X</span>
                                                     </div>
                                                     <div class="cart-content">
-                                                        <h6><a href="#">Printed Summer Red </a></h6>
-                                                        <span class="cart-price">27.45</span>
-                                                        <span>Size: S</span>
-                                                        <span>Color: Yellow</span>
+                                                        <h6><a href="#"><?php echo html_escape($x->Nama) ?></a></h6>
+                                                        <span class="cart-price">Rp. <?php echo html_escape(number_format($x->Subtotal)) ?></span>
+                                                        <span>Rp. <?php echo html_escape(number_format($x->Harga)) ?> /<?php echo html_escape($x->Satuan) ?></span>
                                                     </div>
-                                                    <a class="del-icone" href="#"><i class="ion-close"></i></a>
+                                                    <form id="<?php echo $idform ?>" action="<?php echo site_url('Client/Home/delete_cart'); ?>" method="post">
+                                                    <input type="hidden" name="id" value="<?php echo html_escape($x->ID) ?>">
+                                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                                    <a class="del-icone" href="javascript:;" onclick="document.getElementById('<?php echo $idform ?>').submit();"><i class="ion-close"></i></a>
+                                                    </form>
                                                 </div>
                                                 <!-- Cart Box End -->
-                                                <!-- Cart Box Start -->
-                                                <div class="single-cart-box">
-                                                    <div class="cart-img">
-                                                        <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/products/2.jpg" alt="cart-image"></a>
-                                                        <span class="pro-quantity">1X</span>
-                                                    </div>
-                                                    <div class="cart-content">
-                                                        <h6><a href="#">Printed Round Neck</a></h6>
-                                                        <span class="cart-price">45.00</span>
-                                                        <span>Size: XL</span>
-                                                        <span>Color: Green</span>
-                                                    </div>
-                                                    <a class="del-icone" href="#"><i class="ion-close"></i></a>
-                                                </div>
-                                                <!-- Cart Box End -->
+                                            <?php } ?>
                                                 <!-- Cart Footer Inner Start -->
                                                 <div class="cart-footer">
                                                    <ul class="price-content">
-                                                       <li>Subtotal <span>$57.95</span></li>
-                                                       <li>Shipping <span>$7.00</span></li>
-                                                       <li>Taxes <span>$0.00</span></li>
-                                                       <li>Total <span>$64.95</span></li>
+                                                       <li>Subtotal <span>Rp. <?php echo number_format($subtotal) ?></span></li>
                                                    </ul>
                                                     <div class="cart-actions text-center">
                                                         <a class="cart-checkout" href="#">Checkout</a>
@@ -216,8 +208,8 @@
                                     <li><a href="#">Akun<i class="fa fa-angle-down"></i></a>
                                         <!-- Home Version Dropdown Start -->
                                         <ul class="ht-dropdown dropdown-style-two">
-                                            <li><a href="#">Profile</a></li>
-                                            <li><a href="#">Keranjang Belanja</a></li>
+                                            <li><a href="<?php echo site_url('user'); ?>">Profile</a></li>
+                                            <li><a href="<?php echo site_url('cart'); ?>">Keranjang Belanja</a></li>
                                             <li><a href="#">checkout</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
@@ -275,77 +267,46 @@
                 <!-- Container End -->
             </div>
             <!-- Header Bottom End Here -->
-            <!-- Mobile Vertical Menu Start Here -->
-            <div class="container d-block d-lg-none">
+           <!-- Mobile Vertical Menu Start Here -->
+           <div class="container d-block d-lg-none">
                 <div class="vertical-menu mt-30">
                     <span class="categorie-title mobile-categorei-menu">PILIH KATEGORI</span>
                     <nav>  
                         <div id="cate-mobile-toggle" class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden ">
                             <ul>
-                                <li class="has-sub"><a href="#">Automotive & Motorcycle </a>
+                                <li class="has-sub"><a href="#">Bahan Pokok</a>
                                     <ul class="category-sub">
-                                        <li class="has-sub"><a href="shop.html">Office chair</a>
+                                        <li class="has-sub"><a href="#">Beras</a>
                                             <ul class="category-sub">
-                                                <li><a href="shop.html">Bibendum Cursus</a></li>
-                                                <li><a href="shop.html">Dignissim Turpis</a></li>
-                                                <li><a href="shop.html">Dining room</a></li>
-                                                <li><a href="shop.html">Dining room</a></li>
+                                                <li><a href="#">Premium</a></li>
+                                                <li><a href="#">Medium</a></li>
+                                                <li><a href="#">Termurah</a></li>
                                             </ul>
                                         </li>
-                                        <li class="has-sub"><a href="shop.html">Purus Lacus</a>
-                                            <ul class="category-sub">
-                                                <li><a href="shop.html">Magna Pellentesq</a></li>
-                                                <li><a href="shop.html">Molestie Tortor</a></li>
-                                                <li><a href="shop.html">Vehicula Element</a></li>
-                                                <li><a href="shop.html">Sagittis Blandit</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop.html">gps accessories</a></li>
-                                        <li><a href="shop.html">Microphones</a></li>
-                                        <li><a href="shop.html">Wireless Transmitters</a></li>
+                                        <li><a href="#">Gula</a></li>
+                                        <li><a href="#">Minyak Goreng</a></li>
                                     </ul>
                                     <!-- category submenu end-->
                                 </li>
-                                <li class="has-sub"><a href="#">Sports & Outdoors</a>
+                                <li class="has-sub"><a href="#">Daging & Telur</a>
                                     <ul class="category-sub">
-                                        <li class="menu-tile">Cameras</li>
-                                        <li><a href="shop.html">Cords and Cables</a></li>
-                                        <li><a href="shop.html">gps accessories</a></li>
-                                        <li><a href="shop.html">Microphones</a></li>
-                                        <li><a href="shop.html">Wireless Transmitters</a></li>
+                                        <li class="menu-tile">Daging & Telur</li>
+                                        <li><a href="#">Daging ayam</a></li>
+                                        <li><a href="#">Daging Sapi</a></li>
+                                        <li><a href="#">Telur Ayam</a></li>
                                     </ul>
                                     <!-- category submenu end-->
                                 </li>
-                                <li class="has-sub"><a href="#">Home & Kitchen</a>
+                                <li class="has-sub"><a href="#">Bumbu</a>
                                     <ul class="category-sub">
-                                        <li><a href="shop.html">kithen one</a></li>
-                                        <li><a href="shop.html">kithen two</a></li>
-                                        <li><a href="shop.html">kithen three</a></li>
-                                        <li><a href="shop.html">kithen four</a></li>
+                                        <li><a href="#">Cabai</a></li>
+                                        <li><a href="#">Bawang</a></li>
+                                        <li><a href="#">Garam</a></li>
                                     </ul>
                                     <!-- category submenu end-->
                                 </li>
-                                <li class="has-sub"><a href="#">Phones & Tablets</a>
-                                    <ul class="category-sub">
-                                        <li><a href="shop.html">phone one</a></li>
-                                        <li><a href="shop.html">Tablet two</a></li>
-                                        <li><a href="shop.html">Tablet three</a></li>
-                                        <li><a href="shop.html">phone four</a></li>
-                                    </ul>
-                                    <!-- category submenu end-->
-                                </li>
-                                <li class="has-sub"><a href="#">TV & Video</a>
-                                    <ul class="category-sub">
-                                        <li><a href="shop.html">smart tv</a></li>
-                                        <li><a href="shop.html">real video</a></li>
-                                        <li><a href="shop.html">Microphones</a></li>
-                                        <li><a href="shop.html">Wireless Transmitters</a></li>
-                                    </ul>
-                                    <!-- category submenu end-->
-                                </li>
-                                <li><a href="#">Beauty</a> </li>
-                                <li><a href="#">Sport & tourisim</a></li>
-                                <li><a href="#">Meat & Seafood</a></li>
+                                <li><a href="#">Sayur & Buah</a> </li>
+                                <li><a href="#">Lainnya</a></li>
                             </ul>
                         </div>
                         <!-- category-menu-end -->
@@ -364,39 +325,39 @@
                         <div class="vertical-menu mb-all-30">
                             <nav>
                                 <ul class="vertical-menu-list">
-                                    <li class=""><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/1.png" alt="menu-icon"></span>Bahan Pokok<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <li class=""><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/1.png" alt="menu-icon"></span>Bahan Pokok<i class="fa fa-angle-right" aria-hidden="true"></i></a>
 
                                         <ul class="ht-dropdown mega-child">
-                                            <li><a href="shop.html">Beras<i class="fa fa-angle-right"></i></a>
+                                            <li><a href="#">Beras<i class="fa fa-angle-right"></i></a>
                                                  <!-- category submenu end-->
                                                 <ul class="ht-dropdown mega-child">
-                                                    <li><a href="shop.html">Premium</a></li>
-                                                    <li><a href="shop.html">Medium</a></li>
-                                                    <li><a href="shop.html">Termurah</a></li>
+                                                    <li><a href="#">Premium</a></li>
+                                                    <li><a href="#">Medium</a></li>
+                                                    <li><a href="#">Termurah</a></li>
                                                 </ul>
                                                 <!-- category submenu end-->
                                             </li>                                          
-                                            <li><a href="shop.html">Gula</a></li>
-                                            <li><a href="shop.html">Minyak Goreng</a></li>
+                                            <li><a href="#">Gula</a></li>
+                                            <li><a href="#">Minyak Goreng</a></li>
                                         </ul>
                                         <!-- category submenu end-->
                                     </li>
-                                    <li><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/3.png" alt="menu-icon"></span>Daging & Telur<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/3.png" alt="menu-icon"></span>Daging & Telur<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                         <!-- Vertical Mega-Menu Start -->
                                         <ul class="ht-dropdown megamenu first-megamenu">
                                             <!-- Single Column Start -->
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Ayam</li>
-                                                    <li><a href="shop.html">Ayam Ras</a></li>
-                                                    <li><a href="shop.html">Ayam Kampung</a></li>
+                                                    <li><a href="#">Ayam Ras</a></li>
+                                                    <li><a href="#">Ayam Kampung</a></li>
                                                 </ul>
                                                 <ul>
                                                     <li class="menu-tile">Sapi</li>
-                                                    <li><a href="shop.html">Sirloin</a></li>
-                                                    <li><a href="shop.html">Tenderloin</a></li>
-                                                    <li><a href="shop.html">Sapi Paha</a></li>
-                                                    <li><a href="shop.html">Sapi Tetelan</a></li>
+                                                    <li><a href="#">Sirloin</a></li>
+                                                    <li><a href="#">Tenderloin</a></li>
+                                                    <li><a href="#">Sapi Paha</a></li>
+                                                    <li><a href="#">Sapi Tetelan</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
@@ -404,37 +365,37 @@
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Telur</li>
-                                                    <li><a href="shop.html">Ayam Kampung</a></li>
-                                                    <li><a href="shop.html">Ayam Ras</a></li>
+                                                    <li><a href="#">Ayam Kampung</a></li>
+                                                    <li><a href="#">Ayam Ras</a></li>
                                                 </ul>
                                                 <ul>
                                                     <li class="menu-tile">Ikan</li>
-                                                    <li><a href="shop.html">Ikan Kembung</a></li>
-                                                    <li><a href="shop.html">Ikan Teri Asin</a></li>
+                                                    <li><a href="#">Ikan Kembung</a></li>
+                                                    <li><a href="#">Ikan Teri Asin</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
                                             <!-- Single Megamenu Image Start -->
                                             <li class="megamenu-img">
-                                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
-                                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
-                                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
+                                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
+                                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
+                                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
                                             </li>
                                             <!-- Single Megamenu Image End -->
                                         </ul>
                                         <!-- Vertical Mega-Menu End -->
                                     </li>
-                                    <li><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/6.png" alt="menu-icon"></span>Bumbu<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/6.png" alt="menu-icon"></span>Bumbu<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                         <!-- Vertical Mega-Menu Start -->
                                         <ul class="ht-dropdown megamenu megamenu-two">
                                             <!-- Single Column Start -->
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Cabai</li>
-                                                    <li><a href="shop.html">Merah Keriting</a></li>
-                                                    <li><a href="shop.html">Merah Besar</a></li>
-                                                    <li><a href="shop.html">Rawit Merah</a></li>
-                                                    <li><a href="shop.html">Rawit Hijau</a></li>
+                                                    <li><a href="#">Merah Keriting</a></li>
+                                                    <li><a href="#">Merah Besar</a></li>
+                                                    <li><a href="#">Rawit Merah</a></li>
+                                                    <li><a href="#">Rawit Hijau</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
@@ -442,10 +403,10 @@
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Lainnya</li>
-                                                    <li><a href="shop.html">Bawang Merah</a></li>
-                                                    <li><a href="shop.html">Bawang Putih</a></li>
-                                                    <li><a href="shop.html">Garam</a></li>
-                                                    <li><a href="shop.html">Tepung</a></li>
+                                                    <li><a href="#">Bawang Merah</a></li>
+                                                    <li><a href="#">Bawang Putih</a></li>
+                                                    <li><a href="#">Garam</a></li>
+                                                    <li><a href="#">Tepung</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
@@ -457,7 +418,7 @@
                                         <ul>
                                             <li class="has-sub"><a href="#">Sayur & Buah</a>
                                                 <ul class="category-sub">
-                                                    <li><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/11.png" alt="menu-icon"></span>Accessories</a></li>
+                                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/11.png" alt="menu-icon"></span>Accessories</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

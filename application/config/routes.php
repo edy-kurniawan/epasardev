@@ -63,9 +63,11 @@ $route['auth'] = 'Login';
 /* --custom route client begin */
 $route['home'] = 'Client/Home';
 $route['welcome'] = 'Client/Home_nologin';
-$route['redirect-login'] = 'Client/Home_nologin/redirect';
+$route['redirect-login'] = 'Client/Home/cek_login';
 $route['signin'] = 'Client/Login';
 $route['signup'] = 'Client/Register';
 $route['user'] = 'Client/Profile';
 $route['logout'] = 'Client/Login/logout';
 $route['add-cart'] = 'Client/Home/add_cart';
+$route['search'] = 'Client/Search';
+$route['cart'] = 'Client/Cart';

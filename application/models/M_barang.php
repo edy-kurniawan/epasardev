@@ -126,7 +126,20 @@ class M_barang extends CI_Model{
         return $query->row(); 
     }
 
+    function search($keyword=null){
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Stok, barang.Img, barang.Satuan,');
+        $this->db->from('barang');
+        $this->db->like('barang.Nama', $keyword);
+        $query = $this->db->get();
+        return $query; 
+    }
 
- 
+    function get_harga($kode){
+        $this->db->select('barang.Harga');
+        $this->db->from('barang');
+        $this->db->where('barang.Kode', $kode);
+        $query = $this->db->get();
+        return $query;
+    }
 
 }

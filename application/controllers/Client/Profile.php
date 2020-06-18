@@ -9,20 +9,22 @@ class Profile extends CI_Controller{
         }
         else
         {
-            $this->session->set_flashdata('message', '<div style="color : red;">Login Terlebih Dahulu</div>');
-            redirect(base_url('Client/Login'));
+            $this->session->set_flashdata('error', '</br><div style="color : red;">Login Terlebih Dahulu</div>');
+            redirect(base_url('signin'));
         }
 
          $this->load->helper(array('form', 'url')); 
-         $this->load->model(array('DbHelper', 'M_profile','M_login')); 
+         $this->load->model(array('DbHelper', 'M_profile','M_login','M_cart','M_kategori')); 
          $this->load->library(array('form_validation','session'));
          $this->load->helper('security');
     }
 
     function index(){
-        // $data['prov']   = $this->DbHelper->getprov($this->DbHelper->prov, 'Pilih Provinsi');
+        $refuser        = $this->session->userdata("username");
+        $cart['kat']    = $this->M_kategori->getSemua()->result();
+        $cart['cart']   = $this->M_cart->get_cart($refuser)->result();
         $data['prov'] = $this->M_profile->get_prov()->result();
-        $this->load->view('template/client/head2');
+        $this->load->view('template/client/head2',$cart);
         $this->load->view('Client/v_profile', $data);
     }
 
@@ -243,5 +245,10 @@ class Profile extends CI_Controller{
         echo json_encode($data);
     }
 
+    function count_cart(){
+        $refuser    = $this->session->userdata("username");
+        $data       = $this->M_cart->count_cart($refuser);
+        echo json_encode($data);
+    }
 }
 ?>

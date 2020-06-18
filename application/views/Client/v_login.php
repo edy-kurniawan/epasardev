@@ -22,7 +22,7 @@
                                 <h3 class="custom-title">Daftar Akun</h3>
                                 <p class="mtb-10"><strong></strong></p>
                                 <p>Jika anda belum mempunyai akun silahkan kunjungi halaman daftar</p>
-                                <a class="customer-btn" href="<?php echo site_url('Client/Register'); ?>">Daftar</a>
+                                <a class="customer-btn" href="<?php echo site_url('signup'); ?>">Daftar</a>
                                 <p><?php echo $this->session->flashdata('message');?></p>
                             </div>
                         </div>
@@ -58,4 +58,22 @@
             <!-- Container End -->
         </div>
         <!-- LogIn Page End -->
-        <
+        <!-- jquery 3.2.1 -->
+        <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript">
+           $(document).ready(function() {
+            $.ajax({
+                   url: "<?php echo site_url('Client/Profile/count_cart'); ?>",
+                   type: "GET",
+                   data: "",
+                   dataType: "json",
+                   cache: false,
+                   success: function(data) {
+                       $('#total-pro').text(data.jml);
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(errorThrown);
+                   }
+               });
+           });
+       </script>

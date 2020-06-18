@@ -18,7 +18,7 @@
                     <div class="col-sm-12">
                         <div class="register-title">
                             <h3 class="mb-10">DAFTAR AKUN</h3>
-                            <p class="mb-10">Jika anda sudah mempunyai akun silahkan kunjungi <a href="<?php echo site_url('Client/Login'); ?>">login page</a></p>
+                            <p class="mb-10">Jika anda sudah mempunyai akun silahkan kunjungi <a href="<?php echo site_url('signin'); ?>">login page</a></p>
                         </div>
                     </div>
                 </div>
@@ -88,3 +88,22 @@
         <!-- Register Account End -->
         <!-- Toastr -->
         <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/toastr/toastr.min.js"></script>
+         <!-- jquery 3.2.1 -->
+        <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript">
+           $(document).ready(function() {
+            $.ajax({
+                   url: "<?php echo site_url('Client/Profile/count_cart'); ?>",
+                   type: "GET",
+                   data: "",
+                   dataType: "json",
+                   cache: false,
+                   success: function(data) {
+                       $('#total-pro').text(data.jml);
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(errorThrown);
+                   }
+               });
+           });
+       </script>

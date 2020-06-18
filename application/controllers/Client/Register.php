@@ -4,13 +4,16 @@ class Register extends CI_Controller{
     function __construct(){
         parent::__construct();
          $this->load->helper(array('form', 'url')); 
-         $this->load->model(array('DbHelper', 'M_user', 'M_login')); 
+         $this->load->model(array('DbHelper', 'M_user', 'M_login','M_kategori','M_cart')); 
          $this->load->library(array('form_validation','session'));
          $this->load->helper('security');
     }
 
     function index(){
-        $this->load->view('template/client/head2');
+        $refuser        = $this->session->userdata("username");
+        $data['cart']   = $this->M_cart->get_cart($refuser)->result();
+        $data['kat']    = $this->M_kategori->getSemua()->result();
+        $this->load->view('template/client/head2',$data);
         $this->load->view('Client/v_register');
         $this->load->view('template/client/footer');
     }

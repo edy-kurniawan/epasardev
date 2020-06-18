@@ -88,7 +88,8 @@
                         <!-- Categorie Search Box Start Here -->
                         <div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
                             <div class="categorie-search-box">
-                                <form action="#">
+                            <form id="form" action="<?php echo site_url('search'); ?>" method="post">
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <div class="form-group">
                                         <select class="bootstrap-select" name="poscats">
                                         <option value="">Semua Kategori</option>
@@ -99,8 +100,8 @@
                                         <?php } ?>
                                         </select>
                                     </div>
-                                    <input type="text" name="search" placeholder="Cari Barang...">
-                                    <button><i class="lnr lnr-magnifier"></i></button>
+                                    <input type="text" name="keyword" placeholder="Cari Barang..." autocomplete="false" minlength="3" required>
+                                    <button type="submit"><i class="lnr lnr-magnifier"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -201,8 +202,8 @@
                                     <li><a href="#">Akun<i class="fa fa-angle-down"></i></a>
                                         <!-- Home Version Dropdown Start -->
                                         <ul class="ht-dropdown dropdown-style-two">
-                                            <li><a href="#">Profile</a></li>
-                                            <li><a href="#">Keranjang Belanja</a></li>
+                                            <li><a href="<?php echo site_url('user'); ?>">Profile</a></li>
+                                            <li><a href="<?php echo site_url('cart'); ?>">Keranjang Belanja</a></li>
                                             <li><a href="#">checkout</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
@@ -215,7 +216,7 @@
                                         </ul>
                                         <!-- Home Version Dropdown End -->
                                     </li>
-                                    <li><a href="about.html">Tentang kami</a></li>
+                                    <li><a href="#">Tentang kami</a></li>
                                 </ul>
                             </nav>
                             <div class="mobile-menu d-block d-lg-none">
@@ -269,7 +270,7 @@
                             <ul>
                                 <li class="has-sub"><a href="#">Bahan Pokok</a>
                                     <ul class="category-sub">
-                                        <li class="has-sub"><a href="shop.html">Beras</a>
+                                        <li class="has-sub"><a href="#">Beras</a>
                                             <ul class="category-sub">
                                                 <li><a href="#">Premium</a></li>
                                                 <li><a href="#">Medium</a></li>
@@ -284,17 +285,17 @@
                                 <li class="has-sub"><a href="#">Daging & Telur</a>
                                     <ul class="category-sub">
                                         <li class="menu-tile">Daging & Telur</li>
-                                        <li><a href="shop.html">Daging ayam</a></li>
-                                        <li><a href="shop.html">Daging Sapi</a></li>
-                                        <li><a href="shop.html">Telur Ayam</a></li>
+                                        <li><a href="#">Daging ayam</a></li>
+                                        <li><a href="#">Daging Sapi</a></li>
+                                        <li><a href="#">Telur Ayam</a></li>
                                     </ul>
                                     <!-- category submenu end-->
                                 </li>
                                 <li class="has-sub"><a href="#">Bumbu</a>
                                     <ul class="category-sub">
-                                        <li><a href="shop.html">Cabai</a></li>
-                                        <li><a href="shop.html">Bawang</a></li>
-                                        <li><a href="shop.html">Garam</a></li>
+                                        <li><a href="#">Cabai</a></li>
+                                        <li><a href="#">Bawang</a></li>
+                                        <li><a href="#">Garam</a></li>
                                     </ul>
                                     <!-- category submenu end-->
                                 </li>
@@ -318,39 +319,39 @@
                         <div class="vertical-menu mb-all-30">
                             <nav>
                                 <ul class="vertical-menu-list">
-                                    <li class=""><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/1.png" alt="menu-icon"></span>Bahan Pokok<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <li class=""><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/1.png" alt="menu-icon"></span>Bahan Pokok<i class="fa fa-angle-right" aria-hidden="true"></i></a>
 
                                         <ul class="ht-dropdown mega-child">
-                                            <li><a href="shop.html">Beras<i class="fa fa-angle-right"></i></a>
+                                            <li><a href="#">Beras<i class="fa fa-angle-right"></i></a>
                                                  <!-- category submenu end-->
                                                 <ul class="ht-dropdown mega-child">
-                                                    <li><a href="shop.html">Premium</a></li>
-                                                    <li><a href="shop.html">Medium</a></li>
-                                                    <li><a href="shop.html">Termurah</a></li>
+                                                    <li><a href="#">Premium</a></li>
+                                                    <li><a href="#">Medium</a></li>
+                                                    <li><a href="#">Termurah</a></li>
                                                 </ul>
                                                 <!-- category submenu end-->
                                             </li>                                          
-                                            <li><a href="shop.html">Gula</a></li>
-                                            <li><a href="shop.html">Minyak Goreng</a></li>
+                                            <li><a href="#">Gula</a></li>
+                                            <li><a href="#">Minyak Goreng</a></li>
                                         </ul>
                                         <!-- category submenu end-->
                                     </li>
-                                    <li><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/3.png" alt="menu-icon"></span>Daging & Telur<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/3.png" alt="menu-icon"></span>Daging & Telur<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                         <!-- Vertical Mega-Menu Start -->
                                         <ul class="ht-dropdown megamenu first-megamenu">
                                             <!-- Single Column Start -->
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Ayam</li>
-                                                    <li><a href="shop.html">Ayam Ras</a></li>
-                                                    <li><a href="shop.html">Ayam Kampung</a></li>
+                                                    <li><a href="#">Ayam Ras</a></li>
+                                                    <li><a href="#">Ayam Kampung</a></li>
                                                 </ul>
                                                 <ul>
                                                     <li class="menu-tile">Sapi</li>
-                                                    <li><a href="shop.html">Sirloin</a></li>
-                                                    <li><a href="shop.html">Tenderloin</a></li>
-                                                    <li><a href="shop.html">Sapi Paha</a></li>
-                                                    <li><a href="shop.html">Sapi Tetelan</a></li>
+                                                    <li><a href="#">Sirloin</a></li>
+                                                    <li><a href="#">Tenderloin</a></li>
+                                                    <li><a href="#">Sapi Paha</a></li>
+                                                    <li><a href="#">Sapi Tetelan</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
@@ -358,37 +359,37 @@
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Telur</li>
-                                                    <li><a href="shop.html">Ayam Kampung</a></li>
-                                                    <li><a href="shop.html">Ayam Ras</a></li>
+                                                    <li><a href="#">Ayam Kampung</a></li>
+                                                    <li><a href="#">Ayam Ras</a></li>
                                                 </ul>
                                                 <ul>
                                                     <li class="menu-tile">Ikan</li>
-                                                    <li><a href="shop.html">Ikan Kembung</a></li>
-                                                    <li><a href="shop.html">Ikan Teri Asin</a></li>
+                                                    <li><a href="#">Ikan Kembung</a></li>
+                                                    <li><a href="#">Ikan Teri Asin</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
                                             <!-- Single Megamenu Image Start -->
                                             <li class="megamenu-img">
-                                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
-                                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
-                                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
+                                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img1.jpg" alt="menu-image"></a>
+                                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img2.jpg" alt="menu-image"></a>
+                                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/sub-img3.jpg" alt="menu-image"></a>
                                             </li>
                                             <!-- Single Megamenu Image End -->
                                         </ul>
                                         <!-- Vertical Mega-Menu End -->
                                     </li>
-                                    <li><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/6.png" alt="menu-icon"></span>Bumbu<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/6.png" alt="menu-icon"></span>Bumbu<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                         <!-- Vertical Mega-Menu Start -->
                                         <ul class="ht-dropdown megamenu megamenu-two">
                                             <!-- Single Column Start -->
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Cabai</li>
-                                                    <li><a href="shop.html">Merah Keriting</a></li>
-                                                    <li><a href="shop.html">Merah Besar</a></li>
-                                                    <li><a href="shop.html">Rawit Merah</a></li>
-                                                    <li><a href="shop.html">Rawit Hijau</a></li>
+                                                    <li><a href="#">Merah Keriting</a></li>
+                                                    <li><a href="#">Merah Besar</a></li>
+                                                    <li><a href="#">Rawit Merah</a></li>
+                                                    <li><a href="#">Rawit Hijau</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
@@ -396,10 +397,10 @@
                                             <li class="single-megamenu">
                                                 <ul>
                                                     <li class="menu-tile">Lainnya</li>
-                                                    <li><a href="shop.html">Bawang Merah</a></li>
-                                                    <li><a href="shop.html">Bawang Putih</a></li>
-                                                    <li><a href="shop.html">Garam</a></li>
-                                                    <li><a href="shop.html">Tepung</a></li>
+                                                    <li><a href="#">Bawang Merah</a></li>
+                                                    <li><a href="#">Bawang Putih</a></li>
+                                                    <li><a href="#">Garam</a></li>
+                                                    <li><a href="#">Tepung</a></li>
                                                 </ul>
                                             </li>
                                             <!-- Single Column End -->
@@ -411,7 +412,7 @@
                                         <ul>
                                             <li class="has-sub"><a href="#">Sayur & Buah</a>
                                                 <ul class="category-sub">
-                                                    <li><a href="shop.html"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/11.png" alt="menu-icon"></span>Accessories</a></li>
+                                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/truemart/img/vertical-menu/11.png" alt="menu-icon"></span>Accessories</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -435,9 +436,9 @@
                         <div class="slider-wrapper theme-default">
                             <!-- Slider Background  Image Start-->
                             <div id="slider" class="nivoSlider">
-                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/3.jpg" data-thumb="img/slider/1.jpg" alt="" title="#htmlcaption" /></a>
-                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/4.jpg" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
-                                <a href="shop.html"><img src="<?php echo base_url(); ?>assets/truemart/img/head/5.jpg" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
+                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/head/3.jpg" data-thumb="img/slider/1.jpg" alt="" title="#htmlcaption" /></a>
+                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/head/4.jpg" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
+                                <a href="#"><img src="<?php echo base_url(); ?>assets/truemart/img/head/5.jpg" data-thumb="img/slider/2.jpg" alt="" title="#htmlcaption2" /></a>
                             </div>
                             <!-- Slider Background  Image Start-->
                         </div>

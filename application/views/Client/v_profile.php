@@ -408,8 +408,8 @@
            <!-- Footer Bottom End -->
        </footer>
        <!-- Footer Area End Here -->
-       
-<script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> 
+
+       <script src="<?php echo base_url(); ?>assets/AdminLTE/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
        <script type="text/javascript">
            $(function() {
@@ -420,6 +420,7 @@
        </script>
        <script type="text/javascript">
            $(document).ready(function() {
+                count_cart();
                $.ajax({
                    url: "<?php echo base_url('Client/Profile/get_user') ?>",
                    type: "GET",
@@ -455,14 +456,30 @@
                });
            });
 
+           function count_cart() {
+               $.ajax({
+                   url: "<?php echo site_url('Client/Profile/count_cart'); ?>",
+                   type: "GET",
+                   data: "",
+                   dataType: "json",
+                   cache: false,
+                   success: function(data) {
+                       $('#total-pro').text(data.jml);
+                   },
+                   error: function(jqXHR, textStatus, errorThrown) {
+                       console.log(errorThrown);
+                   }
+               });
+           }
+
            function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
+               return unsafe
+                   .replace(/&/g, "&amp;")
+                   .replace(/</g, "&lt;")
+                   .replace(/>/g, "&gt;")
+                   .replace(/"/g, "&quot;")
+                   .replace(/'/g, "&#039;");
+           }
        </script>
        <script type="text/javascript">
            $(document).ready(function() {
@@ -555,4 +572,4 @@
            });
        </script>
 
-</body>
+       </body>

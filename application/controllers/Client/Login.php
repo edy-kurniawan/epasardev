@@ -4,11 +4,16 @@ class Login extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('M_login');
+        $this->load->model('M_kategori');
+        $this->load->model('M_cart');
         $this->load->helper('security');
     }
 
     function index(){
-        $this->load->view('template/client/head2');
+        $refuser        = $this->session->userdata("username");
+        $data['cart']   = $this->M_cart->get_cart($refuser)->result();
+        $data['kat']    = $this->M_kategori->getSemua()->result();
+        $this->load->view('template/client/head2',$data);
         $this->load->view('Client/v_login');
         $this->load->view('template/client/footer');
     }
@@ -50,7 +55,7 @@ class Login extends CI_Controller{
     }
     
     function logout(){
-        $this->session->unset_userdata('logged_user');
+        $this->session->sess_destroy();
         redirect(base_url());
     }
 
