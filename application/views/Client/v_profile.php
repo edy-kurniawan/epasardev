@@ -107,7 +107,7 @@
                                        </div>
                                        <div class="form-group">
                                            <label for="telp">Telp:</label>
-                                           <input type="number" name="telp" class="form-control" disabled>
+                                           <input type="number" name="telp" maxlength="14" minlength="7" class="form-control" disabled>
                                        </div>
                                        <div class="form-group">
                                            <label for="tgl">Tanggal Lahir</label>
@@ -258,7 +258,7 @@
                                    <?php endforeach; ?>
                                </select>
                            </div>
-                           <label for="kab">Kabupaten</label>
+                           <label for="kab">Kota/Kabupaten</label>
                            <div class="form-control">
                                <select class="form-control select2" id="kab" name="kab" required>
                                    <option value="">Pilih Kabupaten</option>
@@ -426,16 +426,20 @@
                    type: "GET",
                    dataType: "JSON",
                    success: function(data) {
-                       $('[name="id"]').val(escapeHtml(data.ID));
-                       $('[name="nama"]').val(escapeHtml(data.Nama));
-                       $('[name="email"]').val(escapeHtml(data.Email));
-                       $('[name="telp"]').val(escapeHtml(data.Telp));
-                       $('[name="tgl"]').val(escapeHtml(data.Tgllahir));
-                       $('[name="jenis"]').val(escapeHtml(data.Jenis));
-                       $('[name="alamat2"]').val(escapeHtml(data.Alamat));
-                       $('[name="alamat"]').val(escapeHtml(data.Alamat + ", " + data.Kel + ", " + data.Kec + ", " + data.Kab + ", " + data.Prov));
-                       $('[name="img"]').val(escapeHtml(data.Img));
+                       $('[name="id"]').val(data.ID);
+                       $('[name="nama"]').val(data.Nama);
+                       $('[name="email"]').val(data.Email);
+                       $('[name="telp"]').val(data.Telp);
+                       $('[name="tgl"]').val(data.Tgllahir);
+                       $('[name="jenis"]').val(data.Jenis);
+                       $('[name="alamat2"]').val(data.Alamat);
+                       $('[name="img"]').val(data.Img);
                        $('#photo-preview').show(); // show photo preview modal
+                       if(data.Alamat==null){
+                            $('[name="alamat"]').val("");
+                       }else{
+                            $('[name="alamat"]').val(data.Alamat + ", " + data.Kel + ", " + data.Kec + ", " + data.Kab + ", " + data.Prov);
+                       }
                        if (data.Img) {
                            if (data.Img == "default.png") {
 
@@ -472,7 +476,7 @@
                });
            }
 
-           function escapeHtml(unsafe) {
+           function escapeHtml(unsafe=null) {
                return unsafe
                    .replace(/&/g, "&amp;")
                    .replace(/</g, "&lt;")

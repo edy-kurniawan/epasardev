@@ -29,23 +29,59 @@ class M_profile extends CI_Model{
         if($hsl->num_rows()>0){
             foreach ($hsl->result() as $data) {
                 $hasil=array(
-                    'ID' => $data->ID,
-                    'Nama' => $data->Nama,
-                    'Jenis' => $data->Jenis,
-                    'Alamat' => $data->Alamat, 
-                    'Tgllahir' => $data->Tgllahir,
-                    'Telp' => $data->Telp,
-                    'Email' => $data->Email,
-                    'Img' => $data->Img,
-                    'Prov' => $data->prov,
-                    'Kab' => $data->kab,
-                    'Kec' => $data->kec,
-                    'Kel' => $data->kel,
+                    'ID'    => html_escape($data->ID),
+                    'Nama'  => html_escape($data->Nama),
+                    'Jenis' => html_escape($data->Jenis),
+                    'Alamat'=> html_escape($data->Alamat), 
+                    'Tgllahir' => html_escape($data->Tgllahir),
+                    'Telp'  => html_escape($data->Telp),
+                    'Email' => html_escape($data->Email),
+                    'Img'   => html_escape($data->Img),
+                    'Prov'  => html_escape($data->prov),
+                    'Kab'   => html_escape($data->kab),
+                    'Kec'   => html_escape($data->kec),
+                    'Kel'   => html_escape($data->kel),
                     );
             }
         }
         return $hasil;
     }
+
+    public function get_from_order($refuser){
+
+            $this->db->select('user.Nama, user.Alamat, user.Telp, user.Prov, user.Kab, user.Kec, user.Kel, provinsi.nama prov, kabupaten.nama kab, kecamatan.nama kec, kelurahan.nama kel');
+            $this->db->from('user');
+            $this->db->join('provinsi', 'provinsi.id_prov=user.Prov','left');
+            $this->db->join('kabupaten', 'kabupaten.id_kab=user.Kab','left');
+            $this->db->join('kecamatan', 'kecamatan.id_kec=user.Kec','left');
+            $this->db->join('kelurahan', 'kelurahan.id_kel=user.Kel','left');
+            $this->db->where('Refuser', $refuser);
+            $query = $this->db->get();
+            return $query;
+        
+    }
+
+    public function verivy_kel($refuser){
+        $this->db->select('kelurahan.ongkir');
+        $this->db->from('kelurahan');
+        $this->db->join('user', 'user.Kel=kelurahan.id_kel','left');
+        $this->db->where('kelurahan.status', 't');
+        $this->db->where('user.Refuser', $refuser);
+        $hsl = $this->db->get();
+
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'ongkir'    => html_escape($data->ongkir),
+                    );
+            }
+        }else{
+            $hasil=array(
+                'ongkir'    => null,
+                );
+        }
+        return $hasil;
+}
 
     public function edit($refuser)
     {

@@ -100,7 +100,7 @@
                                         <?php } ?>
                                         </select>
                                     </div>
-                                    <input type="text" name="keyword" placeholder="Cari Barang..." autocomplete="false" minlength="3" required>
+                                    <input type="text" name="keyword" placeholder="Cari Barang..." minlength="3" required>
                                     <button type="submit"><i class="lnr lnr-magnifier"></i></button>
                                 </form>
                             </div>

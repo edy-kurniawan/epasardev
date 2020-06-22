@@ -23,7 +23,7 @@ class Profile extends CI_Controller{
         $refuser        = $this->session->userdata("username");
         $cart['kat']    = $this->M_kategori->getSemua()->result();
         $cart['cart']   = $this->M_cart->get_cart($refuser)->result();
-        $data['prov'] = $this->M_profile->get_prov()->result();
+        $data['prov']   = $this->M_profile->get_prov()->result();
         $this->load->view('template/client/head2',$cart);
         $this->load->view('Client/v_profile', $data);
     }

@@ -71,3 +71,4 @@ $route['logout'] = 'Client/Login/logout';
 $route['add-cart'] = 'Client/Home/add_cart';
 $route['search'] = 'Client/Search';
 $route['cart'] = 'Client/Cart';
+$route['order'] = 'Client/Order';

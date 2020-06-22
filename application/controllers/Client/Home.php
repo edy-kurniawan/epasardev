@@ -98,7 +98,7 @@ class Home extends CI_Controller{
         $id        = $this->input->post('id',TRUE);
         $refuser   = $this->session->userdata("username");
         $this->M_cart->delete_by_kode($id,$refuser);
-        redirect(base_url());
+        redirect('cart');
     }
 
     function cek_login(){

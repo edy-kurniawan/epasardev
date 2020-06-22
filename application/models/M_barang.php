@@ -13,7 +13,7 @@ class M_barang extends CI_Model{
 
     function getSemua(){
 
-        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Stok, barang.Harga, barang.Status, barang.Satuan, barang.Img, barang.Ket, toko.Nama toko, Kategori.Nama kat');
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Stok, barang.Harga, barang.Status, barang.Satuan, barang.Img, barang.Ket, toko.Nama toko, kategori.Nama kat');
         $this->db->from('barang');
         $this->db->join('toko', 'toko.Kode=barang.Reftoko','left');
         $this->db->join('kategori', 'kategori.Kode=barang.Refkategori','left');
@@ -125,13 +125,14 @@ class M_barang extends CI_Model{
         $query = $this->db->get();
         return $query->row(); 
     }
+    
 
     function search($keyword=null){
         $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Stok, barang.Img, barang.Satuan,');
         $this->db->from('barang');
         $this->db->like('barang.Nama', $keyword);
-        $query = $this->db->get();
-        return $query; 
+        $query = $this->db->get(); 
+        return $query;
     }
 
     function get_harga($kode){

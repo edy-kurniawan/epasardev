@@ -9,7 +9,7 @@ class M_cart extends CI_Model{
     }
 
     function get_all($refuser){
-        $this->db->select('cart.ID, cart.Jumlah, cart.Subtotal, barang.Nama, barang.Img, barang.Harga, barang.Satuan, barang.Ket');
+        $this->db->select('cart.ID, cart.Jumlah, cart.Subtotal, barang.Nama, barang.Kode, barang.Img, barang.Harga, barang.Satuan, barang.Ket');
         $this->db->from('cart');
         $this->db->join('barang', 'cart.Refbarang=barang.Kode','left');
         $this->db->where('cart.Refuser', $refuser);
@@ -98,6 +98,12 @@ class M_cart extends CI_Model{
     {
         $this->db->update('cart', $data, $where);
     }
- 
+    
+    public function sum_subtotal($refuser){
+        $this->db->select_sum('Subtotal');
+        $this->db->where('Refuser', $refuser);
+        $query = $this->db->get('cart');
+        return $query;
+    }
 
 }

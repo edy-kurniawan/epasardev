@@ -86,8 +86,7 @@
             <!-- Cart Button Start -->
             <div class="col-md-8 col-sm-12">
                 <div class="buttons-cart">
-                    <input type="submit" value="Update Cart" />
-                    <a href="#">Lanjut Belanja</a>
+                    <a href="<?php echo site_url(); ?>">Lanjut Belanja</a>
                 </div>
             </div>
             <!-- Cart Button Start -->
@@ -121,8 +120,9 @@
                         </tbody>
                     </table>
                     <div class="wc-proceed-to-checkout">
-                        <a href="#">Proses Checkout</a>
+                        <a href="<?php echo site_url('order'); ?>">Proses Checkout</a>
                     </div>
+                    <br><?php echo $this->session->flashdata('message');?>
                 </div>
             </div>
             <!-- Cart Totals End -->

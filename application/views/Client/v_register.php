@@ -50,7 +50,7 @@
                                 <div class="form-group d-md-flex align-items-md-center">
                                     <label class="control-label col-md-2" for="number"><span class="require">*</span>No Telp</label>
                                     <div class="col-md-10">
-                                        <input type="number" name="telp" class="form-control" id="number" placeholder="Masukan no telp" required>
+                                        <input type="number" name="telp" class="form-control" maxlength="14" minlength="7" id="number" placeholder="Masukan no telp" required>
                                     </div>
                                 </div>
                             </fieldset>

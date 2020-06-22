@@ -12,7 +12,7 @@ class Cart extends CI_Controller
         }
 
         $this->load->helper(array('form', 'url'));
-        $this->load->model(array('DbHelper', 'M_login', 'M_cart','M_barang'));
+        $this->load->model(array('DbHelper', 'M_login', 'M_cart','M_barang','M_xpenjualand'));
         $this->load->library(array('form_validation', 'session'));
         $this->load->helper('security');
     }
@@ -53,7 +53,7 @@ class Cart extends CI_Controller
             $refuser    = $this->session->userdata("username");
             $refbarang  = $this->input->post('kode', TRUE);
             $qty        = $this->input->post('qty', TRUE);
-            $get_harga   = $this->M_barang->get_harga($refbarang)->result();
+            $get_harga  = $this->M_barang->get_harga($refbarang)->result();
                 foreach ($get_harga as $r) {
                     $harga = intval($r->Harga);
                 }
@@ -74,4 +74,5 @@ class Cart extends CI_Controller
             redirect('cart');
         }
     }
+
 }

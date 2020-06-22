@@ -27,8 +27,7 @@ class Register extends CI_Controller{
         $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
         if($this->form_validation->run() === FALSE){
-            
-            echo json_encode(array("status" => FALSE));    
+             
             $this->session->set_flashdata('message', '</br><font color="red">
                 <i class="icon fa fa-times-circle"></i>
                 <strong>Gagal membuat akun, Masukan Data Dengan Benar !</strong></font>
@@ -65,8 +64,7 @@ class Register extends CI_Controller{
             );
 
         $this->M_login->inputdata($data,'login');
-        $this->M_user->inputdata($data2,'user');
-        echo json_encode(array("status" => TRUE));    
+        $this->M_user->inputdata($data2,'user');   
 
         $this->session->set_flashdata('message', '<br><font color="green">
                 <i class="icon fa fa-check"></i>
