@@ -28,6 +28,12 @@ class Order extends CI_Controller{
         }
     }
 
+    function bayar(){
+        $refuser        = $this->session->userdata("username");
+        $data['detail'] = $this->M_xpenjualan->get_last_order($refuser)->result();
+        $this->load->view('Client/v_pembayaran',$data);
+    }
+
     function ambil_order(){
 
         $this->form_validation->set_rules('an', 'an', 'required|min_length[3]');
@@ -59,10 +65,12 @@ class Order extends CI_Controller{
         $order    = array(
             "Kode"      => $kode,
             "Total"     => $total,
+            "Subtotal"  => $total,
             "Ket"       => $ket,
             "Refuser"   => $refuser,
             "An"        => $an,
             "Telp"      => $telp,
+            "Datei"     => $now,
             "Metode"    => "Ambil"
                 );
         $this->M_xpenjualan->inputdata($order,'xpenjualan');
@@ -79,11 +87,25 @@ class Order extends CI_Controller{
             
             $this->M_xpenjualand->inputdata($data,'xpenjualand');
             }   
+            
+        redirect('bayar');
         }
         
     }
 
     function deliv1_order(){
+        $this->form_validation->set_rules('nama', 'nama', 'required|min_length[3]');
+        $this->form_validation->set_rules('notelp', 'notelp', 'required|min_length[7]');
+
+        if($this->form_validation->run() === FALSE){ 
+            
+            $this->session->set_flashdata('message', '<font color="red">
+                <strong>Masukan Data Dengan Benar !</strong></font>
+            ');
+            redirect('order');
+
+        }else{
+        
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now        = date('Y-m-d H:i:s');
         $refuser    = $this->session->userdata("username");
@@ -121,12 +143,13 @@ class Order extends CI_Controller{
             "An"        => $an,
             "Telp"      => $telp,
             "Metode"    => "Kirim",
+            "Datei"     => $now,
             "Prov"      => $prov,
             "Kab"       => $kab,
             "Kec"       => $kec,
             "Kel"       => $kel,
             "Alamat"    => $alamat
-        );
+            );
         $this->M_xpenjualan->inputdata($order,'xpenjualan');
         
         //insert xpenjualand
@@ -140,7 +163,88 @@ class Order extends CI_Controller{
             );
             
             $this->M_xpenjualand->inputdata($data,'xpenjualand');
-        }   
+            } 
+        redirect('bayar'); 
+        } 
+        
+    }
+
+    function deliv2_order(){
+        $this->form_validation->set_rules('atasnama', 'atasnama', 'required|min_length[3]');
+        $this->form_validation->set_rules('nohp', 'nohp', 'required');
+        $this->form_validation->set_rules('prov', 'prov', 'required');
+        $this->form_validation->set_rules('kab', 'kab', 'required');
+        $this->form_validation->set_rules('kec', 'kec', 'required');
+        $this->form_validation->set_rules('kel', 'kel', 'required');
+        $this->form_validation->set_rules('alamat2', 'alamat2', 'required');
+
+        if($this->form_validation->run() === FALSE){ 
+            
+            $this->session->set_flashdata('message', '<font color="red">
+                <strong>Masukan Data Dengan Benar !</strong></font>
+            ');
+            redirect('order');
+
+        }else{
+        
+        date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+        $now        = date('Y-m-d H:i:s');
+        $refuser    = $this->session->userdata("username");
+        $result     = $this->M_cart->get_all($refuser)->result(); //get all user cart
+        $get_total  = $this->M_cart->sum_subtotal($refuser)->result(); //get total
+                foreach ($get_total as $r) {
+                    $subtotal = $r->Subtotal;
+                }
+        $kel        = $this->input->post('kel',TRUE);
+        $get_ongkir  = $this->M_order->get_ongkir($kel)->result(); //get ongkir
+                foreach ($get_ongkir as $r) {
+                    $ongkir = $r->ongkir;
+                }
+        $total      = $subtotal + $ongkir;
+        $ket        = $this->input->post('ket',TRUE);
+        $an         = $this->input->post('atasnama',TRUE);
+        $telp       = $this->input->post('nohp',TRUE);
+        $prov       = $this->input->post('prov',TRUE);
+        $kab        = $this->input->post('kab',TRUE);
+        $kec        = $this->input->post('kec',TRUE);
+        $alamat     = $this->input->post('alamat2',TRUE);
+        $kode       = $this->M_xpenjualand->get_no_penjualan(); //get autokode transaksi
+        
+        //insert xpenjualan
+        $order    = array(
+            "Kode"      => $kode,
+            "Total"     => $total,
+            "Ket"       => $ket,
+            "Subtotal"  => $subtotal,
+            "Ongkir"    => $ongkir,
+            "Refuser"   => $refuser,
+            "An"        => $an,
+            "Telp"      => $telp,
+            "Metode"    => "Kirim",
+            "Datei"     => $now,
+            "Prov"      => $prov,
+            "Kab"       => $kab,
+            "Kec"       => $kec,
+            "Kel"       => $kel,
+            "Alamat"    => $alamat
+            );
+        $this->M_xpenjualan->inputdata($order,'xpenjualan');
+        
+        //insert xpenjualand
+        foreach ($result as $r) {
+            $data    = array(
+                        "Kode"      => $kode,
+                        "Refbarang" => $r->Kode,
+                        "Harga"     => $r->Harga,
+                        "Jumlah"    => $r->Jumlah,
+                        "Subtotal"  => $r->Subtotal
+            );
+            
+            $this->M_xpenjualand->inputdata($data,'xpenjualand');
+            }  
+        
+        redirect('bayar');
+        } 
         
     }
 

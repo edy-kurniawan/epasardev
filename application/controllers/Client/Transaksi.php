@@ -1,7 +1,6 @@
 <?php
-class Cart extends CI_Controller
+class Transaksi extends CI_Controller
 {
-
     function __construct()
     {
         parent::__construct();
@@ -12,7 +11,7 @@ class Cart extends CI_Controller
         }
 
         $this->load->helper(array('form', 'url'));
-        $this->load->model(array('DbHelper', 'M_login', 'M_cart','M_barang','M_xpenjualand','M_kategori'));
+        $this->load->model(array('DbHelper','M_cart','M_xpenjualand','M_kategori','M_xpenjualan'));
         $this->load->library(array('form_validation', 'session'));
         $this->load->helper('security');
     }
@@ -20,12 +19,31 @@ class Cart extends CI_Controller
     function index()
     {
         $refuser        = $this->session->userdata("username");
-        $data['cart']   = $this->M_cart->get_all($refuser)->result();
-        $data['total']  = $this->M_cart->sum($refuser)->result();
-        $cart['kat']    = $this->M_kategori->getSemua()->result();
         $cart['cart']   = $this->M_cart->get_cart($refuser)->result();
-        $this->load->view('template/client/head2', $cart);
-        $this->load->view('Client/v_cart', $data);
+        $cart['kat']    = $this->M_kategori->getSemua()->result();
+        $data['data']   = $this->M_xpenjualan->get_all($refuser)->result();
+        $this->load->view('template/client/head2',$cart);
+        $this->load->view('Client/v_transaksi',$data);
+    }
+
+    function detail() //detail transaksi
+    {
+        $this->form_validation->set_rules('id', 'id', 'required');
+
+        if($this->form_validation->run() === FALSE){ 
+            redirect('transaksi');
+        }else{
+            $id             = $this->input->post('id', TRUE);
+            $refuser        = $this->session->userdata("username");
+            $data['detail'] = $this->M_xpenjualan->get_by_id($refuser,$id)->result();
+            $data['barang'] = $this->M_xpenjualan->get_detail($refuser,$id)->result();
+            $data['total']  = $this->M_xpenjualan->get_total_by_id($refuser,$id)->result();
+            $cart['cart']   = $this->M_cart->get_cart($refuser)->result();
+            $cart['kat']    = $this->M_kategori->getSemua()->result();
+            $this->load->view('template/client/head2',$cart);
+            $this->load->view('Client/v_detail',$data);
+        }
+        
     }
 
     function get_cart($id)

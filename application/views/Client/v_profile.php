@@ -38,7 +38,7 @@
                                <ul class="sidbar-style">
                                    <li><a href="" data-toggle="modal" data-target="#modal-update">Ubah Data</a></li>
                                    <li><a href="" data-toggle="modal" data-target="#modal-pass">Ubah Password</a></li>
-                                   <li><a href="#">History Transaksi</a></li>
+                                   <li><a href="<?php echo site_url('transaksi'); ?>">History Transaksi</a></li>
                                    <li><a href="<?php echo site_url('logout'); ?>">Logout</a></li>
                                    <li><?php echo $this->session->flashdata('message'); ?></br></li>
                                </ul>

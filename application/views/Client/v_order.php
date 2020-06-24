@@ -287,13 +287,13 @@
                                         <strong>Alamat</strong>
                                         <div class="input-group mb-3">
                                             <textarea type="textarea" rows="3" name="alamat" id="alamat" class="form-control" disabled><?php echo html_escape($x->Alamat);
-                                                                                                                                        echo ", ";
+                                                                                                                                        echo ". ";
                                                                                                                                         echo html_escape($x->kel);
-                                                                                                                                        echo ", ";
+                                                                                                                                        echo ". ";
                                                                                                                                         echo html_escape($x->kec);
-                                                                                                                                        echo ", ";
+                                                                                                                                        echo ". ";
                                                                                                                                         echo html_escape($x->kab);
-                                                                                                                                        echo ", ";
+                                                                                                                                        echo ". ";
                                                                                                                                         echo html_escape($x->prov); ?></textarea>
                                         </div>
                                         <div class="" id="ongkir">
@@ -320,17 +320,18 @@
                                     <div class="group-title">
                                         <h2>Antar ke alamat lain</h2>
                                     </div>
-                                    <form action="#">
-                                        <strong>Atas Nama</strong>
+                                    <form method="POST" action="<?php echo site_url('Client/Order/deliv2_order'); ?>">
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                         <strong>Atas Nama</strong>
                                         <div class="input-group mb-3">
                                             <?php
                                             foreach ($user as $x) {
                                             ?>
-                                                <input type="text" name="namakirim" value="<?php echo html_escape($x->Nama) ?>" id="namakirim" placeholder="Nama Penerima Barang" class="form-control rounded-0" required>
+                                                <input type="text" name="atasnama" value="<?php echo html_escape($x->Nama) ?>" id="namakirim" placeholder="Nama Penerima Barang" class="form-control rounded-0" required>
                                         </div>
                                         <strong>No Hp</strong>
                                         <div class="input-group mb-3">
-                                            <input type="number" name="nokirim" id="nokirim" minlength="7" value="<?php echo html_escape($x->Telp) ?>" placeholder="Nomor Hp" class="form-control rounded-0" required>
+                                            <input type="number" name="nohp" id="nohp" minlength="7" value="<?php echo html_escape($x->Telp) ?>" placeholder="Nomor Hp" class="form-control rounded-0" required>
                                         </div>
                                         <label for="prov"><strong>Provinsi</strong></label>
                                         <div class="form-control">
@@ -361,7 +362,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="alamat"><strong>Alamat</strong></label>
-                                            <input type="textarea" name="alamat2" placeholder="contoh: desa A Rt.00 Rw.00 Jl. Mawar No.00" class="form-control" id="alamat2" require>
+                                            <input type="text" name="alamat2" placeholder="contoh: desa A Rt.00 Rw.00 Jl. Mawar No.00" class="form-control" id="alamat2" require>
                                         </div>
                                         <strong>Catatan Untuk Penjual</strong>
                                             <div class="input-group mb-3">

@@ -63,11 +63,11 @@
                     <div class="header-top">
                         <ul>
                             <li><a href="#">Pasar Ir. Soekarno Sukoharjo</a></li>
-                            <li><a href="#">Keranjang Belanja</a></li>
+                            <li><a href="<?php echo site_url('cart'); ?>">Keranjang Belanja</a></li>
                             <li><a href="#">Checkout</a></li>
                         </ul>
                         <ul>     
-                            <li><a href="#"><strong>#Dirumahaja</strong><i class="lnr lnr-chevron-right"></i></a>
+                            <li><a href=""><strong>#Dirumahaja</strong><i class="lnr lnr-chevron-right"></i></a>
                             </li> 
                         </ul>
                     </div>
@@ -124,7 +124,7 @@
                                                 <div class="single-cart-box">
                                                     <div class="cart-img">
                                                         <a href="#"><img src="<?php echo base_url(); ?>assets/upload/barang/<?php echo html_escape($x->Img) ?>" alt="cart-image"></a>
-                                                        <span class="pro-quantity"><?php echo html_escape($x->Jumlah) ?>X</span>
+                                                        <span class="pro-quantity">X<?php echo html_escape($x->Jumlah) ?></span>
                                                     </div>
                                                     <div class="cart-content">
                                                         <h6><a href="#"><?php echo html_escape($x->Nama) ?></a></h6>
@@ -145,7 +145,7 @@
                                                        <li>Subtotal <span>Rp. <?php echo number_format($subtotal) ?></span></li>
                                                    </ul>
                                                     <div class="cart-actions text-center">
-                                                        <a class="cart-checkout" href="#">Checkout</a>
+                                                        <a class="cart-checkout" href="<?php echo site_url('cart'); ?>">Checkout</a>
                                                     </div>
                                                 </div>
                                                 <!-- Cart Footer Inner End -->
@@ -204,7 +204,7 @@
                                         <ul class="ht-dropdown dropdown-style-two">
                                             <li><a href="<?php echo site_url('user'); ?>">Profile</a></li>
                                             <li><a href="<?php echo site_url('cart'); ?>">Keranjang Belanja</a></li>
-                                            <li><a href="#">checkout</a></li>
+                                            <li><a href="<?php echo site_url('transaksi'); ?>">History Transaksi</a></li>
                                         </ul>
                                         <!-- Home Version Dropdown End -->
                                     </li>

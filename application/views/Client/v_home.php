@@ -889,27 +889,27 @@
 
     function add_cart(id)
     {
-    $('#form')[0].reset(); // reset form on modals
-    $('.form-group').removeClass('has-error'); // clear error class
-    $('.help-block').empty(); // clear error string
-    //Ajax Load data from ajax
-    $.ajax({
-    url : "<?php echo base_url('Client/Home/add_cart')?>/" + id,
-    type: "GET",
-    dataType: "JSON",
-    success: function(data)
-    {
-    $('[name="id"]').val(escapeHtml(data.ID));
-    $('[name="kode"]').val(escapeHtml(data.Kode));
-    $('[name="harga"]').val(escapeHtml(data.Harga));
-    $('#modal_qty').modal('show'); // show bootstrap modal
-    
-    },
-    error: function (jqXHR, textStatus , errorThrown)
-    {
-        console.log(errorThrown);
-    }
-    });
+        $('#form')[0].reset(); // reset form on modals
+        $('.form-group').removeClass('has-error'); // clear error class
+        $('.help-block').empty(); // clear error string
+        //Ajax Load data from ajax
+        $.ajax({
+        url : "<?php echo base_url('Client/Home/add_cart')?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+        $('[name="id"]').val(escapeHtml(data.ID));
+        $('[name="kode"]').val(escapeHtml(data.Kode));
+        $('[name="harga"]').val(escapeHtml(data.Harga));
+        $('#modal_qty').modal('show'); // show bootstrap modal
+        
+        },
+        error: function (jqXHR, textStatus , errorThrown)
+        {
+            console.log(errorThrown);
+        }
+        });
     }
 
     function count_cart(){

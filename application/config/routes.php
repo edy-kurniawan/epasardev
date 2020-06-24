@@ -72,3 +72,6 @@ $route['add-cart'] = 'Client/Home/add_cart';
 $route['search'] = 'Client/Search';
 $route['cart'] = 'Client/Cart';
 $route['order'] = 'Client/Order';
+$route['bayar'] = 'Client/Order/bayar';
+$route['transaksi'] = 'Client/Transaksi';
+$route['detail-transaksi'] = 'Client/Transaksi/detail';
