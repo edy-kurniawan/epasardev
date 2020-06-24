@@ -11,7 +11,7 @@ class Transaksi extends CI_Controller
         }
 
         $this->load->helper(array('form', 'url'));
-        $this->load->model(array('DbHelper','M_cart','M_xpenjualand','M_kategori','M_xpenjualan'));
+        $this->load->model(array('DbHelper','M_cart','M_xpenjualand','M_kategori','M_xpenjualan','M_pembayaran'));
         $this->load->library(array('form_validation', 'session'));
         $this->load->helper('security');
     }
@@ -38,6 +38,7 @@ class Transaksi extends CI_Controller
             $data['detail'] = $this->M_xpenjualan->get_by_id($refuser,$id)->result();
             $data['barang'] = $this->M_xpenjualan->get_detail($refuser,$id)->result();
             $data['total']  = $this->M_xpenjualan->get_total_by_id($refuser,$id)->result();
+            $data['status'] = $this->M_xpenjualan->get_status($refuser,$id)->result();
             $cart['cart']   = $this->M_cart->get_cart($refuser)->result();
             $cart['kat']    = $this->M_kategori->getSemua()->result();
             $this->load->view('template/client/head2',$cart);
@@ -45,6 +46,74 @@ class Transaksi extends CI_Controller
         }
         
     }
+
+    function upload_img(){
+
+        $this->form_validation->set_rules('kode', 'kode', 'required');
+
+        if($this->form_validation->run() === FALSE){ 
+            redirect('transaksi');
+        }else{
+
+        date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+        $now = date('Y-m-d H:i:s'); 
+        $kode = $this->security->sanitize_filename($this->input->post('kode'));
+
+            if(!empty($_FILES['photo']['name']))
+            {
+                $data = array(  
+                    "Status"    => "0",
+                    "Datei"     => $now,
+                    "Kode"      => $kode
+                    );
+
+                $upload = $this->_do_upload();
+                $data['Img'] = $upload;
+
+                $this->M_pembayaran->inputdata($data,'xpembayaran');
+
+                $update = array(  
+                    "Status"   => "1"
+                        );
+                $where = array(
+                    'Kode' => $kode
+                    );
+             
+                $this->M_xpenjualan->update($where,$update);
+                redirect('transaksi');
+
+            } else {
+                redirect('transaksi');
+            }
+
+            redirect('transaksi');
+        }
+        
+    }
+
+    private function _do_upload()
+    {
+        $config['upload_path']          = './assets/upload/transaksi/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 2000; //set max size allowed in Kilobyte
+        $config['max_width']            = 1500; // set max width image allowed
+        $config['max_height']           = 1500; // set max height allowed
+        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+ 
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+ 
+        if(!$this->upload->do_upload('photo')) //upload and validate
+        {
+            $data['inputerror'][] = 'photo';
+            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+            $data['status'] = FALSE;
+            echo json_encode($data);
+            exit();
+        }
+        return $this->upload->data('file_name');
+    }
+
 
     function get_cart($id)
     {

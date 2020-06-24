@@ -16,7 +16,7 @@
                         <a href="single-blog.html"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/1.jpg" alt="blog-image"></a>
                     </div>
                     <div class="blog-desc">
-                        <h4><a href="single-blog.html"><?php echo html_escape($x->Kode) ?></a></h4>
+                        <h4><a href="single-blog.html">NO Pesanan : <?php echo html_escape($x->Kode) ?></a></h4>
                         <ul class="meta-box d-flex">
                             <li><a href="#">AN : <?php echo html_escape($x->An) ?> | Total : Rp. <?php echo html_escape(number_format($x->Total)) ?></a></li>
                         </ul>

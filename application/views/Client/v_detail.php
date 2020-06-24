@@ -3,8 +3,8 @@
         z-index: 0;
         background-color: #ECEFF1;
         padding-bottom: 20px;
-        margin-top: 90px;
-        margin-bottom: 90px;
+        margin-top: 30px;
+        margin-bottom: 30px;
         border-radius: 10px
     }
 
@@ -115,104 +115,171 @@
         }
     }
 </style>
-<?php 
-    foreach($detail as $x){ 
+<?php
+    foreach ($detail as $x) {
+        if($x->Status=="0") {
+            $track = "Menunggu Pembayaran";
+            $class = "<li class='active step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>";
+        }
+        elseif($x->Status=="1") {
+            $track = "Menunggu Konfirmasi Pembayaran";
+            $class = "<li class='active step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>";
+        }
+        elseif($x->Status=="2") {
+            $track = "Pesanan Disiapkan";
+            $class = "<li class='active step0'></li>
+                    <li class='active step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>";
+        }
+        elseif($x->Status=="3") {
+            $track = "Pesanan Siap Dikirim / Diambil";
+            $class = "<li class='active step0'></li>
+                    <li class='active step0'></li>
+                    <li class='active step0'></li>
+                    <li class='step0'></li>";
+        }else{
+            $track = "Selesai";
+            $class = "<li class='active step0'></li>
+                    <li class='active step0'></li>
+                    <li class='active step0'></li>
+                    <li class='active step0'></li>";
+        }
 ?>
-<div class="container">
-    <div class="card bg-light">
-        <div class="row d-flex justify-content-between px-3 top">
-            <div class="d-flex">
-                <h5>Menunggu Konfirmasi Pembayaran</h5>
-            </div>
-            <div class="d-flex flex-column text-sm-right">
-                <p>Kode Transaksi : <span class="text-info font-weight-bold"><?php echo html_escape($x->Kode) ?></span></p>
-                <p class="mb-0"><span>Silahkan Lakukan Pembayaran Sebesar</span></p>
-                <p><span class="text-info font-weight-bold">Rp. <?php echo html_escape(number_format($x->Total)) ?></span></p>
-                <p>Ke Rekening <span class="text-info font-weight-bold">Bank X</span></p>
-                <p><span class="text-info font-weight-bold">AN : Epasar-dev / No Rek : XXXX-XX</span></p>
-            </div>
-        </div> <!-- Add class 'active' to progress -->
-        <div class="row d-flex justify-content-center">
-            <div class="col-12">
-                <ul id="progressbar" class="text-center">
-                    <li class="active step0"></li>
-                    <li class="step0"></li>
-                    <li class="step0"></li>
-                    <li class="step0"></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row justify-content-between top">
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight-bold">Proses<br>Order</p>
+    <div class="container">
+        <div class="card bg-light">
+            <div class="row d-flex justify-content-between px-3 top">
+                <div class="d-flex">
+                    <h5><?php echo $track ?></h5>
+                </div>
+                <div class="d-flex flex-column text-sm-right">
+                    <p>Kode Transaksi : <span class="text-info font-weight-bold"><?php echo html_escape($x->Kode) ?></span></p>
+                    <p class="mb-0"><span>Silahkan Lakukan Pembayaran Sebesar</span></p>
+                    <p><span class="text-info font-weight-bold">Rp. <?php echo html_escape(number_format($x->Total)) ?></span></p>
+                    <p>Ke Rekening <span class="text-info font-weight-bold">Bank X</span></p>
+                    <p><span class="text-info font-weight-bold">AN : Epasar-dev / No Rek : XXXX-XX</span></p>
+                </div>
+            </div> <!-- Add class 'active' to progress -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-12">
+                    <ul id="progressbar" class="text-center">
+                        <?php echo $class ?>
+                    </ul>
                 </div>
             </div>
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight">Order<br>Disiapkan</p>
+            <div class="row justify-content-between top">
+                <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight-bold">Proses<br>Order</p>
+                    </div>
+                </div>
+                <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight">Order<br>Disiapkan</p>
+                    </div>
+                </div>
+                <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight">Order Dikirim<br>/ Dapat Diambil</p>
+                    </div>
+                </div>
+                <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight">Order<br>Diterima</p>
+                    </div>
                 </div>
             </div>
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight">Order Dikirim<br>/ Dapat Diambil</p>
+            <?php
+                foreach ($status as $y) { if($y->Status=="0") {
+            ?>
+            <div class="row justify-content-between top">
+                <div class="d-flex">
+                    <div class="col-md-12">
+                        <div class="checkout-form-list mb-sm-30">
+                        <?php echo form_open_multipart('Client/Transaksi/upload_img', 'id="img"'); ?>
+                        <input type="hidden" name="kode" value="<?php echo html_escape($y->Kode) ?>">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Upload Bukti Pembayaran</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="photo" id="photo">
+                                        <label class="custom-file-label" for="exampleInputFile">Pilih File</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><a href="javascript:void(0)" onclick="document.getElementById('img').submit();">Upload</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight">Order<br>Diterima</p>
-                </div>
-            </div>
+                <?php }else {}} ?>
         </div>
     </div>
-</div>
-<!-- checkout-area start -->
-<div class="checkout-area pb-100 pt-15 pb-sm-60">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="checkbox-form mb-sm-40">
-                    <h3>Detail Pembelian</h3>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="checkout-form-list mb-sm-30">
-                                <label>Kode Transaksi</label>
-                                <input type="text" placeholder="" value="<?php echo html_escape($x->Kode) ?>" />
+    <!-- checkout-area start -->
+    <div class="checkout-area pb-100 pt-15 pb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="checkbox-form mb-sm-40">
+                        <h3>Detail Pembelian</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="checkout-form-list mb-sm-30">
+                                    <label>Kode Transaksi</label>
+                                    <input type="text" placeholder="" value="<?php echo html_escape($x->Kode) ?>" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list mb-sm-30">
-                                <label>Atas Nama</label>
-                                <input type="text" placeholder="" value="<?php echo html_escape($x->An) ?>" />
+                            <div class="col-md-12">
+                                <div class="checkout-form-list mb-sm-30">
+                                    <label>Atas Nama</label>
+                                    <input type="text" placeholder="" value="<?php echo html_escape($x->An) ?>" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list mb-30">
-                                <label>No telp</label>
-                                <input type="text" placeholder="" value="<?php echo html_escape($x->Telp) ?>" />
+                            <div class="col-md-12">
+                                <div class="checkout-form-list mb-30">
+                                    <label>No telp</label>
+                                    <input type="text" placeholder="" value="<?php echo html_escape($x->Telp) ?>" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkout-form-list mb-30">
-                                <label>Metode</label>
-                                <input type="text" placeholder="" value="<?php echo html_escape($x->Metode) ?>" />
+                            <div class="col-md-12">
+                                <div class="checkout-form-list mb-30">
+                                    <label>Metode</label>
+                                    <input type="text" placeholder="" value="<?php echo html_escape($x->Metode) ?>" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="order-notes col-md-12">
-                            <div class="checkout-form-list">
-                                <label>Alamat</label>
-                                <textarea id="" cols="30" rows="10"><?php echo html_escape($x->Alamat); echo ". "; echo html_escape($x->kel); echo ". "; echo html_escape($x->kec); echo ". "; echo html_escape($x->kab); echo ". "; echo html_escape($x->prov); ?></textarea>
+                            <div class="order-notes col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Alamat</label>
+                                    <textarea id="" cols="30" rows="10"><?php echo html_escape($x->Alamat);
+                                                                        echo ". ";
+                                                                        echo html_escape($x->kel);
+                                                                        echo ". ";
+                                                                        echo html_escape($x->kec);
+                                                                        echo ". ";
+                                                                        echo html_escape($x->kab);
+                                                                        echo ". ";
+                                                                        echo html_escape($x->prov); ?></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="order-notes col-md-12">
-                            <div class="checkout-form-list">
-                                <label>Catatan</label>
-                                <textarea id="checkout-mess" cols="30" rows="10"><?php echo html_escape($x->Ket) ?></textarea>
+                            <div class="order-notes col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Catatan</label>
+                                    <textarea id="checkout-mess" cols="30" rows="10"><?php echo html_escape($x->Ket) ?></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <?php } ?>
             <div class="col-lg-6 col-md-6">
                 <div class="your-order">
@@ -226,66 +293,66 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php 
-                                foreach($barang as $x){ 
-                            ?>
-                                <tr class="cart_item">
-                                    <td class="product-name">
-                                    <?php echo html_escape($x->Nama) ?> <span class="product-quantity"> × <?php echo html_escape($x->Jumlah) ?></span>
-                                    </td>
-                                    <td class="product-total">
-                                        <span class="amount">Rp. <?php echo html_escape(number_format($x->subtotal)) ?></span>
-                                    </td>
-                                </tr>
-                            <?php } ?>   
+                                <?php
+                                foreach ($barang as $x) {
+                                ?>
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            <?php echo html_escape($x->Nama) ?> <span class="product-quantity"> × <?php echo html_escape($x->Jumlah) ?></span>
+                                        </td>
+                                        <td class="product-total">
+                                            <span class="amount">Rp. <?php echo html_escape(number_format($x->subtotal)) ?></span>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                             <tfoot>
-                            <?php 
-                                foreach($total as $x){ 
-                            ?>
-                                <tr class="cart-subtotal">
-                                    <th>Subtotal</th>
-                                    <td><span class="amount">Rp. <?php echo html_escape(number_format($x->Subtotal)) ?></span></td>
-                                </tr>
-                                <tr class="cart-subtotal">
-                                    <th>Ongkir</th>
-                                    <td><span class="amount">Rp. <?php echo html_escape(number_format($x->Ongkir)) ?></span></td>
-                                </tr>
-                                <tr class="order-total">
-                                    <th>Total</th>
-                                    <td><span class="total amount">Rp. <?php echo html_escape(number_format($x->Total)) ?></span>
-                                    </td>
-                                </tr>
-                            <?php } ?> 
+                                <?php
+                                foreach ($total as $x) {
+                                ?>
+                                    <tr class="cart-subtotal">
+                                        <th>Subtotal</th>
+                                        <td><span class="amount">Rp. <?php echo html_escape(number_format($x->Subtotal)) ?></span></td>
+                                    </tr>
+                                    <tr class="cart-subtotal">
+                                        <th>Ongkir</th>
+                                        <td><span class="amount">Rp. <?php echo html_escape(number_format($x->Ongkir)) ?></span></td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Total</th>
+                                        <td><span class="total amount">Rp. <?php echo html_escape(number_format($x->Total)) ?></span>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
-</div>
-<?php
-$this->load->view('template/client/footer');
-?>
-<script>
-    $(document).ready(function() {
-        count_cart();
-    });
-
-    function count_cart() {
-        $.ajax({
-            url: "<?php echo site_url('Client/Profile/count_cart'); ?>",
-            type: "GET",
-            data: "",
-            dataType: "json",
-            cache: false,
-            success: function(data) {
-                $('#total-pro').text(data.jml);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-            }
+    <?php
+    $this->load->view('template/client/footer');
+    ?>
+    <script>
+        $(document).ready(function() {
+            count_cart();
         });
-    }
-</script>
+
+        function count_cart() {
+            $.ajax({
+                url: "<?php echo site_url('Client/Profile/count_cart'); ?>",
+                type: "GET",
+                data: "",
+                dataType: "json",
+                cache: false,
+                success: function(data) {
+                    $('#total-pro').text(data.jml);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+    </script>

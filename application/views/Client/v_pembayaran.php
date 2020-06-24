@@ -160,7 +160,7 @@
         <div class="card bg-light">
             <div class="row d-flex justify-content-between px-3 top">
                 <div class="d-flex">
-                    <h5>Menunggu Konfirmasi Pembayaran</h5>
+                    <h5>Menunggu Pembayaran</h5>
                 </div>
                 <?php 
                     foreach($detail as $x){ 
