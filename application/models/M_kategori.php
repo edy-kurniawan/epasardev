@@ -44,6 +44,32 @@ function hapus_data($where,$table){
     {
         $this->db->update('kategori', $data, $where);
     }
+
+    function count_sembako(){
+
+        $query = $this->db->query("SELECT count(kode) jml from barang where Refkategori = 'KAT1' ");
+        return $query->row();
+    }
+
+    function total(){
+
+        $query = $this->db->query("SELECT count(Kode) jml from kategori");
+        return $query->row();
+    }
+
+    function count_daging(){
+
+        $query = $this->db->query("SELECT count(kode) jml from barang where Refkategori = 'KAT2' ");
+        return $query->row();
+
+    }
+
+    function count_else(){
+
+        $query = $this->db->query("SELECT count(kode) jml from barang where Refkategori != 'KAT2' AND Refkategori != 'KAT1'  ");
+        return $query->row();
+
+    }
  
     /* Model for client */
 

@@ -28,6 +28,20 @@ class M_user extends CI_Model{
 
     }
 
+    function get_user_list($limit, $start){
+        $this->db->order_by('Refuser', 'ASC');
+        $query = $this->db->get('user', $limit, $start);
+        return $query;
+    }
+
+    function get_user_by_id($id){
+        $this->db->select('user.ID, user.Refuser, user.Nama, user.Jenis, user.Tgllahir, user.Telp, user.Img, user.Alamat, user.Prov, user.Kab, user.Kec, user.Kel, user.Email');
+        $this->db->from('user');
+        $this->db->where('user.ID', $id);
+        $query = $this->db->get();
+        return $query; 
+    }
+
     function getcart($id){
         $sql    =   "SELECT
                         user.ID,
@@ -93,9 +107,10 @@ function hapus_data($where,$table){
         return $query->row();
     }
 
-    function userpasif(){
+    function usermax(){
 
-        $query = $this->db->query("SELECT count(Username) jml from login");
+        $this->db->select_max('Refuser');
+        $query = $this->db->get('xpenjualan');
         return $query->row();
     }
 

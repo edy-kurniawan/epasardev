@@ -13,6 +13,7 @@ class User extends CI_Controller {
             redirect(base_url('Login'));
         }
          $this->load->library('form_validation'); 
+         $this->load->library('pagination');
          $this->load->helper('security');
          $this->load->helper(array('form', 'url','detail')); 
          $this->load->model(array('DbHelper', 'M_user')); 
@@ -22,67 +23,63 @@ class User extends CI_Controller {
     }
 
     public function index(){
-        $this->load->view('Admin/v_user');
+        //konfigurasi pagination
+        $config['base_url'] = site_url('Admin/User/index'); //site url
+        $config['total_rows'] = $this->db->count_all('user'); //total row
+        $config['per_page'] = 3;  //show record per halaman
+        $config["uri_segment"] = 4;  // uri parameter
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = floor($choice);
+ 
+        // Membuat Style pagination untuk BootStrap v4
+        $config['first_link']       = 'First';
+        $config['last_link']        = 'Last';
+        $config['next_link']        = 'Next';
+        $config['prev_link']        = 'Prev';
+        $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close']   = '</ul></nav></div>';
+        $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close']    = '</span></li>';
+        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close']  = '</span>Next</li>';
+        $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['first_tagl_close'] = '</span></li>';
+        $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close']  = '</span></li>';
+ 
+        $this->pagination->initialize($config);
+        $data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+ 
+        //panggil function get_mahasiswa_list yang ada pada mmodel mahasiswa_model. 
+        $data['data'] = $this->M_user->get_user_list($config["per_page"], $data['page']);           
+ 
+        $data['pagination'] = $this->pagination->create_links();
+ 
+        $this->load->view('Admin/v_user',$data);
+    }
+
+    public function detail(){
+        $id             = $this->input->post('id',TRUE);
+        $data['user']   = $this->M_user->get_user_by_id($id)->result();
+        $this->load->view('Admin/v_user_detail', $data);
     }
 
     public function getcount(){
         $user   = $this->M_user->totaluser();
         $aktif  = $this->M_user->useraktif();
         $non    = $this->M_user->usernonaktif();
-        $pasif  = $this->M_user->userpasif();
+        $pasif  = $this->M_user->usermax();
         echo json_encode(array(
             'jml'    => $user->jml,
             'aktif'  => $aktif->jml,
             'non'    => $non->jml,
-            'pasif'  => $pasif->jml,
+            'pasif'  => $pasif->Refuser,
             )
         );
-    }
-
-    public function setView(){
-        $result = $this->M_user->getSemua()->result();
-        $list   = array();
-        $No     = 1;
-        foreach ($result as $r) {
-            $row    = array(
-                        "no"        => $No,
-                        "id"        => html_escape($r->ID),
-                        "username"  => html_escape($r->Username),
-                        "nama"      => html_escape($r->Nama),
-                        "jenis"     => html_escape($r->Jenis),
-                        "alamat"    => html_escape($r->Alamat),
-                        "tgllahir"  => html_escape($r->Tgllahir),
-                        "telp"      => html_escape($r->Telp),
-                        "email"     => html_escape($r->Email),
-                        "action"    => detail(html_escape($r->ID))
-            );
-
-            $list[] = $row;
-            $No++;
-        }   
-
-        echo json_encode(array('data' => $list));
-    }
-
-    public function cart($id){
-        $id = $this->input->post('id');
-        $result = $this->M_user->getcart($id)->result();
-        $list   = array();
-        $No     = 1;
-        foreach ($result as $r) {
-            $row    = array(
-                        "no"        => $No,
-                        "id"        => $r->ID,
-                        "nama"      => $r->Nama,
-                        "jml"       => $r->Jumlah,
-                        "subtotal"  => $r->Subtotal
-            );
-
-            $list[] = $row;
-            $No++;
-        }   
-
-        echo json_encode(array('data' => $list));
     }
 
      public function ajax_edit($id)

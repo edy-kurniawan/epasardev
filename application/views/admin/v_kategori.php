@@ -93,7 +93,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Jumlah Kategori</span>
-                <span class="info-box-number" id="toko">
+                <span class="info-box-number" id="total">
                   0
                 </span>
               </div>
@@ -108,7 +108,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Jumlah Sembako</span>
-                <span class="info-box-number" id="aktif">
+                <span class="info-box-number" id="sembako">
                   0
                 </span>
               </div>
@@ -122,8 +122,8 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-minus-circle"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Jumlah Sayuran</span>
-                <span class="info-box-number" id="non">
+                <span class="info-box-text">Jumlah Daging</span>
+                <span class="info-box-number" id="daging">
                   0
                 </span>
               </div>
@@ -137,8 +137,8 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-cart-plus"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Jumlah Daging</span>
-                <span class="info-box-number">
+                <span class="info-box-text">Jumlah Kategori Lain</span>
+                <span class="info-box-number" id="else">
                   0
                 </span>
               </div>
@@ -270,15 +270,16 @@
 
     function get_count(){
       $.ajax({
-          url : "<?php echo site_url('Admin/Toko/getcount'); ?>",
+          url : "<?php echo site_url('Admin/Kategori/getcount'); ?>",
           type: "GET",
           data: "",
           dataType: "json",
           cache:false,
           success: function(data){
-            $('#toko').text(data.jml);
-            $('#aktif').text(data.aktif);
-            $('#non').text(data.non);
+            $('#total').text(data.total);
+            $('#daging').text(data.daging);
+            $('#sembako').text(data.sembako);
+            $('#else').text(data.else);
           },
           error: function (jqXHR, textStatus, errorThrown){
               console.log(errorThrown);

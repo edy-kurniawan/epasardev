@@ -39,7 +39,7 @@
     <script src="<?php echo base_url(); ?>assets/truemart/js/vendor/modernizr-3.5.0.min.js"></script>
 </head>
 
-<body>
+<body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;">
     <!--[if lte IE 9]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 	<![endif]-->

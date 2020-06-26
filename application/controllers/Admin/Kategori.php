@@ -115,7 +115,20 @@ class Kategori extends CI_Controller {
         $this->M_kategori->update($where,$data);
         echo json_encode(array("status" => TRUE));
         }
+    }
 
-}
+    public function getcount(){
+        $user   = $this->M_kategori->count_sembako();
+        $aktif  = $this->M_kategori->count_daging();
+        $non    = $this->M_kategori->count_else();
+        $pasif  = $this->M_kategori->total();
+        echo json_encode(array(
+            'sembako'    => $user->jml,
+            'daging'  => $aktif->jml,
+            'else'    => $non->jml,
+            'total'  => $pasif->jml,
+            )
+        );
+    }
 
 }

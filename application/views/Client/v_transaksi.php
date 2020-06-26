@@ -10,10 +10,16 @@
                     $id_form = 21;
                     foreach($data as $x){ 
                         $id_form++;
+                        if($x->Status=="0"){ $img = "0.jpg"; }
+                        elseif($x->Status=="1"){ $img = "1.jpg"; }
+                        elseif($x->Status=="2"){ $img = "2.jpg"; }
+                        elseif($x->Status=="3"){ $img = "3.jpg"; }
+                        elseif($x->Status=="4"){ $img = "4.jpg"; }
+                        else{$img = "";}
                 ?>
                 <div class="single-latest-blog">
                     <div class="blog-img">
-                        <a href="single-blog.html"><img src="<?php echo base_url(); ?>assets/truemart/img/blog/1.jpg" alt="blog-image"></a>
+                        <a href="single-blog.html"><img src="<?php echo base_url(); ?>assets/truemart/img/logo/<?php echo html_escape($img) ?>" alt="blog-image"></a>
                     </div>
                     <div class="blog-desc">
                         <h4><a href="single-blog.html">NO Pesanan : <?php echo html_escape($x->Kode) ?></a></h4>
@@ -65,5 +71,18 @@
         });
     }
 </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5ef40bb59e5f694422914139/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+<!--End of Tawk.to Script-->
 </body>
 </html>                
