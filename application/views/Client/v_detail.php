@@ -217,6 +217,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <span class="text-danger"> *) Ukuran foto max 2Mb jpg|png</span>
                         </div>
                         </form>
                     </div>

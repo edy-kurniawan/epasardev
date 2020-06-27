@@ -8,25 +8,6 @@ class M_login extends CI_Model{
 
   }
 
-  function getSemua(){
-    $sql    =   "SELECT
-                  login.ID,
-                  login.Username,
-                  login.Pas,
-                  login.Refuser,
-                  login.Refcart,
-                  login.Status,
-                  user.Nama,
-                  cart.Kode Keranjang
-                FROM
-                login
-                  LEFT OUTER JOIN login ON login.Refuser = user.Kode 
-                  LEFT OUTER JOIN login ON login.Refcart = cart.Kode 
-        ";
-    return $this-> DbHelper->execQuery($sql);
-
-  }
-
     function hapus_data($where,$table){
         $this->db->where($where);
         $this->db->delete($table);
@@ -38,10 +19,8 @@ class M_login extends CI_Model{
 
     public function edit($id)
     {
-    $query = $this->db->query("SELECT
-                        *
-                          FROM login
-                        where login.ID='$id'");
+      $this->db->where('login.ID', $id);
+      $query = $this->db->get();
       return $query->row(); 
     }
 

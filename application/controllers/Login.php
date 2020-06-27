@@ -31,7 +31,7 @@ class Login extends CI_Controller{
                                     ");
             $row = $query->row();
             $data_session = array(
-                'username' => $username,
+                'user'      => $username,
                 'status'    => "online",
                 'logged'    => TRUE,
                 

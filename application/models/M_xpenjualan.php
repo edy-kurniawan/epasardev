@@ -18,7 +18,7 @@ class M_xpenjualan extends CI_Model{
     }
 
     function get_all($refuser){
-        $this->db->select('ID, Kode, Total, Metode, An, Alamat, Kel, Status');
+        $this->db->select('ID, Kode, Total, Metode, An, Alamat, Kel, Status, Datei');
         $this->db->from('xpenjualan');
         $this->db->where('Refuser', $refuser);
         $this->db->order_by('Datei', 'DESC');

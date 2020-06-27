@@ -110,6 +110,7 @@
                                     <div class="widget-user-header bg-info">
                                     <form id="<?php echo $idform ?>" action="<?php echo site_url('Admin/User/detail'); ?>" method="post">
                                     <input type="hidden" name="id" value="<?php echo html_escape($row->ID) ?>">
+                                    <input type="hidden" name="kode" value="<?php echo html_escape($row->Refuser) ?>">
                                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <a style="color:white"  href="javascript:;" onclick="document.getElementById('<?php echo $idform ?>').submit();"><h3 class="widget-user-username"><?php echo html_escape($row->Refuser); ?></h3></a>
                                         <a style="color:white"  href="javascript:;" onclick="document.getElementById('<?php echo $idform ?>').submit();"><h5 class="widget-user-desc"><?php echo html_escape($row->Nama); ?></h5></a>

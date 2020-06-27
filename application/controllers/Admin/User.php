@@ -16,7 +16,7 @@ class User extends CI_Controller {
          $this->load->library('pagination');
          $this->load->helper('security');
          $this->load->helper(array('form', 'url','detail')); 
-         $this->load->model(array('DbHelper', 'M_user')); 
+         $this->load->model(array('DbHelper', 'M_user','M_xpenjualan','M_cart')); 
     
 
         // $this->load->model('M_login');
@@ -64,7 +64,11 @@ class User extends CI_Controller {
 
     public function detail(){
         $id             = $this->input->post('id',TRUE);
+        $refuser        = $this->input->post('kode',TRUE);
         $data['user']   = $this->M_user->get_user_by_id($id)->result();
+        $data['trx']    = $this->M_xpenjualan->get_all($refuser)->result();
+        $data['cart']   = $this->M_cart->get_all($refuser)->result();
+        
         $this->load->view('Admin/v_user_detail', $data);
     }
 
@@ -86,6 +90,39 @@ class User extends CI_Controller {
     {
         $data = $this->M_user->edit($id);
         echo json_encode($data);
+    }
+
+    function status_update(){
+
+        $this->form_validation->set_rules('id','id','trim|required');
+
+        if($this->form_validation->run() == false)
+        {
+            
+        }
+        else
+        {
+        
+        $id   = $this->input->post('id',TRUE);
+        $data = $this->M_login->edit($id);
+        foreach ($data as $r) {
+            if($r->Status=="T"){ $stts = "F"; $json = "echo json_encode(array('status' => TRUE))";}
+            elseif($r->Status=="F"){ $stts = "T"; $json = "echo json_encode(array('status2' => TRUE))";}
+            else { $stts = ""; }
+        }
+        
+        $data = array(  
+            "Status" => $stts,
+                );
+    
+        $where = array(
+            'ID' => $id
+            );
+     
+        $this->M_login->update($where,$data);
+        $json;
+        
+        }
     }
 	
 }

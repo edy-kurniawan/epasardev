@@ -35,8 +35,13 @@ class M_user extends CI_Model{
     }
 
     function get_user_by_id($id){
-        $this->db->select('user.ID, user.Refuser, user.Nama, user.Jenis, user.Tgllahir, user.Telp, user.Img, user.Alamat, user.Prov, user.Kab, user.Kec, user.Kel, user.Email');
+        $this->db->select('user.ID, login.Onlast, user.Refuser, user.Datei, user.Nama, user.Jenis, user.Tgllahir, user.Telp, user.Img, user.Alamat, provinsi.nama prov, kabupaten.nama kab, kecamatan.nama kec, kelurahan.nama kel, user.Email');
         $this->db->from('user');
+        $this->db->join('login', 'login.Username=user.Refuser','left');
+        $this->db->join('provinsi', 'provinsi.id_prov=user.Prov','left');
+        $this->db->join('kabupaten', 'kabupaten.id_kab=user.Kab','left');
+        $this->db->join('kecamatan', 'kecamatan.id_kec=user.Kec','left');
+        $this->db->join('kelurahan', 'kelurahan.id_kel=user.Kel','left');
         $this->db->where('user.ID', $id);
         $query = $this->db->get();
         return $query; 

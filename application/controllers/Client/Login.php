@@ -38,8 +38,17 @@ class Login extends CI_Controller{
                 'username'  => $username,
                 'status'    => "online",
                 'logged_user'    => TRUE,
-                
             );
+            
+            date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+            $now = date('Y-m-d H:i:s');
+            $data = array(  
+                "Onlast" => $now
+                    );
+            $where = array(
+                'Username' => $username
+                );
+            $this->M_login->update($where,$data);
 
             $this->session->set_userdata($data_session_user);
             $this->session->set_flashdata('message', '<div  class="col-md-8 alert-success alert-dismissible" data-dismiss="alert" aria-hidden="true" ><br>

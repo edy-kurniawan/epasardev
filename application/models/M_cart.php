@@ -9,7 +9,7 @@ class M_cart extends CI_Model{
     }
 
     function get_all($refuser){
-        $this->db->select('cart.ID, cart.Jumlah, cart.Subtotal, barang.Nama, barang.Kode, barang.Img, barang.Harga, barang.Satuan, barang.Ket');
+        $this->db->select('cart.ID, cart.Jumlah, cart.Datei, cart.Subtotal, barang.Nama, barang.Kode, barang.Img, barang.Harga, barang.Satuan, barang.Ket');
         $this->db->from('cart');
         $this->db->join('barang', 'cart.Refbarang=barang.Kode','left');
         $this->db->where('cart.Refuser', $refuser);
