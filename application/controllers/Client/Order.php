@@ -19,6 +19,8 @@ class Order extends CI_Controller{
         if($cek_cart->num_rows()>0){
             $data['user']   = $this->M_profile->get_from_order($refuser)->result();
             $data['prov']   = $this->M_order->get_prov()->result();
+            $data['kab']    = $this->M_order->get_kab()->result();
+            $data['kec']    = $this->M_order->get_kec()->result();
             $data['kode']   = $this->M_xpenjualand->get_no_penjualan();
             $data['total']  = $this->M_cart->sum($refuser)->result();
             $this->load->view('Client/v_order',$data);
@@ -257,18 +259,6 @@ class Order extends CI_Controller{
         echo json_encode($data);
     }
 
-    function get_kab(){
-        $id   = $this->input->post('id',TRUE);
-        $data = $this->M_order->get_kab($id)->result();
-        echo json_encode($data);
-    }
-
-    function get_kec(){
-        $id   = $this->input->post('id',TRUE);
-        $data = $this->M_order->get_kec($id)->result();
-        echo json_encode($data);
-    }
-    
     function get_kel(){
         $id   = $this->input->post('id',TRUE);
         $data = $this->M_order->get_kel($id)->result();

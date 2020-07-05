@@ -16,7 +16,7 @@ class User extends CI_Controller {
          $this->load->library('pagination');
          $this->load->helper('security');
          $this->load->helper(array('form', 'url','detail')); 
-         $this->load->model(array('DbHelper', 'M_user','M_xpenjualan','M_cart')); 
+         $this->load->model(array('DbHelper', 'M_user','M_xpenjualan','M_cart','M_xpenjualand')); 
     
 
         // $this->load->model('M_login');
@@ -70,6 +70,23 @@ class User extends CI_Controller {
         $data['cart']   = $this->M_cart->get_all($refuser)->result();
         
         $this->load->view('Admin/v_user_detail', $data);
+    }
+
+    public function setView(){
+        $kode           = $this->input->post('kode',TRUE);
+        $result = $this->M_xpenjualand->get_by_kode($kode)->result();
+        $list   = array();
+        foreach ($result as $r) {
+            $row    = array(
+                        "Nama"       => html_escape($r->Nama),
+                        "Jumlah"     => html_escape($r->Jumlah),
+                        "Harga"      => html_escape($r->Harga),
+                        "Subtotal"   => html_escape($r->Subtotal)
+            );
+            $list[] = $row;
+        }   
+
+        echo json_encode(array('data' => $list));
     }
 
     public function getcount(){

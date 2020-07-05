@@ -48,7 +48,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-database"></i>
               <p>
@@ -87,6 +87,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="https://dashboard.tawk.to/#/chat" target="_blank" class="nav-link">
+                  <i class="far fas fa-comments nav-icon"></i>
+                  <p>Live Chat</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo site_url('administrator/ongkir'); ?>" class="nav-link">
+                  <i class="far fas fa-truck nav-icon"></i>
+                  <p>Ongkir</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="<?php echo site_url('administrator/user'); ?>" class="nav-link">
                   <i class="far fas fa-user-lock nav-icon"></i>

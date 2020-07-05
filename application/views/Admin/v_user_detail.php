@@ -89,7 +89,7 @@
                   </p>
 
                   <hr>
-                
+
                   <strong><i class="fas fa-calendar-alt"></i></i> Tgl Lahir</strong>
 
                   <p class="text-muted">
@@ -166,26 +166,34 @@
                         </tr>
                       </thead>
                       <tbody>
-                      <?php
-                        $no=1;
+                        <?php
+                        $no = 1;
                         foreach ($trx as $x) {
-                          if($x->Status=="0") { $stts = "<span class='badge badge-success'>Menunggu Pembayaran</span>";}
-                          elseif($x->Status=="1") { $stts = "<span class='badge badge-info'>Menunggu Konfirmasi Pembayaran</span>";}
-                          elseif($x->Status=="2") { $stts = "<span class='badge badge-warning'>Pesanan Disiapkan</span>";}
-                          elseif($x->Status=="3") { $stts = "<span class='badge badge-dark'>Pesanan Siap Dikirim / Diambil</span>";}
-                          elseif($x->Status=="4") { $stts = "<span class='badge badge-primary'>Selesai</span>";}
-                          elseif($x->Status=="5") { $stts = "<span class='badge badge-danger'>Dibatalkan</span>";}
-                          else { $stts = "";}
-                      ?>
-                      <tr>
-                          <td><?php echo $no++; ?></td>
-                          <td><?php echo html_escape($x->Kode) ?></td>
-                          <td><?php echo $stts ?></td>
-                          <td><?php echo html_escape($x->Metode) ?></td>
-                          <td>Rp. <?php echo html_escape(number_format($x->Total)) ?></td>
-                          <td><?php echo html_escape($x->Datei) ?></td>
-                      </tr>
-                      <?php } ?>
+                          if ($x->Status == "0") {
+                            $stts = "<span class='badge badge-success'>Menunggu Pembayaran</span>";
+                          } elseif ($x->Status == "1") {
+                            $stts = "<span class='badge badge-info'>Menunggu Konfirmasi Pembayaran</span>";
+                          } elseif ($x->Status == "2") {
+                            $stts = "<span class='badge badge-warning'>Pesanan Disiapkan</span>";
+                          } elseif ($x->Status == "3") {
+                            $stts = "<span class='badge badge-dark'>Pesanan Siap Dikirim / Diambil</span>";
+                          } elseif ($x->Status == "4") {
+                            $stts = "<span class='badge badge-primary'>Selesai</span>";
+                          } elseif ($x->Status == "5") {
+                            $stts = "<span class='badge badge-danger'>Dibatalkan</span>";
+                          } else {
+                            $stts = "";
+                          }
+                        ?>
+                          <tr>
+                            <td><?php echo $no++; ?></td>
+                            <td><?php echo html_escape($x->Kode) ?></td>
+                            <td><?php echo $stts ?></td>
+                            <td><?php echo html_escape($x->Metode) ?></td>
+                            <td>Rp. <?php echo html_escape(number_format($x->Total)) ?></td>
+                            <td><?php echo html_escape($x->Datei) ?></td>
+                          </tr>
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>
@@ -193,33 +201,33 @@
 
                   <div class="tab-pane" id="settings">
                     <table id="table2" class="table table-bordered table-striped nowrap" width="100%">
-                        <thead>
-                          <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Harga</th>
-                            <th>Jumlah</th>
-                            <th>Subtotal</th>
-                            <th>Datei</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                          $no=1;
-                          foreach ($cart as $x) {
-                            
-                        ?>
+                      <thead>
                         <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Harga</th>
+                          <th>Jumlah</th>
+                          <th>Subtotal</th>
+                          <th>Datei</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($cart as $x) {
+
+                        ?>
+                          <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo html_escape($x->Nama) ?></td>
                             <td>Rp. <?php echo html_escape(number_format($x->Harga)) ?></td>
                             <td><?php echo html_escape($x->Jumlah) ?></td>
                             <td>Rp. <?php echo html_escape(number_format($x->Subtotal)) ?></td>
                             <td><?php echo html_escape($x->Datei) ?></td>
-                        </tr>
+                          </tr>
                         <?php } ?>
-                        </tbody>
-                      </table>
+                      </tbody>
+                    </table>
                   </div>
                   <!-- /.tab-pane -->
                 </div>
@@ -243,16 +251,18 @@
   $this->load->view('template/js');
   ?>
   <script>
-    $(document).ready(function(){
-        $('#table').DataTable({
-          "processing": true, 
-          "responsive": true,
-        });
-        $('#table2').DataTable({
-          "processing": true, 
-          "responsive": true,
-        });
+    var table;
+    $(document).ready(function() {
+      $('#table').DataTable({
+        "processing": true,
+        "responsive": true,
+      });
+      $('#table2').DataTable({
+        "processing": true,
+        "responsive": true,
+      });
     });
-</script>
+  </script>
 </body>
+
 </html>

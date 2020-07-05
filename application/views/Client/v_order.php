@@ -336,7 +336,6 @@
                                         <label for="prov"><strong>Provinsi</strong></label>
                                         <div class="form-control">
                                             <select class="form-control select2" name="prov" id="prov" required>
-                                                <option>Pilih Provinsi</option>
                                                 <?php foreach ($prov as $row) : ?>
                                                     <option value="<?php echo $row->id_prov; ?>"><?php echo $row->nama; ?></option>
                                                 <?php endforeach; ?>
@@ -345,13 +344,18 @@
                                         <label for="kab"><strong>Kota/Kabupaten</strong></label>
                                         <div class="form-control">
                                             <select class="form-control select2" id="kab" name="kab" required>
-                                                <option value="">Pilih Kabupaten</option>
+                                                <?php foreach ($kab as $row) : ?>
+                                                    <option value="<?php echo $row->id_kab; ?>"><?php echo $row->nama; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <label for="kec"><strong>Kecamatan</strong></label>
                                         <div class="form-control">
                                             <select class="form-control select2" id="kec" name="kec" required>
                                                 <option value="">Pilih Kecamatan</option>
+                                                <?php foreach ($kec  as $row) : ?>
+                                                    <option value="<?php echo $row->id_kec; ?>"><?php echo $row->nama; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <label for="kel"><strong>Kelurahan</strong></label>
@@ -406,56 +410,6 @@
                 </script>
                 <script type="text/javascript">
                     $(document).ready(function() {
-                        $('#prov').change(function() {
-                            var id = $(this).val();
-                            $.ajax({
-                                url: "<?php echo base_url(); ?>Client/Order/get_kab",
-                                method: "POST",
-                                data: {
-                                    '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-                                    "id": id
-                                },
-                                async: true,
-                                dataType: 'json',
-                                success: function(data) {
-
-                                    var html = '';
-                                    var i;
-                                    for (i = 0; i < data.length; i++) {
-                                        html += '<option value=' + data[i].id_kab + '>' + data[i].nama + '</option>';
-                                    }
-                                    $('#kab').html(html);
-
-                                }
-                            });
-                            return false;
-                        });
-
-                        $('#kab').change(function() {
-                            var id = $(this).val();
-                            $.ajax({
-                                url: "<?php echo base_url(); ?>Client/Order/get_kec",
-                                method: "POST",
-                                data: {
-                                    '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-                                    "id": id
-                                },
-                                async: true,
-                                dataType: 'json',
-                                success: function(data) {
-
-                                    var html = '';
-                                    var i;
-                                    for (i = 0; i < data.length; i++) {
-                                        html += '<option value=' + data[i].id_kec + '>' + data[i].nama + '</option>';
-                                    }
-                                    $('#kec').html(html);
-
-                                }
-                            });
-                            return false;
-                        });
-
                         $('#kec').change(function() {
                             var id = $(this).val();
                             $.ajax({

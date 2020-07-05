@@ -27,4 +27,13 @@ class M_xpenjualand extends CI_Model{
         return date('Y-m-d').$kd;
     }
 
+    function get_by_kode($kode){
+        $this->db->select('xpenjualand.Harga, xpenjualand.Jumlah, xpenjualand.Subtotal, barang.Nama');
+        $this->db->from('xpenjualand');
+        $this->db->join('barang', 'barang.Kode=xpenjualand.Refbarang','left');
+        $this->db->where('xpenjualand.Kode', $kode);
+        $query = $this->db->get();
+        return $query; 
+    }
+
 }

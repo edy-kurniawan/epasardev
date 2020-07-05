@@ -10,24 +10,23 @@ class M_order extends CI_Model{
     }
 
     function get_prov(){
-        $query = $this->db->get_where('provinsi', array('status' => 't'));
+        $query = $this->db->get_where('provinsi', array('id_prov' => '33'));
         return $query;  
     }
 
-    function get_kab($id){
+    function get_kab(){
         $this->db->select('id_kab, nama');
         $this->db->from('kabupaten');
-        $this->db->where('status', 't');
-        $this->db->where('id_prov', $id);
+        $this->db->where('id_kab', '3311');
         $query = $this->db->get();
         return $query; 
     }
 
-    function get_kec($id){
+    function get_kec(){
         $this->db->select('id_kec, nama');
         $this->db->from('kecamatan');
         $this->db->where('status', 't');
-        $this->db->where('id_kab', $id);
+        $this->db->where('id_kab', '3311');
         $query = $this->db->get();
         return $query; 
     }

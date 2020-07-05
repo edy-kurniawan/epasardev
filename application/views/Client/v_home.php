@@ -964,7 +964,7 @@
     var no = 1;
     tambah.onclick = function() {
         hasil = no++;
-        $('#hasil').val(hasil);
+        parseInt($('#hasil').val(hasil));
     }
     kurang.onclick = function() {
         if (hasil == '1') {
