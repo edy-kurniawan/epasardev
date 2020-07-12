@@ -9,6 +9,7 @@
     $this->load->view('template/css');
   ?>
   <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE/plugins/select2/css/select2.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url()?>assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   </head>
 
   <body class="hold-transition sidebar-mini layout-fixed">
@@ -34,24 +35,16 @@
               <input type="hidden" name="id">
               <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
               <div class="form-row">
-                <div class="col-md-7 mb-3">
+                <div class="col-md-12 mb-3">
                   <label for="validationCustom01">Kode</label>
                   <input type="text" class="form-control" name="kode" placeholder="Kode" required>
                   <div class="invalid-feedback">
                     Masukan Kode !
                   </div>
                 </div>
-                <div class="col-md-5 mb-3">
-                  <label for="validationCustom01">Toko</label>
-                  <div class="form-control">
-                    <?php
-                      echo form_dropdown('toko', html_escape($toko), '', 'class="form-control" id="combobox" name="toko"'); 
-                    ?>
-                  </div>
-                </div>
               </div>
               <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-9 mb-3">
                   <label for="validationCustom01">Nama</label>
                   <input type="text" class="form-control" name="nama" placeholder="Nama Barang" required>
                   <div class="invalid-feedback">
@@ -63,13 +56,6 @@
                   <input type="text" class="form-control" onkeypress="return angka(event)" name="harga" placeholder="Harga" required>
                   <div class="invalid-feedback">
                     Masukan Lokasi !
-                  </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <label for="validationCustom04">Stok</label>
-                  <input type="number" class="form-control" onkeypress="return angka(event)" name="stok" min="1" placeholder="Stok" required>
-                  <div class="invalid-feedback">
-                    Masukan No Telp !
                   </div>
                 </div>
               </div>
@@ -236,10 +222,8 @@
                             <th>No</th>
                             <th>Kode</th>
                             <th>Img</th>
-                            <th>Toko</th>
                             <th>Nama</th>
                             <th>Harga</th>
-                            <th>Stok</th>
                             <th>Satuan</th>
                             <th>Kategori</th>
                             <th>Status</th>
@@ -290,10 +274,8 @@
               { "data": "no" },  
               { "data": "kode" },  
               { "data": "img" }, 
-              { "data": "toko" },
               { "data": "nama" },
               { "data": "harga" },
-              { "data": "stok" },  
               { "data": "satuan" },
               { "data": "kat" },
               { "data": "status" },
@@ -398,10 +380,7 @@
     $('[name="id"]').val(escapeHtml(data.ID));
     $('[name="kode"]').val(escapeHtml(data.Kode));
     $('[name="nama"]').val(escapeHtml(data.Nama));
-    $('#combobox').val(escapeHtml(data.Reftoko));
-    $('#combobox').select2().trigger('change');
     $('[name="harga"]').val(escapeHtml(data.Harga));
-    $('[name="stok"]').val(escapeHtml(data.Stok));
     $('[name="status"]').val(escapeHtml(data.Status));
     $('[name="satuan"]').val(escapeHtml(data.Satuan));
     $('[name="kat"]').val(escapeHtml(data.Refkategori));
@@ -554,7 +533,7 @@
 
 <script type="text/javascript">
   $("#combobox").select2({
-    theme:"bootstrap",
+    theme:"bootstrap4",
 		placeholder: "Pilih Toko",
 		width: 'resolve',
 		dropdownAutoWidth: true,

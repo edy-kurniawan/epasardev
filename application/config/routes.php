@@ -60,6 +60,8 @@ $route['administrator/kategori'] = 'Admin/Kategori';
 $route['administrator/toko'] = 'Admin/Toko';
 $route['administrator/user'] = 'Admin/User';
 $route['administrator/ongkir'] = 'Admin/Ongkir';
+$route['administrator/transaksi'] = 'Admin/Transaksi';
+$route['administrator/detail/(:num)'] = 'Admin/Transaksi/get_detail/$1';
 $route['auth'] = 'Login';
 /* --custom route client begin */
 $route['home'] = 'Client/Home';

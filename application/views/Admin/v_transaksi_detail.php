@@ -18,156 +18,175 @@
     $this->load->view('template/sidebar');
   ?>
 
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Data Transaksi</h1>
-          </div><!-- /.col -->
+            <h1>Detail Pembelian</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="breadcrumb-item active">Transaksi</li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Detail Pembelian</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-gradient-info">
-              <span class="info-box-icon"><i class="far fa-list-alt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Total Transaksi</span>
-                <span class="info-box-number" id="all">0</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
           </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-gradient-success">
-              <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Transaksi Terkonfirmasi</span>
-                <span class="info-box-number" id="konfir">0</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-gradient-warning">
-              <span class="info-box-icon"><i class="far fa-money-bill-alt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Transaksi Di Bayar</span>
-                <span class="info-box-number" id="pay">0</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-gradient-danger">
-              <span class="info-box-icon"><i class="fas fa-check-square"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Transaksi Selesai</span>
-                <span class="info-box-number" id="done">0</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
         </div>
-        <!-- =========================================================== -->
-        </div><!-- /.container-fluid -->
-    
-   <section class="content">
-      <div class="row">
-        <div class="col-12">
-         <div class="card">
-            <div class="card-header">
-            <button class="btn btn-default " onclick="reload_table()" data-toggle="tooltip" data-placement="top" title="Reload Table"><i class="fas fa fa-sync"></i> Reload</button>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="table" class="table table-bordered table-striped nowrap" width="100%">      
-                        <thead>
-                          <tr>
-                            <th>No</th>
-                            <th>Kode</th>
-                            <th>User</th>
-                            <th>Metode</th>
-                            <th>Status</th>
-                            <th>Total</th>
-                            <th>Ket</th>
-                            <th>Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        
-                        </tbody> 
-                      </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
-  </div>
-</div>
 
-<div class="modal fade" id="modal_form">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Large Modal</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <?php
+        foreach ($trx as $x) {
+
+    ?>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="callout callout-info">
+              <h5><i class="fas fa-info"></i> Catatan Pembeli:</h5>
+              <?php echo html_escape($x->Ket) ?>
             </div>
-            <div class="modal-body">
-          <div class="box-body pad">
-            <form id="form" class="needs-validation" role="form">
-              <input type="hidden" name="id">
-              <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-              <div class="form-row">
-                <div class="col-md-12 mb-3">
-                  <label for="validationCustom01">Status</label>
-                  <select name="status" class="form-control" required>
-                      <option value="0">Menunggu Konfirmasi Ketersediaan</option>
-                      <option value="1">Konfirmasi Ketersediaan Pesanan & Menunggu Pembayaran</option>
-                      <option value="2">Konfirmasi Pembayaran & Pesanan Disiapkan</option> 
-                      <option value="3">Pesanan Siap Diantar / Diambil</option>
-                      <option value="4">Selesai</option> 
-                      <option value="5">Pesanan Tidak Tersedia / Dibatalkan</option>                    
-                  </select>
+
+
+            <!-- Main content -->
+            <div class="invoice p-3 mb-3">
+              <!-- title row -->
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-globe"></i> E-Pasar .Dev
+                    <small class="float-right">Tanggal: <?php echo html_escape($x->Datei) ?></small>
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- info row -->
+              <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                  Pembeli
+                  <address>
+                    <strong><?php echo html_escape($x->Refuser) ?></strong><br>
+                    No Hp: <?php echo html_escape($x->hp) ?><br>
+                    Email: <?php echo html_escape($x->Email) ?>
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                <?php echo html_escape($x->Metode) ?>
+                  <address>
+                    <strong><?php echo html_escape($x->An) ?></strong><br>
+                    No Hp: <?php echo html_escape($x->Telp) ?><br>
+                    <?php if($x->kel!=null && $x->kec!=null){ ?>
+                    Alamat: <?php echo html_escape($x->Alamat); echo ", "; echo html_escape($x->kel); echo ", "; echo html_escape($x->kec); echo ", "; echo html_escape($x->kab); echo ", "; echo html_escape($x->prov); ?>
+                    <?php } ?>
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  <b>Invoice #<?php echo html_escape($x->Kode) ?></b><br>
+                  <br>
+                  <?php 
+                        if($x->bayar=="0"){ $bayar = "Menunggu Konfirmasi"; }
+                        elseif($x->bayar=="1"){ $bayar = "Dibayar"; }
+                        else{ $bayar = "Belum Dibayar"; }
+                  ?>
+                  <b>Status Pembayaran:</b> <?php echo html_escape($bayar) ?><br>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+    <?php } ?>
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Jumlah</th>
+                      <th>Nama</th>
+                      <th>Harga</th>
+                      <th>Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach ($detail as $d) {
+                    ?>
+                    <tr>
+                      <td><?php echo html_escape($d->Jumlah) ?></td>
+                      <td><?php echo html_escape($d->Nama) ?></td>
+                      <td>Rp. <?php echo html_escape(number_format($d->Harga)) ?></td>
+                      <td>Rp. <?php echo html_escape(number_format($d->Subtotal)) ?></td>
+                    </tr>
+                        <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-6">
+                  <p class="lead">Metode Pembayaran:</p>
+                  <img src="<?php echo base_url(); ?>assets/AdminLTE/dist/img/credit/visa.png" alt="Visa">
+                  <img src="<?php echo base_url(); ?>assets/AdminLTE/dist/img/credit/mastercard.png" alt="Mastercard">
+                
+                <?php
+                    foreach ($trx as $x) {
+
+                ?>
+                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                    Silahkan Lakukan Pembayaran Sebesar Rp. <b><?php echo html_escape(number_format($x->Total)) ?></b>
+                        </br>
+                    Ke Rekening Ke Rekening <b>Bank X <br> AN : Epasar-dev / No Rek : XXXX-XX</b>
+                  </p>
+                </div>
+                <!-- /.col -->
+                <div class="col-6">
+                
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th style="width:50%">Subtotal:</th>
+                        <td>Rp. <?php echo html_escape(number_format($x->Subtotal)) ?></td>
+                      </tr>
+                      <tr>
+                        <th>Ongkir:</th>
+                        <td>Rp. <?php echo html_escape(number_format($x->Ongkir)) ?></td>
+                      </tr>
+                      <tr>
+                        <th>Total:</th>
+                        <td><b>Rp. <?php echo html_escape(number_format($x->Total)) ?></b></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                    <?php } ?>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <!-- this row will not appear when printing -->
+              <div class="row no-print">
+                <div class="col-12">
+                  <a href="#" target="" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  
                 </div>
               </div>
-          </div>
-        </div>
-          <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
             </div>
-          </div>
-          </form>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
+            <!-- /.invoice -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
     
   <?php
   $this->load->view('template/footer');
@@ -185,7 +204,6 @@
   <script>
     var table;
     $(document).ready(function() {
-      get_count();
       table = $('#table').DataTable({
         "processing": true,
         "responsive": true,
@@ -230,7 +248,7 @@
 
     function detail_data(id)
     {
-      window.location.href = "<?php echo base_url('administrator/detail'); ?>/"+id;
+      window.location.href = "<?php echo base_url('Admin/Transaksi/get_detail'); ?>/"+id;
     }
 
     function edit_data(id)
@@ -278,7 +296,6 @@
     $('#modal_form').modal('hide');
     reload_table();
     sukses();
-    get_count();
     }
     
     $('#btnSave').text('Save'); //change button text
@@ -311,25 +328,6 @@
         type: 'success',
         title: 'Data berhasil diubah !'
       })
-    }
-
-    function get_count(){
-      $.ajax({
-          url : "<?php echo site_url('Admin/Transaksi/getcount'); ?>",
-          type: "GET",
-          data: "",
-          dataType: "json",
-          cache:false,
-          success: function(data){
-            $('#all').text(data.all);
-            $('#konfir').text(data.konfir);
-            $('#done').text(data.done);
-            $('#pay').text(data.pay);
-          },
-          error: function (jqXHR, textStatus, errorThrown){
-              console.log(errorThrown);
-          }
-        });
     }
 
     function escapeHtml(unsafe) {

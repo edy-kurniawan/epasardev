@@ -64,7 +64,7 @@
                             <div class="pro-content">
                                 <div class="pro-info">
                                     <h4><a href="#"><?php echo html_escape($x->Nama) ?></a></h4>
-                                    <p><span class="price">Rp. <?php echo html_escape(number_format($x->Harga)) ?></span><br>Stok <?php echo number_format($x->Stok) ?></p>
+                                    <p><span class="price">Rp. <?php echo html_escape(number_format($x->Harga)) ?></span></p>
                                     <div class="label-product l_sale">/ <?php echo html_escape($x->Satuan) ?></span></div>
                                 </div>
                                 <div class="pro-actions">

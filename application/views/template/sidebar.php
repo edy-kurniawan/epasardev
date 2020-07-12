@@ -34,7 +34,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="<?php echo site_url('administrator/transaksi'); ?>" class="nav-link active">
                   <i class="far fas fa-shopping-cart nav-icon"></i>
                   <p>Penjualan</p>
                   <span class="right badge badge-danger">New</span>

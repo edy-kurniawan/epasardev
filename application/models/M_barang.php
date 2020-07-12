@@ -13,9 +13,8 @@ class M_barang extends CI_Model{
 
     function getSemua(){
 
-        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Stok, barang.Harga, barang.Status, barang.Satuan, barang.Img, barang.Ket, toko.Nama toko, kategori.Nama kat');
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Status, barang.Satuan, barang.Img, barang.Ket, kategori.Nama kat');
         $this->db->from('barang');
-        $this->db->join('toko', 'toko.Kode=barang.Reftoko','left');
         $this->db->join('kategori', 'kategori.Kode=barang.Refkategori','left');
         $this->db->order_by('barang.Datei', 'DESC');
         $query = $this->db->get();
@@ -35,28 +34,12 @@ class M_barang extends CI_Model{
 
     public function edit($id)
     {
-     $query = $this->db->query("SELECT
-                        barang.ID,
-                        barang.Kode,
-                        barang.Nama,
-                        barang.Stok,            
-                        barang.Harga,
-                        barang.Status,
-                        barang.Satuan,
-                        barang.Ket,
-                        barang.Img,
-                        barang.Refkategori,
-                        barang.Reftoko,
-                        toko.Nama toko,
-                        kategori.Nama kat
-                    FROM
-                        barang left outer join toko
-                        on barang.Reftoko=toko.Kode
-                        left outer join kategori
-                        on barang.Refkategori=kategori.Kode
-                        where barang.ID='$id'");
-
-       return $query->row();
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Refkategori, barang.Status, barang.Satuan, barang.Img, barang.Ket, kategori.Nama ');
+        $this->db->from('barang');
+        $this->db->join('kategori', 'kategori.Kode=barang.Refkategori','left');
+        $this->db->where('barang.ID', $id);
+        $query = $this->db->get();
+        return $query->row();
     }
 
      public function delete_by_kode($id)
@@ -96,26 +79,14 @@ class M_barang extends CI_Model{
     /* Model for client */
 
     function showbarang(){
-        $hasil=$this->db->query("SELECT
-                                    barang.ID,
-                                    barang.Nama,
-                                    barang.Stok,
-                                    barang.Harga,
-                                    barang.Satuan,
-                                    barang.Img,
-                                    kategori.Nama kat 
-                                FROM
-                                    barang
-                                    LEFT OUTER JOIN toko ON barang.Reftoko = toko.Kode
-                                    LEFT OUTER JOIN kategori ON barang.Refkategori = kategori.Kode 
-                                WHERE
-                                    barang.Status = 'T' 
-                                AND 
-                                    barang.Stok >='1'
-                                ORDER BY 
-                                    barang.Datei DESC
-                                LIMIT 7 ");
-        return $hasil;
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Status, barang.Satuan, barang.Img, barang.Ket, kategori.Nama kat');
+        $this->db->from('barang');
+        $this->db->join('kategori', 'kategori.Kode=barang.Refkategori','left');
+        $this->db->where('barang.Status','T');
+        $this->db->order_by('barang.Datei', 'DESC');
+        $this->db->limit(7);
+        $query = $this->db->get();
+        return $query;
     }
 
     function add_cart($id){
@@ -128,9 +99,10 @@ class M_barang extends CI_Model{
     
 
     function search($keyword=null){
-        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Stok, barang.Img, barang.Satuan,');
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Img, barang.Satuan,');
         $this->db->from('barang');
         $this->db->like('barang.Nama', $keyword);
+        $this->db->where('barang.Status','T');
         $query = $this->db->get(); 
         return $query;
     }
