@@ -22,9 +22,7 @@ class M_xpenjualan extends CI_Model{
     function get($id){
         $this->db->select('xpenjualan.Kode, xpenjualan.Datei, xpenjualan.Refuser, xpenjualan.Status, xpenjualan.Ket, xpenjualan.Metode ,xpenjualan.Subtotal, xpenjualan.Ongkir, xpenjualan.Total, xpenjualan.An, xpenjualan.Telp, xpenjualan.Alamat, provinsi.nama prov, kabupaten.nama kab, kecamatan.nama kec, kelurahan.nama kel');
         $this->db->select('user.Email, xpenjualan.Telp hp');
-        $this->db->select('xpembayaran.Status bayar');
         $this->db->from('xpenjualan');
-        $this->db->join('xpembayaran', 'xpembayaran.Kode=xpenjualan.Kode','left');
         $this->db->join('user', 'user.Refuser=xpenjualan.Refuser','left');
         $this->db->join('provinsi', 'provinsi.id_prov=xpenjualan.Prov','left');
         $this->db->join('kabupaten', 'kabupaten.id_kab=xpenjualan.Kab','left');
@@ -49,17 +47,13 @@ class M_xpenjualan extends CI_Model{
 
     function count_selesai(){
 
-        $query = $this->db->query("SELECT count(Kode) jml from xpenjualan where Status = '4'");
+        $query = $this->db->query("SELECT count(Kode) jml from xpenjualan where Status = '5'");
         return $query->row();
     }
 
     function count_dibayar(){
 
-        $query = $this->db->query("SELECT count(xpenjualan.Kode) jml 
-        from xpenjualan 
-        left outer join xpembayaran 
-        on xpembayaran.Kode=xpenjualan.Kode 
-        where xpembayaran.Status = '1'");
+        $query = $this->db->query("SELECT count(Kode) jml from xpenjualan where Status >= '2'");
         return $query->row();
     }
 
@@ -94,6 +88,14 @@ class M_xpenjualan extends CI_Model{
 
     function edit_status($id){
         $this->db->select('ID, Status');
+        $this->db->from('xpenjualan');
+        $this->db->where('ID', $id);
+        $query = $this->db->get();
+        return $query->row(); 
+    }
+
+    function get_img($id){
+        $this->db->select('ID, Img');
         $this->db->from('xpenjualan');
         $this->db->where('ID', $id);
         $query = $this->db->get();

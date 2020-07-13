@@ -75,7 +75,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                <?php echo html_escape($x->Metode) ?>
+                <strong><?php echo html_escape($x->Metode) ?></strong>
                   <address>
                     <strong><?php echo html_escape($x->An) ?></strong><br>
                     No Hp: <?php echo html_escape($x->Telp) ?><br>
@@ -86,14 +86,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <b>Invoice #<?php echo html_escape($x->Kode) ?></b><br>
-                  <br>
-                  <?php 
-                        if($x->bayar=="0"){ $bayar = "Menunggu Konfirmasi"; }
-                        elseif($x->bayar=="1"){ $bayar = "Dibayar"; }
-                        else{ $bayar = "Belum Dibayar"; }
-                  ?>
-                  <b>Status Pembayaran:</b> <?php echo html_escape($bayar) ?><br>
+                  <b>Invoice #<?php echo html_escape($x->Kode) ?></b>
                 </div>
                 <!-- /.col -->
               </div>

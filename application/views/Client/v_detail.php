@@ -118,45 +118,57 @@
 <?php
     foreach ($detail as $x) {
         if($x->Status=="0") {
-            $track = "Menunggu Pembayaran";
+            $track = "Menunggu Konfirmasi Ketersediaan Pesanan";
             $class = "<li class='active step0'></li>
                     <li class='step0'></li>
                     <li class='step0'></li>
                     <li class='step0'></li>";
         }
         elseif($x->Status=="1") {
-            $track = "Menunggu Konfirmasi Pembayaran";
+            $track = "Menunggu Pembayaran";
             $class = "<li class='active step0'></li>
                     <li class='step0'></li>
                     <li class='step0'></li>
                     <li class='step0'></li>";
         }
         elseif($x->Status=="2") {
+            $track = "Menunggu Konfirmasi Pembayaran";
+            $class = "<li class='active step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>";
+        }
+        elseif($x->Status=="3") {
             $track = "Pesanan Disiapkan";
             $class = "<li class='active step0'></li>
                     <li class='active step0'></li>
                     <li class='step0'></li>
                     <li class='step0'></li>";
-        }
-        elseif($x->Status=="3") {
-            $track = "Pesanan Siap Dikirim / Diambil";
+        }elseif($x->Status=="4") {
+            $track = "Pesanan Siap Diambil / Diantar";
             $class = "<li class='active step0'></li>
                     <li class='active step0'></li>
                     <li class='active step0'></li>
                     <li class='step0'></li>";
-        }else{
+        }elseif($x->Status=="5") {
             $track = "Selesai";
             $class = "<li class='active step0'></li>
                     <li class='active step0'></li>
                     <li class='active step0'></li>
                     <li class='active step0'></li>";
+        }else{
+            $track = "Pesanan Tidak Tersedia / Dibatalkan";
+            $class = "<li class='step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>
+                    <li class='step0'></li>";
         }
 ?>
     <div class="container">
         <div class="card bg-light">
             <div class="row d-flex justify-content-between px-3 top">
                 <div class="d-flex">
-                    <h5><?php echo $track ?></h5>
+                    <h5><strong><?php echo $track ?></strong></h5>
                 </div>
                 <div class="d-flex flex-column text-sm-right">
                     <p>Kode Transaksi : <span class="text-info font-weight-bold"><?php echo html_escape($x->Kode) ?></span></p>
@@ -196,7 +208,7 @@
                 </div>
             </div>
             <?php
-                foreach ($status as $y) { if($y->Status=="0") {
+                foreach ($status as $y) { if($y->Status=="1") {
             ?>
             <div class="row justify-content-between top">
                 <div class="d-flex">

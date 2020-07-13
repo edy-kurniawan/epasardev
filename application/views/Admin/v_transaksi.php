@@ -108,7 +108,6 @@
                             <th>Metode</th>
                             <th>Status</th>
                             <th>Total</th>
-                            <th>Ket</th>
                             <th>Aksi</th>
                           </tr>
                         </thead>
@@ -146,12 +145,11 @@
                 <div class="col-md-12 mb-3">
                   <label for="validationCustom01">Status</label>
                   <select name="status" class="form-control" required>
-                      <option value="0">Menunggu Konfirmasi Ketersediaan</option>
                       <option value="1">Konfirmasi Ketersediaan Pesanan & Menunggu Pembayaran</option>
-                      <option value="2">Konfirmasi Pembayaran & Pesanan Disiapkan</option> 
-                      <option value="3">Pesanan Siap Diantar / Diambil</option>
-                      <option value="4">Selesai</option> 
-                      <option value="5">Pesanan Tidak Tersedia / Dibatalkan</option>                    
+                      <option value="3">Konfirmasi Pembayaran & Pesanan Disiapkan</option> 
+                      <option value="4">Pesanan Siap Diantar / Diambil</option>
+                      <option value="5">Selesai</option> 
+                      <option value="6">Pesanan Tidak Tersedia / Dibatalkan</option>                    
                   </select>
                 </div>
               </div>
@@ -160,6 +158,40 @@
           <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+          </form>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+      <div class="modal fade" id="modal_img">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Large Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+          <div class="box-body pad">
+            <form id="img" class="needs-validation" role="form"><div class="form-row">
+                <div class="col-md-12 mb-3">
+                  <div class="form-group" id="photo-preview">
+                      <div class="col-md-12">
+                        (No photo)
+                        <span class="help-block"></span>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+          <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
           </form>
@@ -201,7 +233,6 @@
               { "data": "metode" },
               { "data": "status" },  
               { "data": "total" },
-              { "data": "ket" },
               { "data": "action" }
             ],
             "order": [[0, 'asc']]
@@ -330,6 +361,40 @@
               console.log(errorThrown);
           }
         });
+    }
+
+    function img_data(id)
+    {
+    $('#img')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+    //Ajax Load data from ajax
+    $.ajax({
+    url : "<?php echo base_url('Admin/Transaksi/get_img')?>/" + id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data)
+    {
+    $('#modal_img').modal('show'); // show bootstrap modal when complete loaded
+    $('.modal-title').text('Bukti Pembayaran'); // Set title to Bootstrap modal title
+    
+    $('#photo-preview').show(); // show photo preview modal
+    if(data.Img != null)
+    {
+        $('#photo-preview div').html('<img src="<?php echo base_url();?>/assets/upload/transaksi/'+escapeHtml(data.Img)+'" style="width:100%;">'); // show photo
+    }
+    else
+    {
+      $('#photo-preview div').html('<img src="<?php echo base_url();?>/assets/upload/transaksi/default.jpg" style="width:100%;">'); // show photo
+    }
+
+    
+    },
+    error: function (jqXHR, textStatus , errorThrown)
+    {
+    alert('Error get data from ajax');
+    }
+    });
     }
 
     function escapeHtml(unsafe) {

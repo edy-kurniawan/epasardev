@@ -35,12 +35,14 @@ class Transaksi extends CI_Controller {
               } elseif ($r->Status == "1") {
                 $stts = "<span class='badge badge-info'>Menunggu Pembayaran</span>";
               } elseif ($r->Status == "2") {
-                $stts = "<span class='badge badge-warning'>Pesanan Terkonfirmasi & Disiapkan</span>";
+                $stts = "<span class='badge badge-warning'>Dibayar</span>";
               } elseif ($r->Status == "3") {
-                $stts = "<span class='badge badge-dark'>Pesanan Siap Dikirim / Diambil</span>";
+                $stts = "<span class='badge badge-dark'>Pesanan Disiapkan</span>";
               } elseif ($r->Status == "4") {
-                $stts = "<span class='badge badge-primary'>Selesai</span>";
+                $stts = "<span class='badge badge-primary'>Pesanan Siap Diambil / Dikirim</span>";
               } elseif ($r->Status == "5") {
+                $stts = "<span class='badge badge-danger'>Selesai</span>";
+              }elseif ($r->Status == "6") {
                 $stts = "<span class='badge badge-danger'>Tidak Tersedia / Dibatalkan</span>";
               } else {
                 $stts = "";
@@ -60,7 +62,6 @@ class Transaksi extends CI_Controller {
                         "metode"    => $metode,
                         "status"    => $stts,
                         "total"     => html_escape(number_format($r->Total)),
-                        "ket"       => html_escape($r->Ket),
                         "action"    => pesanan($r->ID)
             );
 
@@ -90,6 +91,12 @@ class Transaksi extends CI_Controller {
     public function ajax_edit($id)
     {
         $data = $this->M_xpenjualan->edit_status($id);
+        echo json_encode($data);
+    }
+
+    public function get_img($id)
+    {
+        $data = $this->M_xpenjualan->get_img($id);
         echo json_encode($data);
     }
 

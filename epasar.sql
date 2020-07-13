@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2020 at 03:19 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Jul 13, 2020 at 05:33 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -50,9 +49,7 @@ INSERT INTO `admin` (`ID`, `Username`, `Pass`) VALUES
 CREATE TABLE `barang` (
   `ID` int(6) NOT NULL,
   `Kode` varchar(15) NOT NULL,
-  `Reftoko` varchar(5) NOT NULL,
   `Nama` char(25) NOT NULL,
-  `Stok` int(255) NOT NULL,
   `Harga` int(255) NOT NULL,
   `Refkategori` varchar(5) NOT NULL,
   `Satuan` text NOT NULL,
@@ -67,15 +64,15 @@ CREATE TABLE `barang` (
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`ID`, `Kode`, `Reftoko`, `Nama`, `Stok`, `Harga`, `Refkategori`, `Satuan`, `Status`, `Ket`, `Img`, `Datei`, `Dateu`) VALUES
-(32, '1121', 'T03', 'Beras Premium', 99, 12000, 'KAT1', 'Kg', 'T', 'Beras Premium Kualitas Terjamin bagus', '1588339312348.jpg', '2020-06-04 06:29:33', '2020-06-09 12:08:37'),
-(34, '1122', 'T01', 'Beras Termurah', 100, 9000, 'KAT1', 'Kg', 'T', 'Beras Termurah Subsidi Bulog', '1588339858640.jpg', '2020-06-04 06:29:38', '2020-05-01 13:30:58'),
-(33, '1123', 'T03', 'Beras Medium', 100, 10000, 'KAT1', 'Kg', 'T', 'Beras Medium Tanpa Pemutih', '1588339748209.jpg', '2020-06-04 06:29:40', '2020-05-28 14:28:38'),
-(35, '2111', 'T01', 'Gula Kristal Putih', 50, 17000, 'KAT1', 'Kg', 'T', 'Gula kristal putih tanpa pemutih', '1588340038692.jpg', '2020-06-04 06:29:43', NULL),
-(37, '4111', 'C1', 'Sapi Paha Depan', 10, 100000, 'KAT2', 'Kg', 'T', 'Sapi Paha Depan Kualitas Terbaik Dan Segar', '1588340851160.jpg', '2020-06-04 06:29:51', NULL),
-(38, '4112', 'C1', 'Sapi Has Dalam (Tenderloi', 10, 110000, 'KAT2', 'Kg', 'T', 'Tenderloin sapi', '1588340975769.jpg', '2020-06-04 06:29:54', NULL),
-(39, '5111', 'C1', 'Daging Ayam Boiler', 20, 26000, 'KAT2', 'Kg', 'T', 'Daging ayam boiler segar', '1588341067964.jpg', '2020-06-04 06:29:57', NULL),
-(40, '5112', 'C1', 'Telur Ayam Ras', 10, 22000, 'KAT2', 'Kg', 'F', '', '1588341126179.jpg', '2020-06-04 06:30:01', '2020-06-13 09:10:32');
+INSERT INTO `barang` (`ID`, `Kode`, `Nama`, `Harga`, `Refkategori`, `Satuan`, `Status`, `Ket`, `Img`, `Datei`, `Dateu`) VALUES
+(32, '1121', 'Beras Premium', 12000, 'KAT1', 'Kg', 'T', 'Beras Premium Kualitas Terjamin bagus', '1588339312348.jpg', '2020-06-04 06:29:33', '2020-06-09 12:08:37'),
+(34, '1122', 'Beras Termurah', 9000, 'KAT1', 'Kg', 'T', 'Beras Termurah Subsidi Bulog', '1588339858640.jpg', '2020-06-04 06:29:38', '2020-05-01 13:30:58'),
+(33, '1123', 'Beras Medium', 10000, 'KAT1', 'Kg', 'T', 'Beras Medium Tanpa Pemutih', '1588339748209.jpg', '2020-06-04 06:29:40', '2020-05-28 14:28:38'),
+(35, '2111', 'Gula Kristal Putih', 17000, 'KAT1', 'Kg', 'T', 'Gula kristal putih tanpa pemutih', '1588340038692.jpg', '2020-06-04 06:29:43', NULL),
+(37, '4111', 'Sapi Paha Depan', 100000, 'KAT2', 'Kg', 'T', 'Sapi Paha Depan Kualitas Terbaik Dan Segar', '1588340851160.jpg', '2020-06-04 06:29:51', NULL),
+(38, '4112', 'Sapi Has Dalam (Tenderloi', 110000, 'KAT2', 'Kg', 'T', 'Tenderloin sapi', '1588340975769.jpg', '2020-06-04 06:29:54', NULL),
+(39, '5111', 'Daging Ayam Boiler', 26000, 'KAT2', 'Kg', 'F', 'Daging ayam boiler segar', '1588341067964.jpg', '2020-06-04 06:29:57', '2020-07-04 02:28:48'),
+(40, '5112', 'Telur Ayam Ras', 22000, 'KAT2', 'Kg', 'T', '', '1588341126179.jpg', '2020-06-04 06:30:01', '2020-07-05 14:58:03');
 
 -- --------------------------------------------------------
 
@@ -99,8 +96,9 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`ID`, `Refuser`, `Refbarang`, `Jumlah`, `Subtotal`, `Datei`) VALUES
 (62, 'admin', '5111', 3, 78000, '2020-06-23 13:45:28'),
 (64, 'user4', '4112', 1, 110000, '2020-06-22 20:19:56'),
-(66, 'admin', '2111', 3, 51000, '2020-06-23 15:22:45'),
-(67, 'admin', '4112', 1, 110000, '2020-06-24 23:06:42');
+(66, 'admin', '2111', 2, 34000, '2020-07-04 21:40:41'),
+(68, 'edy', '5111', 22, 572000, '2020-07-04 09:00:40'),
+(70, 'edy', '4111', 3, 300000, '2020-07-04 09:15:04');
 
 -- --------------------------------------------------------
 
@@ -42732,8 +42730,8 @@ INSERT INTO `kelurahan` (`id_kel`, `id_kec`, `nama`, `status`, `ongkir`) VALUES
 ('3311041008', '331104', 'Combongan', NULL, NULL),
 ('3311041009', '331104', 'Kriwen', NULL, NULL),
 ('3311041010', '331104', 'Bulakan', NULL, NULL),
-('3311041011', '331104', 'Dukuh', 't', 5000),
-('3311041012', '331104', 'Sukoharjo', 't', 4000),
+('3311041011', '331104', 'Dukuh', NULL, NULL),
+('3311041012', '331104', 'Sukoharjo', 't', 5000),
 ('3311041013', '331104', 'Bulakrejo', NULL, NULL),
 ('3311041014', '331104', 'Sonorejo', NULL, NULL),
 ('3311052001', '331105', 'Tanjungrejo', NULL, NULL),
@@ -42752,7 +42750,7 @@ INSERT INTO `kelurahan` (`id_kel`, `id_kec`, `nama`, `status`, `ongkir`) VALUES
 ('3311052014', '331105', 'Tanjung', NULL, NULL),
 ('3311052015', '331105', 'Pondok', NULL, NULL),
 ('3311052016', '331105', 'Kepuh', NULL, NULL),
-('3311061001', '331106', 'Jombor', 't', 5000),
+('3311061001', '331106', 'Jombor', NULL, NULL),
 ('3311062002', '331106', 'Toriyo', 't', 5000),
 ('3311062003', '331106', 'Mulur', 't', 6000),
 ('3311062004', '331106', 'Jagan', NULL, NULL),
@@ -45136,8 +45134,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`ID`, `Username`, `Pass`, `Status`, `Onlast`) VALUES
-(11, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'T', '2020-06-27 13:07:55'),
+(11, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'T', '2020-07-13 10:02:16'),
 (10, 'duta', '798fa27c4d4fb5b1158a1d5f2339edc0a21b14b6', 'T', NULL),
+(15, 'edy', '2f5ef40b94f13ec728180a82913694faba25a65a', 'T', '2020-07-04 01:59:46'),
 (9, 'trial', '069fd3a44db682e9a4ea4bf495c0ffbee58c8431', 'T', NULL),
 (12, 'user2', 'a1881c06eec96db9901c7bbfe41c42a3f08e9cb4', 'T', NULL),
 (13, 'user3', '0b7f849446d3383546d15a480966084442cd2193', 'T', NULL),
@@ -45256,31 +45255,11 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`ID`, `Refuser`, `Nama`, `Jenis`, `Tgllahir`, `Telp`, `Email`, `Img`, `Alamat`, `Prov`, `Kab`, `Kec`, `Kel`, `Datei`, `Dateu`) VALUES
 (6, 'admin', 'edy kurniawan', '0', '2020-05-03', '27172725', 'edy.kurniawan280898@gmail.com', 'default.png', 'Godog Rt 01 Rw 09', '33', '3311', '331106', '3311062011', '2020-05-07 01:23:36', '2020-06-21 05:18:51'),
 (5, 'duta', 'duta bangsa', '', '0000-00-00', '02719921', 'udb@ac.id', NULL, '', NULL, NULL, NULL, '', '2020-05-07 00:36:10', NULL),
+(10, 'edy', 'edy', '0', '2020-07-02', '09877212', 'edy@gmail.com', '1593828106970.jpg', 'Godog Rt.01 Rw.09', '33', '3311', '331105', '3311052001', '2020-07-04 01:59:30', '2020-07-04 02:08:12'),
 (4, 'trial', 'trial', '', '0000-00-00', '082312312', 'trial@gmail.com', NULL, '', NULL, NULL, NULL, '', '2020-05-06 13:45:02', NULL),
 (7, 'user2', 'user', NULL, NULL, '0899212', 'user2@gmail.com', 'default.png', NULL, NULL, NULL, NULL, '', '2020-06-20 03:00:18', NULL),
 (8, 'user3', 'user3', NULL, NULL, '08788121', 'user3@gmail.com', 'default.png', NULL, NULL, NULL, NULL, '', '2020-06-20 04:09:11', NULL),
 (9, 'user4', 'user4', NULL, NULL, '0899212', 'user4@gmail.com', 'default.png', NULL, NULL, NULL, NULL, '', '2020-06-26 04:14:35', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `xpembayaran`
---
-
-CREATE TABLE `xpembayaran` (
-  `ID` int(6) NOT NULL,
-  `Kode` varchar(15) NOT NULL,
-  `Img` varchar(60) DEFAULT NULL,
-  `Status` varchar(2) NOT NULL,
-  `Datei` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `xpembayaran`
---
-
-INSERT INTO `xpembayaran` (`ID`, `Kode`, `Img`, `Status`, `Datei`) VALUES
-(4, '2020-06-240001', '1593013350865.jpg', '0', '2020-06-24 15:42:30');
 
 -- --------------------------------------------------------
 
@@ -45305,6 +45284,7 @@ CREATE TABLE `xpenjualan` (
   `Kec` varchar(6) CHARACTER SET utf8mb4 DEFAULT NULL,
   `Kel` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,
   `Ket` char(25) DEFAULT NULL,
+  `Img` varchar(50) DEFAULT NULL,
   `Datei` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -45312,10 +45292,13 @@ CREATE TABLE `xpenjualan` (
 -- Dumping data for table `xpenjualan`
 --
 
-INSERT INTO `xpenjualan` (`ID`, `Kode`, `Refuser`, `Metode`, `Status`, `Total`, `Subtotal`, `Ongkir`, `An`, `Telp`, `Alamat`, `Prov`, `Kab`, `Kec`, `Kel`, `Ket`, `Datei`) VALUES
-(17, '2020-06-240001', 'admin', 'Kirim', '0', 399000, 389000, 10000, 'edy kurniawan', '27172725', 'Godog Rt 01 Rw 09', '33', '3311', '331106', '3311062011', 'null', '2020-06-24 01:58:58'),
-(20, '2020-06-240002', 'admin', 'Ambil', '2', 129000, 129000, NULL, 'edy kurniawan', '27172725', '', NULL, NULL, NULL, NULL, '', '2020-06-24 08:16:36'),
-(21, '2020-06-240003', 'admin', 'Kirim', '4', 249000, 239000, 10000, 'edy kurniawan', '27172725', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', 'Daging sapi maupun ayam2', '2020-06-24 16:07:07');
+INSERT INTO `xpenjualan` (`ID`, `Kode`, `Refuser`, `Metode`, `Status`, `Total`, `Subtotal`, `Ongkir`, `An`, `Telp`, `Alamat`, `Prov`, `Kab`, `Kec`, `Kel`, `Ket`, `Img`, `Datei`) VALUES
+(17, '2020-06-240001', 'admin', 'Kirim', '0', 399000, 389000, 10000, 'edy kurniawan', '27172725', 'Godog Rt 01 Rw 09', '33', '3311', '331106', '3311062011', 'null', NULL, '2020-06-24 01:58:58'),
+(20, '2020-06-240002', 'admin', 'Ambil', '2', 129000, 129000, NULL, 'edy kurniawan', '27172725', '', NULL, NULL, NULL, NULL, '', NULL, '2020-06-24 08:16:36'),
+(21, '2020-06-240003', 'admin', 'Kirim', '4', 249000, 239000, 10000, 'edy kurniawan', '27172725', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', 'Daging sapi maupun ayam2', NULL, '2020-06-24 16:07:07'),
+(22, '2020-07-040001', 'edy', 'Kirim', '4', 582000, 572000, 10000, 'edy', '09877212', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', 'Daging sapi maupun ayam2', NULL, '2020-07-04 02:10:02'),
+(23, '2020-07-050001', 'admin', 'Kirim', '1', 117000, 112000, 5000, 'edy kurniawan', '27172725', 'ds', '33', '3311', '331106', '3311062002', 'kosong', NULL, '2020-07-05 03:33:34'),
+(24, '2020-07-130001', 'admin', 'Ambil', '2', 112000, 112000, NULL, 'edy kurniawan', '27172725', '', NULL, NULL, NULL, NULL, '', '1594644526942.png', '2020-07-13 10:03:17');
 
 -- --------------------------------------------------------
 
@@ -45345,7 +45328,12 @@ INSERT INTO `xpenjualand` (`ID`, `Kode`, `Refbarang`, `Harga`, `Jumlah`, `Subtot
 (54, '2020-06-240002', '5111', 26000, 3, 78000),
 (55, '2020-06-240003', '4112', 110000, 1, 110000),
 (56, '2020-06-240003', '2111', 17000, 3, 51000),
-(57, '2020-06-240003', '5111', 26000, 3, 78000);
+(57, '2020-06-240003', '5111', 26000, 3, 78000),
+(58, '2020-07-040001', '5111', 26000, 22, 572000),
+(59, '2020-07-050001', '2111', 17000, 2, 34000),
+(60, '2020-07-050001', '5111', 26000, 3, 78000),
+(61, '2020-07-130001', '2111', 17000, 2, 34000),
+(62, '2020-07-130001', '5111', 26000, 3, 78000);
 
 --
 -- Indexes for dumped tables
@@ -45364,7 +45352,6 @@ ALTER TABLE `admin`
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`Kode`),
   ADD KEY `Refkategori` (`Refkategori`),
-  ADD KEY `Reftoko` (`Reftoko`),
   ADD KEY `ID` (`ID`);
 
 --
@@ -45437,13 +45424,6 @@ ALTER TABLE `user`
   ADD KEY `Kel` (`Kel`);
 
 --
--- Indexes for table `xpembayaran`
---
-ALTER TABLE `xpembayaran`
-  ADD PRIMARY KEY (`Kode`),
-  ADD KEY `ID` (`ID`);
-
---
 -- Indexes for table `xpenjualan`
 --
 ALTER TABLE `xpenjualan`
@@ -45483,7 +45463,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -45495,7 +45475,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `toko`
@@ -45507,25 +45487,19 @@ ALTER TABLE `toko`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `xpembayaran`
---
-ALTER TABLE `xpembayaran`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `xpenjualan`
 --
 ALTER TABLE `xpenjualan`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `xpenjualand`
 --
 ALTER TABLE `xpenjualand`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Constraints for dumped tables
@@ -45535,8 +45509,7 @@ ALTER TABLE `xpenjualand`
 -- Constraints for table `barang`
 --
 ALTER TABLE `barang`
-  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`Refkategori`) REFERENCES `kategori` (`Kode`),
-  ADD CONSTRAINT `barang_ibfk_2` FOREIGN KEY (`Reftoko`) REFERENCES `toko` (`Kode`);
+  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`Refkategori`) REFERENCES `kategori` (`Kode`);
 
 --
 -- Constraints for table `cart`
@@ -45571,12 +45544,6 @@ ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`Prov`) REFERENCES `provinsi` (`id_prov`),
   ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`Kab`) REFERENCES `kabupaten` (`id_kab`),
   ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`Kec`) REFERENCES `kecamatan` (`id_kec`);
-
---
--- Constraints for table `xpembayaran`
---
-ALTER TABLE `xpembayaran`
-  ADD CONSTRAINT `xpembayaran_ibfk_1` FOREIGN KEY (`Kode`) REFERENCES `xpenjualan` (`Kode`);
 
 --
 -- Constraints for table `xpenjualan`

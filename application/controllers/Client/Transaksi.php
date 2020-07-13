@@ -11,7 +11,7 @@ class Transaksi extends CI_Controller
         }
 
         $this->load->helper(array('form', 'url'));
-        $this->load->model(array('DbHelper','M_cart','M_xpenjualand','M_kategori','M_xpenjualan','M_pembayaran'));
+        $this->load->model(array('DbHelper','M_cart','M_xpenjualand','M_kategori','M_xpenjualan'));
         $this->load->library(array('form_validation', 'session'));
         $this->load->helper('security');
     }
@@ -61,19 +61,11 @@ class Transaksi extends CI_Controller
 
             if(!empty($_FILES['photo']['name']))
             {
-                $data = array(  
-                    "Status"    => "0",
-                    "Datei"     => $now,
-                    "Kode"      => $kode
-                    );
-
+                
                 $upload = $this->_do_upload();
-                $data['Img'] = $upload;
-
-                $this->M_pembayaran->inputdata($data,'xpembayaran');
-
                 $update = array(  
-                    "Status"   => "1"
+                    "Status"   => "2",
+                    "Img"      => $upload,
                         );
                 $where = array(
                     'Kode' => $kode
