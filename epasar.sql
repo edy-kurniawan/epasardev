@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 08:00 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Host: localhost:3306
+-- Generation Time: Jul 15, 2020 at 07:19 PM
+-- Server version: 5.7.31-log
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `epasar`
+-- Database: `itcloudn_dbepasar`
 --
 
 -- --------------------------------------------------------
@@ -65,45 +66,45 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`ID`, `Kode`, `Nama`, `Harga`, `Refkategori`, `Satuan`, `Status`, `Ket`, `Img`, `Datei`, `Dateu`) VALUES
-(50, 'B001', 'Beras Premium', 11000, 'KAT1', 'Kg', 'T', 'Beras premium perkilo Rp 11000', 'default.jpg', '2020-07-14 12:14:57', NULL),
-(51, 'B002', 'Beras Medium', 10000, 'KAT1', 'Kg', 'T', 'Beras medium per-kg', 'default.jpg', '2020-07-14 12:16:20', '2020-07-14 12:52:19'),
-(52, 'B003', 'Beras Termurah', 9000, 'KAT1', 'Kg', 'T', 'Beras termurah', 'default.jpg', '2020-07-14 12:17:21', NULL),
-(86, 'B005', 'Bawang Putih (Honan)', 15000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:53:26', NULL),
-(87, 'B006', 'Bawang Putih (Kating)', 18000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:55:28', NULL),
-(80, 'C001', 'Cabe Merah Keriting', 17000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:43:53', NULL),
-(81, 'C002', 'Cabe Merah Besar', 15000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:44:37', NULL),
-(82, 'C003', 'Cabe Rawit Merah', 25000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:47:28', NULL),
-(83, 'C004', 'Cabe Rawit Hijau', 17000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:52:08', NULL),
-(57, 'D001', 'Daging Sapi Paha Depan', 100000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:23:51', NULL),
-(58, 'D002', 'Daging Sapi Paha Belakang', 110000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:24:18', NULL),
-(59, 'D003', 'Daging Sapi Has Luar ( Sirloin )', 110000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:25:06', '2020-07-14 12:28:24'),
-(60, 'D004', 'Daging Sapi Has Dalam ( Tenderloin )', 110000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:36:00', '2020-07-14 13:58:22'),
-(61, 'D005', 'Daging Ayam Boiler', 35000, 'KAT2', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:00:59', NULL),
-(62, 'D006', 'Daging Ayam Kampung (sadang)', 65000, 'KAT2', 'Ekor', 'T', '', 'default.jpg', '2020-07-14 14:04:22', NULL),
-(53, 'G001', 'Gula Pasir (kw medium)', 12500, 'KAT1', 'Kg', 'T', 'Gula pasir', 'default.jpg', '2020-07-14 12:18:41', NULL),
-(91, 'G003', 'Garam Bata', 1500, 'KAT3', 'buah', 'T', '\r\n', 'default.jpg', '2020-07-14 15:01:22', NULL),
-(92, 'G004', 'Garam Halus', 6000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:02:07', NULL),
-(88, 'I001', 'Ikan Kembung', 36000, 'KAT2', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:58:31', NULL),
-(89, 'I002', 'Ikan Teri Asin', 55000, 'KAT2', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:00:03', NULL),
-(96, 'J001', 'Jagung Pipilan', 6000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:04:55', NULL),
-(73, 'K001', 'Kedelai Impor', 9000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:32:09', '2020-07-14 14:35:30'),
-(74, 'K002', 'Kedelai Lokal', 10000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:34:38', NULL),
-(93, 'K003', 'Kacang Hijau', 25000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:03:08', NULL),
-(94, 'K004', 'Kacang Tanah', 26000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:03:41', NULL),
-(95, 'K005', 'Ketela Pohon', 5000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:04:16', NULL),
-(54, 'M001', 'Minyak Goreng Kemasan', 13500, 'KAT1', 'Liter', 'T', '', 'default.jpg', '2020-07-14 12:19:25', NULL),
-(55, 'M002', 'Minyak Goreng Curah', 10500, 'KAT1', 'Liter', 'T', '', 'default.jpg', '2020-07-14 12:19:58', NULL),
-(56, 'M003', 'Minyak Goreng Kemasan Sederhana', 12500, 'KAT1', 'Liter', 'T', '', 'default.jpg', '2020-07-14 12:23:14', '2020-07-14 12:28:32'),
-(79, 'M005', 'Indomie Kuah Rasa Kari Ayam', 2500, 'KAT1', 'bungkus', 'T', '', 'default.jpg', '2020-07-14 14:38:16', '2020-07-14 15:05:43'),
-(65, 'S001', 'Susu Bubuk Merk Indomik', 36800, 'KAT1', '400 gr', 'T', '', 'default.jpg', '2020-07-14 14:19:57', NULL),
-(66, 'S002', 'Susu Bubuk Merk Dencow', 42195, 'KAT1', '400 gr', 'T', '', 'default.jpg', '2020-07-14 14:20:59', NULL),
-(67, 'S003', 'Susu Bubuk Merk Frisian flag', 10000, 'KAT1', '375 gr', 'T', '', 'default.jpg', '2020-07-14 14:22:06', NULL),
-(68, 'S004', 'Susu Kental Manis Indomilk', 9000, 'KAT1', '375 gr', 'T', '', 'default.jpg', '2020-07-14 14:23:15', NULL),
-(63, 'T001', 'Telur Ayam Ras', 24000, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:05:12', NULL),
-(64, 'T002', 'Telur Ayam Kampung', 35700, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:07:24', NULL),
-(70, 'T005', 'Tepung Terigu Protein Tinggi (cakra)', 10000, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:24:49', NULL),
-(71, 'T006', 'Tepung Terigu Protein Sedang (segitiga biru)', 9000, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:27:32', NULL),
-(72, 'T007', 'Tepung Terigu Protein Rendah (kunci biru)', 7500, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:28:35', NULL);
+(50, 'B001', 'Beras Premium', 11000, 'KAT1', 'Kg', 'T', 'Beras premium perkilo Rp 11000', 'de623654b2659582cd65820eab123c05.jpg', '2020-07-14 12:14:57', '2020-07-15 12:17:23'),
+(51, 'B002', 'Beras Medium', 10000, 'KAT1', 'Kg', 'T', 'Beras medium per-kg', 'c2b732eaf143d139ad187c924b886421.jpg', '2020-07-14 12:16:20', '2020-07-15 12:17:35'),
+(52, 'B003', 'Beras Termurah', 9000, 'KAT1', 'Kg', 'T', 'Beras termurah', 'b29a7da17ff0513406aa4b3885de39cd.png', '2020-07-14 12:17:21', '2020-07-15 12:18:23'),
+(86, 'B005', 'Bawang Putih (Honan)', 15000, 'KAT3', 'kg', 'T', '', 'cc2e86dc65b9c0f89fce0749ae361f7f.jpg', '2020-07-14 14:53:26', '2020-07-15 12:10:29'),
+(87, 'B006', 'Bawang Putih (Kating)', 18000, 'KAT3', 'kg', 'T', '', 'e0d07efbbbacc9dea62451e6b203fb00.jpg', '2020-07-14 14:55:28', '2020-07-15 12:10:18'),
+(80, 'C001', 'Cabe Merah Keriting', 17000, 'KAT3', 'kg', 'T', '', 'b4a93f4bc7b0a6f9ec2097d0b846fd1b.jpg', '2020-07-14 14:43:53', '2020-07-15 12:11:24'),
+(81, 'C002', 'Cabe Merah Besar', 15000, 'KAT3', 'kg', 'T', '', 'a1b2d0465be1e0c5b25f8efc754fe240.jpg', '2020-07-14 14:44:37', '2020-07-15 12:11:16'),
+(82, 'C003', 'Cabe Rawit Merah', 25000, 'KAT3', 'kg', 'T', '', '99d8e2e518152e6706f3820f3d0240ae.jpg', '2020-07-14 14:47:28', '2020-07-15 12:10:58'),
+(83, 'C004', 'Cabe Rawit Hijau', 17000, 'KAT3', 'kg', 'T', '', '08beed7552c6b0567149651fdbd31944.jpg', '2020-07-14 14:52:08', '2020-07-15 12:10:47'),
+(57, 'D001', 'Daging Sapi Paha Depan', 100000, 'KAT2', 'Kg', 'T', '', '78c789141ce9cc0e682bc431cf986fcd.jpg', '2020-07-14 12:23:51', '2020-07-15 12:15:19'),
+(58, 'D002', 'Daging Sapi Paha Belakang', 110000, 'KAT2', 'Kg', 'T', '', '3dd4b6f8ddb5701f634254e334f23e22.jpg', '2020-07-14 12:24:18', '2020-07-15 12:15:08'),
+(59, 'D003', 'Daging Sapi Has Luar ( Sirloin )', 110000, 'KAT2', 'Kg', 'T', '', 'bd09a9571b5c950c2cd28403620643d0.jpg', '2020-07-14 12:25:06', '2020-07-15 12:14:22'),
+(60, 'D004', 'Daging Sapi Has Dalam ( Tenderloin )', 110000, 'KAT2', 'Kg', 'T', '', '357afc697e8471170a97e8f6d365ea26.jpg', '2020-07-14 12:36:00', '2020-07-15 12:14:10'),
+(61, 'D005', 'Daging Ayam Boiler', 35000, 'KAT2', 'kg', 'T', '', '2244340682b7347d118a593352b22e35.jpg', '2020-07-14 14:00:59', '2020-07-15 12:13:57'),
+(62, 'D006', 'Daging Ayam Kampung (sadang)', 65000, 'KAT2', 'Ekor', 'T', '', '6bca9c37b0db43522dd683f52c6d3aa9.jpg', '2020-07-14 14:04:22', '2020-07-15 12:13:44'),
+(53, 'G001', 'Gula Pasir (kw medium)', 12500, 'KAT1', 'Kg', 'T', 'Gula pasir', '13740e29302678ce6ecfb0236e26eeff.jpg', '2020-07-14 12:18:41', '2020-07-15 12:16:58'),
+(91, 'G003', 'Garam Bata', 1500, 'KAT3', 'buah', 'T', '\r\n', '3098d38f998cb0c955cb073bfdb7b506.jpg', '2020-07-14 15:01:22', '2020-07-15 12:09:44'),
+(92, 'G004', 'Garam Halus', 6000, 'KAT3', 'kg', 'T', '', 'd70e0d9caca26b67f1aaa2178ae456e6.jpg', '2020-07-14 15:02:07', '2020-07-15 12:09:36'),
+(88, 'I001', 'Ikan Kembung', 36000, 'KAT2', 'kg', 'T', '', '125f1f63cd902e8a96c7fdbcd18edc33.jpg', '2020-07-14 14:58:31', '2020-07-15 12:10:05'),
+(89, 'I002', 'Ikan Teri Asin', 55000, 'KAT2', 'kg', 'T', '', '0c2aaa4db26575d34d49192cfa77744a.jpg', '2020-07-14 15:00:03', '2020-07-15 12:09:55'),
+(96, 'J001', 'Jagung Pipilan', 6000, 'KAT3', 'kg', 'T', '', '7a5bcf4d689f2bb95b7bce4b9fd8e5c3.jpg', '2020-07-14 15:04:55', '2020-07-15 12:08:40'),
+(73, 'K001', 'Kedelai Impor', 9000, 'KAT3', 'kg', 'T', '', '972c1d5bbf2d80169efdc1d03cdc4c81.jpg', '2020-07-14 14:32:09', '2020-07-15 12:11:51'),
+(74, 'K002', 'Kedelai Lokal', 10000, 'KAT3', 'kg', 'T', '', '6731ea6859cb4336b7caadf933b52504.jpg', '2020-07-14 14:34:38', '2020-07-15 12:11:39'),
+(93, 'K003', 'Kacang Hijau', 25000, 'KAT3', 'kg', 'T', '', 'd067ae4b57ada372ba533234eba29061.jpg', '2020-07-14 15:03:08', '2020-07-15 12:09:24'),
+(94, 'K004', 'Kacang Tanah', 26000, 'KAT3', 'kg', 'T', '', '93b208c6d2e8b1ba0850857094837e17.jpg', '2020-07-14 15:03:41', '2020-07-15 12:09:09'),
+(95, 'K005', 'Ketela Pohon', 5000, 'KAT3', 'kg', 'T', '', 'd476ba6c1cd4d1fe6f9a94adae51739d.jpg', '2020-07-14 15:04:16', '2020-07-15 12:08:54'),
+(54, 'M001', 'Minyak Goreng Kemasan', 13500, 'KAT1', 'Liter', 'T', '', '9e9928d6722564572113007844125c0e.jpg', '2020-07-14 12:19:25', '2020-07-15 12:16:17'),
+(55, 'M002', 'Minyak Goreng Curah', 10500, 'KAT1', 'Liter', 'T', '', '3f3b8766fb25113d7ad0adbbeeaf207a.jpg', '2020-07-14 12:19:58', '2020-07-15 12:15:54'),
+(56, 'M003', 'Minyak Goreng Kemasan Sederhana', 12500, 'KAT1', 'Liter', 'T', '', '684fdff526b4ed578f219b6dc48758ac.jpg', '2020-07-14 12:23:14', '2020-07-15 12:16:05'),
+(79, 'M005', 'Indomie Kuah Rasa Kari Ayam', 2500, 'KAT1', 'bungkus', 'T', '', 'b6b58b38acb28bf15c3c2bc1b3cba821.jpg', '2020-07-14 14:38:16', '2020-07-15 12:11:31'),
+(65, 'S001', 'Susu Bubuk Merk Indomik', 36800, 'KAT1', '400 gr', 'T', '', '19c034872158c143e1fca499b4403080.jpg', '2020-07-14 14:19:57', '2020-07-15 12:13:14'),
+(66, 'S002', 'Susu Bubuk Merk Dencow', 42195, 'KAT1', '400 gr', 'T', '', 'cab8623deab7a7b4200dd10fccf7da83.jpg', '2020-07-14 14:20:59', '2020-07-15 12:13:02'),
+(67, 'S003', 'Susu Bubuk Merk Frisian flag', 10000, 'KAT1', '375 gr', 'T', '', 'e50625ce9528fbe61ccee6ccd6fb73b4.jpg', '2020-07-14 14:22:06', '2020-07-15 12:12:54'),
+(68, 'S004', 'Susu Kental Manis Indomilk', 9000, 'KAT1', '375 gr', 'T', '', 'daff0292f6ae508e29bccc7255c7c1ff.jpg', '2020-07-14 14:23:15', '2020-07-15 12:12:42'),
+(63, 'T001', 'Telur Ayam Ras', 24000, 'KAT1', 'kg', 'T', '', '35341932167f0719957ea77544f10d0a.jpg', '2020-07-14 14:05:12', '2020-07-15 12:13:36'),
+(64, 'T002', 'Telur Ayam Kampung', 35700, 'KAT1', 'kg', 'T', '', '0e428bc200f80b75eeca3169ab80e891.png', '2020-07-14 14:07:24', '2020-07-15 12:13:26'),
+(70, 'T005', 'Tepung Terigu Protein Tinggi (cakra)', 10000, 'KAT1', 'kg', 'T', '', 'aa15125f1d5ff5ecce6ed23873466e11.jpg', '2020-07-14 14:24:49', '2020-07-15 12:12:24'),
+(71, 'T006', 'Tepung Terigu Protein Sedang (segitiga biru)', 9000, 'KAT1', 'kg', 'T', '', '0341ce7e4ce0e3d148d775b82e422cc9.jpg', '2020-07-14 14:27:32', '2020-07-15 12:12:18'),
+(72, 'T007', 'Tepung Terigu Protein Rendah (kunci biru)', 7500, 'KAT1', 'kg', 'T', '', '03b72ab01681424559a3a730af606522.png', '2020-07-14 14:28:35', '2020-07-15 12:12:05');
 
 -- --------------------------------------------------------
 
@@ -7810,7 +7811,7 @@ INSERT INTO `kecamatan` (`id_kec`, `id_kab`, `nama`, `status`) VALUES
 CREATE TABLE `kelurahan` (
   `id_kel` varchar(10) NOT NULL,
   `id_kec` varchar(6) DEFAULT NULL,
-  `nama` tinytext DEFAULT NULL,
+  `nama` tinytext,
   `status` varchar(2) DEFAULT NULL,
   `ongkir` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -45328,7 +45329,7 @@ CREATE TABLE `xpenjualan` (
   `Kel` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,
   `Ket` char(25) DEFAULT NULL,
   `Img` varchar(50) DEFAULT NULL,
-  `Datei` timestamp NOT NULL DEFAULT current_timestamp()
+  `Datei` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
