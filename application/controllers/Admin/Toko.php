@@ -79,9 +79,6 @@ class Toko extends CI_Controller {
         $this->form_validation->set_rules('lokasi','lokasi','trim|required');
         $this->form_validation->set_rules('pemilik','pemilik','trim|required');
         $this->form_validation->set_rules('status','status','trim|required|in_list[T,F]');
-        $this->form_validation->set_rules('telp','telp','trim|required|is_natural|max_length[14]');
-        $this->form_validation->set_rules('jambuka','jambuka','trim|required');
-        $this->form_validation->set_rules('jamtutup','jamtutup','trim|required');
 
         if($this->form_validation->run() == false)
         {
@@ -136,9 +133,6 @@ class Toko extends CI_Controller {
         $this->form_validation->set_rules('lokasi','lokasi','trim|required');
         $this->form_validation->set_rules('pemilik','pemilik','trim|required');
         $this->form_validation->set_rules('status','status','trim|required|in_list[T,F]');
-        $this->form_validation->set_rules('telp','telp','trim|required|is_natural|max_length[14]');
-        $this->form_validation->set_rules('jambuka','jambuka','trim|required');
-        $this->form_validation->set_rules('jamtutup','jamtutup','trim|required');
 
         if($this->form_validation->run() == false)
         {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2020 at 05:33 PM
+-- Generation Time: Jul 15, 2020 at 08:00 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -49,7 +49,7 @@ INSERT INTO `admin` (`ID`, `Username`, `Pass`) VALUES
 CREATE TABLE `barang` (
   `ID` int(6) NOT NULL,
   `Kode` varchar(15) NOT NULL,
-  `Nama` char(25) NOT NULL,
+  `Nama` char(50) NOT NULL,
   `Harga` int(255) NOT NULL,
   `Refkategori` varchar(5) NOT NULL,
   `Satuan` text NOT NULL,
@@ -65,14 +65,45 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`ID`, `Kode`, `Nama`, `Harga`, `Refkategori`, `Satuan`, `Status`, `Ket`, `Img`, `Datei`, `Dateu`) VALUES
-(32, '1121', 'Beras Premium', 12000, 'KAT1', 'Kg', 'T', 'Beras Premium Kualitas Terjamin bagus', '1588339312348.jpg', '2020-06-04 06:29:33', '2020-06-09 12:08:37'),
-(34, '1122', 'Beras Termurah', 9000, 'KAT1', 'Kg', 'T', 'Beras Termurah Subsidi Bulog', '1588339858640.jpg', '2020-06-04 06:29:38', '2020-05-01 13:30:58'),
-(33, '1123', 'Beras Medium', 10000, 'KAT1', 'Kg', 'T', 'Beras Medium Tanpa Pemutih', '1588339748209.jpg', '2020-06-04 06:29:40', '2020-05-28 14:28:38'),
-(35, '2111', 'Gula Kristal Putih', 17000, 'KAT1', 'Kg', 'T', 'Gula kristal putih tanpa pemutih', '1588340038692.jpg', '2020-06-04 06:29:43', NULL),
-(37, '4111', 'Sapi Paha Depan', 100000, 'KAT2', 'Kg', 'T', 'Sapi Paha Depan Kualitas Terbaik Dan Segar', '1588340851160.jpg', '2020-06-04 06:29:51', NULL),
-(38, '4112', 'Sapi Has Dalam (Tenderloi', 110000, 'KAT2', 'Kg', 'T', 'Tenderloin sapi', '1588340975769.jpg', '2020-06-04 06:29:54', NULL),
-(39, '5111', 'Daging Ayam Boiler', 26000, 'KAT2', 'Kg', 'F', 'Daging ayam boiler segar', '1588341067964.jpg', '2020-06-04 06:29:57', '2020-07-04 02:28:48'),
-(40, '5112', 'Telur Ayam Ras', 22000, 'KAT2', 'Kg', 'T', '', '1588341126179.jpg', '2020-06-04 06:30:01', '2020-07-05 14:58:03');
+(50, 'B001', 'Beras Premium', 11000, 'KAT1', 'Kg', 'T', 'Beras premium perkilo Rp 11000', 'default.jpg', '2020-07-14 12:14:57', NULL),
+(51, 'B002', 'Beras Medium', 10000, 'KAT1', 'Kg', 'T', 'Beras medium per-kg', 'default.jpg', '2020-07-14 12:16:20', '2020-07-14 12:52:19'),
+(52, 'B003', 'Beras Termurah', 9000, 'KAT1', 'Kg', 'T', 'Beras termurah', 'default.jpg', '2020-07-14 12:17:21', NULL),
+(86, 'B005', 'Bawang Putih (Honan)', 15000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:53:26', NULL),
+(87, 'B006', 'Bawang Putih (Kating)', 18000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:55:28', NULL),
+(80, 'C001', 'Cabe Merah Keriting', 17000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:43:53', NULL),
+(81, 'C002', 'Cabe Merah Besar', 15000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:44:37', NULL),
+(82, 'C003', 'Cabe Rawit Merah', 25000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:47:28', NULL),
+(83, 'C004', 'Cabe Rawit Hijau', 17000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:52:08', NULL),
+(57, 'D001', 'Daging Sapi Paha Depan', 100000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:23:51', NULL),
+(58, 'D002', 'Daging Sapi Paha Belakang', 110000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:24:18', NULL),
+(59, 'D003', 'Daging Sapi Has Luar ( Sirloin )', 110000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:25:06', '2020-07-14 12:28:24'),
+(60, 'D004', 'Daging Sapi Has Dalam ( Tenderloin )', 110000, 'KAT2', 'Kg', 'T', '', 'default.jpg', '2020-07-14 12:36:00', '2020-07-14 13:58:22'),
+(61, 'D005', 'Daging Ayam Boiler', 35000, 'KAT2', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:00:59', NULL),
+(62, 'D006', 'Daging Ayam Kampung (sadang)', 65000, 'KAT2', 'Ekor', 'T', '', 'default.jpg', '2020-07-14 14:04:22', NULL),
+(53, 'G001', 'Gula Pasir (kw medium)', 12500, 'KAT1', 'Kg', 'T', 'Gula pasir', 'default.jpg', '2020-07-14 12:18:41', NULL),
+(91, 'G003', 'Garam Bata', 1500, 'KAT3', 'buah', 'T', '\r\n', 'default.jpg', '2020-07-14 15:01:22', NULL),
+(92, 'G004', 'Garam Halus', 6000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:02:07', NULL),
+(88, 'I001', 'Ikan Kembung', 36000, 'KAT2', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:58:31', NULL),
+(89, 'I002', 'Ikan Teri Asin', 55000, 'KAT2', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:00:03', NULL),
+(96, 'J001', 'Jagung Pipilan', 6000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:04:55', NULL),
+(73, 'K001', 'Kedelai Impor', 9000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:32:09', '2020-07-14 14:35:30'),
+(74, 'K002', 'Kedelai Lokal', 10000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:34:38', NULL),
+(93, 'K003', 'Kacang Hijau', 25000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:03:08', NULL),
+(94, 'K004', 'Kacang Tanah', 26000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:03:41', NULL),
+(95, 'K005', 'Ketela Pohon', 5000, 'KAT3', 'kg', 'T', '', 'default.jpg', '2020-07-14 15:04:16', NULL),
+(54, 'M001', 'Minyak Goreng Kemasan', 13500, 'KAT1', 'Liter', 'T', '', 'default.jpg', '2020-07-14 12:19:25', NULL),
+(55, 'M002', 'Minyak Goreng Curah', 10500, 'KAT1', 'Liter', 'T', '', 'default.jpg', '2020-07-14 12:19:58', NULL),
+(56, 'M003', 'Minyak Goreng Kemasan Sederhana', 12500, 'KAT1', 'Liter', 'T', '', 'default.jpg', '2020-07-14 12:23:14', '2020-07-14 12:28:32'),
+(79, 'M005', 'Indomie Kuah Rasa Kari Ayam', 2500, 'KAT1', 'bungkus', 'T', '', 'default.jpg', '2020-07-14 14:38:16', '2020-07-14 15:05:43'),
+(65, 'S001', 'Susu Bubuk Merk Indomik', 36800, 'KAT1', '400 gr', 'T', '', 'default.jpg', '2020-07-14 14:19:57', NULL),
+(66, 'S002', 'Susu Bubuk Merk Dencow', 42195, 'KAT1', '400 gr', 'T', '', 'default.jpg', '2020-07-14 14:20:59', NULL),
+(67, 'S003', 'Susu Bubuk Merk Frisian flag', 10000, 'KAT1', '375 gr', 'T', '', 'default.jpg', '2020-07-14 14:22:06', NULL),
+(68, 'S004', 'Susu Kental Manis Indomilk', 9000, 'KAT1', '375 gr', 'T', '', 'default.jpg', '2020-07-14 14:23:15', NULL),
+(63, 'T001', 'Telur Ayam Ras', 24000, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:05:12', NULL),
+(64, 'T002', 'Telur Ayam Kampung', 35700, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:07:24', NULL),
+(70, 'T005', 'Tepung Terigu Protein Tinggi (cakra)', 10000, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:24:49', NULL),
+(71, 'T006', 'Tepung Terigu Protein Sedang (segitiga biru)', 9000, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:27:32', NULL),
+(72, 'T007', 'Tepung Terigu Protein Rendah (kunci biru)', 7500, 'KAT1', 'kg', 'T', '', 'default.jpg', '2020-07-14 14:28:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -94,11 +125,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`ID`, `Refuser`, `Refbarang`, `Jumlah`, `Subtotal`, `Datei`) VALUES
-(62, 'admin', '5111', 3, 78000, '2020-06-23 13:45:28'),
-(64, 'user4', '4112', 1, 110000, '2020-06-22 20:19:56'),
-(66, 'admin', '2111', 2, 34000, '2020-07-04 21:40:41'),
-(68, 'edy', '5111', 22, 572000, '2020-07-04 09:00:40'),
-(70, 'edy', '4111', 3, 300000, '2020-07-04 09:15:04');
+(72, 'admin', 'J001', 1, 6000, '2020-07-15 10:49:39'),
+(73, 'admin', 'K003', 2, 50000, '2020-07-15 10:49:47');
 
 -- --------------------------------------------------------
 
@@ -652,7 +680,8 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`ID`, `Kode`, `Nama`, `Ket`) VALUES
 (4, 'KAT1', 'Sembako', 'Bahan-bahan sembako'),
-(5, 'KAT2', 'Daging', 'Daging sapi maupun ayam');
+(5, 'KAT2', 'Daging', 'Daging sapi maupun ayam'),
+(11, 'KAT3', 'Sayur dan Bumbu', 'Baik sayur maupun bumbu');
 
 -- --------------------------------------------------------
 
@@ -45134,7 +45163,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`ID`, `Username`, `Pass`, `Status`, `Onlast`) VALUES
-(11, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'T', '2020-07-13 10:02:16'),
+(11, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'T', '2020-07-15 03:25:50'),
 (10, 'duta', '798fa27c4d4fb5b1158a1d5f2339edc0a21b14b6', 'T', NULL),
 (15, 'edy', '2f5ef40b94f13ec728180a82913694faba25a65a', 'T', '2020-07-04 01:59:46'),
 (9, 'trial', '069fd3a44db682e9a4ea4bf495c0ffbee58c8431', 'T', NULL),
@@ -45206,10 +45235,10 @@ CREATE TABLE `toko` (
   `Nama` text NOT NULL,
   `Pemilik` text NOT NULL,
   `Lokasi` text NOT NULL,
-  `Telp` varchar(14) NOT NULL,
+  `Telp` varchar(14) DEFAULT NULL,
   `Status` varchar(2) NOT NULL,
-  `Jambuka` time NOT NULL,
-  `Jamtutup` time NOT NULL,
+  `Jambuka` time DEFAULT NULL,
+  `Jamtutup` time DEFAULT NULL,
   `Ket` char(25) DEFAULT NULL,
   `Datei` datetime DEFAULT NULL,
   `Dateu` datetime DEFAULT NULL
@@ -45220,9 +45249,23 @@ CREATE TABLE `toko` (
 --
 
 INSERT INTO `toko` (`ID`, `Kode`, `Nama`, `Pemilik`, `Lokasi`, `Telp`, `Status`, `Jambuka`, `Jamtutup`, `Ket`, `Datei`, `Dateu`) VALUES
-(6, 'C1', 'Toko C', 'Bp.', 'Blok A', '08788121', 'T', '10:26:00', '10:26:00', '', '2019-11-25 09:31:32', '2020-06-10 21:06:00'),
-(4, 'T01', 'Toko A', 'Ibu.', 'B12A1', '08992121', 'T', '09:17:00', '11:17:00', '', '0000-00-00 00:00:00', '2020-06-09 19:32:57'),
-(29, 'T03', 'Toko 3', 'Edy kurniawan', 'Ruko A No 23', '098767712', 'T', '04:49:00', '16:49:00', '', '0000-00-00 00:00:00', '2020-06-09 19:25:15');
+(46, 'B001', 'JUMIYATI', 'JUMIYATI', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Bumbon', '2020-07-15 11:25:24', NULL),
+(51, 'B004', 'SUGINEM', 'SUGINEM', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Bumbon', '2020-07-15 11:28:33', NULL),
+(52, 'B005', 'NGADIMUN', 'NGADIMUN', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Bumbon', '2020-07-15 11:29:05', NULL),
+(54, 'BR01', 'SISRI', 'SISRI', 'LOS', '', 'T', '00:00:00', '00:00:00', 'Beras', '2020-07-15 11:30:18', '2020-07-15 11:30:43'),
+(55, 'BR02', 'WAGINEM', 'WAGINEM', 'LOS', '', 'T', '00:00:00', '00:00:00', 'Beras', '2020-07-15 11:31:34', NULL),
+(53, 'D001', 'SUGANTINI', 'SUGANTINI', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Daging Ayam', '2020-07-15 11:29:37', NULL),
+(56, 'D002', 'RAHAYU', 'RAHAYU', 'LOS', '', 'T', '00:00:00', '00:00:00', 'Daging', '2020-07-15 11:32:26', NULL),
+(57, 'D005', 'KARTO', 'KARTO SENTONO', 'LOS', '', 'T', '00:00:00', '00:00:00', 'Daging', '2020-07-15 11:33:03', NULL),
+(58, 'D006', 'MARTO', 'MARTO SUKARNO', 'LOS', '', 'T', '00:00:00', '00:00:00', 'Daging', '2020-07-15 11:33:45', NULL),
+(47, 'S001', 'SRI', 'SRI SISWANTI', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Sembako', '2020-07-15 11:25:56', NULL),
+(48, 'S002', 'JOKO', 'JOKO SUSANTO. SE', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Sembako', '2020-07-15 11:26:40', NULL),
+(49, 'S003', 'SUWARNI', 'SUWARNI', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Sembako', '2020-07-15 11:27:09', NULL),
+(50, 'S004', 'WAGIMIN', 'WAGIMIN', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Sembako', '2020-07-15 11:28:00', NULL),
+(41, 'T001', 'SADINO', 'SADINO DANTO W', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Kelontong', '2020-07-15 11:21:37', '2020-07-15 11:23:52'),
+(42, 'T002', 'MENIK', 'MENIK LIDYAWATI', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Kelontong', '2020-07-15 11:22:49', '2020-07-15 11:24:01'),
+(44, 'T003', 'RATANTI', 'RATANTI', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Kelontong', '2020-07-15 11:23:24', '2020-07-15 11:24:09'),
+(45, 'T004', 'RUMINI', 'RUMINI. SE', 'KIOS BAWAH', '', 'T', '00:00:00', '00:00:00', 'Kelontong', '2020-07-15 11:24:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -45293,12 +45336,7 @@ CREATE TABLE `xpenjualan` (
 --
 
 INSERT INTO `xpenjualan` (`ID`, `Kode`, `Refuser`, `Metode`, `Status`, `Total`, `Subtotal`, `Ongkir`, `An`, `Telp`, `Alamat`, `Prov`, `Kab`, `Kec`, `Kel`, `Ket`, `Img`, `Datei`) VALUES
-(17, '2020-06-240001', 'admin', 'Kirim', '0', 399000, 389000, 10000, 'edy kurniawan', '27172725', 'Godog Rt 01 Rw 09', '33', '3311', '331106', '3311062011', 'null', NULL, '2020-06-24 01:58:58'),
-(20, '2020-06-240002', 'admin', 'Ambil', '2', 129000, 129000, NULL, 'edy kurniawan', '27172725', '', NULL, NULL, NULL, NULL, '', NULL, '2020-06-24 08:16:36'),
-(21, '2020-06-240003', 'admin', 'Kirim', '4', 249000, 239000, 10000, 'edy kurniawan', '27172725', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', 'Daging sapi maupun ayam2', NULL, '2020-06-24 16:07:07'),
-(22, '2020-07-040001', 'edy', 'Kirim', '4', 582000, 572000, 10000, 'edy', '09877212', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', 'Daging sapi maupun ayam2', NULL, '2020-07-04 02:10:02'),
-(23, '2020-07-050001', 'admin', 'Kirim', '1', 117000, 112000, 5000, 'edy kurniawan', '27172725', 'ds', '33', '3311', '331106', '3311062002', 'kosong', NULL, '2020-07-05 03:33:34'),
-(24, '2020-07-130001', 'admin', 'Ambil', '2', 112000, 112000, NULL, 'edy kurniawan', '27172725', '', NULL, NULL, NULL, NULL, '', '1594644526942.png', '2020-07-13 10:03:17');
+(25, '2020-07-150001', 'admin', 'Kirim', '6', 66000, 56000, 10000, 'edy kurniawan', '27172725', 'Godog Rt.01 Rw.09', '33', '3311', '331106', '3311062011', 'tolong di proses secepatn', NULL, '2020-07-15 03:50:30');
 
 -- --------------------------------------------------------
 
@@ -45320,20 +45358,8 @@ CREATE TABLE `xpenjualand` (
 --
 
 INSERT INTO `xpenjualand` (`ID`, `Kode`, `Refbarang`, `Harga`, `Jumlah`, `Subtotal`) VALUES
-(43, '2020-06-240001', '2111', 17000, 3, 51000),
-(44, '2020-06-240001', '1123', 10000, 4, 40000),
-(45, '2020-06-240001', '5111', 26000, 3, 78000),
-(46, '2020-06-240001', '4112', 110000, 2, 220000),
-(53, '2020-06-240002', '2111', 17000, 3, 51000),
-(54, '2020-06-240002', '5111', 26000, 3, 78000),
-(55, '2020-06-240003', '4112', 110000, 1, 110000),
-(56, '2020-06-240003', '2111', 17000, 3, 51000),
-(57, '2020-06-240003', '5111', 26000, 3, 78000),
-(58, '2020-07-040001', '5111', 26000, 22, 572000),
-(59, '2020-07-050001', '2111', 17000, 2, 34000),
-(60, '2020-07-050001', '5111', 26000, 3, 78000),
-(61, '2020-07-130001', '2111', 17000, 2, 34000),
-(62, '2020-07-130001', '5111', 26000, 3, 78000);
+(63, '2020-07-150001', 'K003', 25000, 2, 50000),
+(64, '2020-07-150001', 'J001', 6000, 1, 6000);
 
 --
 -- Indexes for dumped tables
@@ -45457,19 +45483,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -45481,7 +45507,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -45493,13 +45519,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `xpenjualan`
 --
 ALTER TABLE `xpenjualan`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `xpenjualand`
 --
 ALTER TABLE `xpenjualand`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- Constraints for dumped tables

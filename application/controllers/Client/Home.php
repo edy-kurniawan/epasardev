@@ -13,6 +13,9 @@ class Home extends CI_Controller{
         $cart['kat']    = $this->M_kategori->getSemua()->result();
         $cart['cart']   = $this->M_cart->get_cart($refuser)->result();
         $data['barang'] = $this->M_barang->showbarang()->result();
+        $data['sembako']= $this->M_barang->get_sembako()->result();
+        $data['daging'] = $this->M_barang->get_daging()->result();
+        $data['sayur']  = $this->M_barang->get_sayur()->result();
         $this->load->view('template/client/head',$cart);
         $this->load->view('Client/v_home',$data);
     }

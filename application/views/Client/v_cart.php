@@ -28,7 +28,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-              <button type="submit" id="btnSave" class="btn btn-primary">Update keranjang</button>
+              <button type="submit" id="btnSave" class="btn btn-primary">Ubah</button>
             </form>
             </div>
           </div>
@@ -93,20 +93,10 @@
             <!-- Cart Totals Start -->
             <div class="col-md-4 col-sm-12">
                 <div class="cart_totals float-md-right text-md-right">
-                    <h2>Cart Totals</h2>
+                    <h2>Total Harga</h2>
                     <br />
                     <table class="float-md-right">
                         <tbody>
-                            <tr class="cart-subtotal">
-                                <th>Subtotal</th>
-                                <td>
-                                <?php
-                                    foreach ($total as $y) {
-                                ?>
-                                    <span class="amount">Rp. <?php echo html_escape(number_format($y->Subtotal)) ?></span>
-                                <?php } ?>
-                                </td>
-                            </tr>
                             <tr class="order-total">
                                 <th>Total</th>
                                 <td>
@@ -120,7 +110,7 @@
                         </tbody>
                     </table>
                     <div class="wc-proceed-to-checkout">
-                        <a href="<?php echo site_url('order'); ?>">Proses Checkout</a>
+                        <a href="<?php echo site_url('order'); ?>">Proses Pesanan</a>
                     </div>
                     <br><?php echo $this->session->flashdata('message');?>
                 </div>

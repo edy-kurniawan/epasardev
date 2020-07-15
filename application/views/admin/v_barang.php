@@ -389,7 +389,7 @@
     $('.modal-title').text('Edit Data toko'); // Set title to Bootstrap modal title
     
     $('#photo-preview').show(); // show photo preview modal
-    if(data.Img)
+    if(data.Img != "default.jpg")
     {
         $('#label-photo').text('Change Photo'); // label photo upload
         $('#photo-preview div').html('<img src="<?php echo base_url();?>/assets/upload/barang/'+escapeHtml(data.Img)+'" style="width:100px;">'); // show photo
@@ -397,8 +397,7 @@
     }
     else
     {
-        $('#label-photo').text('Upload Photo'); // label photo upload
-        $('#photo-preview div').text('(No photo)');
+        
     }
 
     

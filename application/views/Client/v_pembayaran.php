@@ -160,7 +160,7 @@
         <div class="card bg-light">
             <div class="row d-flex justify-content-between px-3 top">
                 <div class="d-flex">
-                    <h5>Menunggu Pembayaran</h5>
+                    <h5>Menunggu Konfirmasi Ketersediaan Pesanan</h5>
                 </div>
                 <?php 
                     foreach($detail as $x){ 
@@ -209,12 +209,7 @@
             <div class="row justify-content-between top">
                 <div class="row d-flex icon-content">
                     <div class="buttons-cart">
-                            <a href="<?php echo site_url(); ?>">Home</a>
-                    </div>
-                </div>
-                <div class="row d-flex icon-content">
-                    <div class="buttons-cart">
-                            <a href="<?php echo site_url('transaksi'); ?>">Konfirmasi Bayar</a>
+                            <a href="<?php echo site_url('transaksi'); ?>">Status Transaksi</a>
                     </div>
                 </div>
             </div>

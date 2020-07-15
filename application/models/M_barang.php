@@ -34,7 +34,7 @@ class M_barang extends CI_Model{
 
     public function edit($id)
     {
-        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Refkategori, barang.Status, barang.Satuan, barang.Img, barang.Ket, kategori.Nama ');
+        $this->db->select('barang.ID, barang.Kode, barang.Nama, barang.Harga, barang.Refkategori, barang.Status, barang.Satuan, barang.Img, barang.Ket, kategori.Nama Kat ');
         $this->db->from('barang');
         $this->db->join('kategori', 'kategori.Kode=barang.Refkategori','left');
         $this->db->where('barang.ID', $id);
@@ -114,5 +114,21 @@ class M_barang extends CI_Model{
         $query = $this->db->get();
         return $query;
     }
+
+    function get_sembako(){
+        $query = $this->db->get_where('barang', array('Refkategori' => "KAT1"));
+        return $query;
+    }
+
+    function get_daging(){
+        $query = $this->db->get_where('barang', array('Refkategori' => "KAT2"));
+        return $query;
+    }
+
+    function get_sayur(){
+        $query = $this->db->get_where('barang', array('Refkategori' => "KAT3"));
+        return $query;
+    }
+
 
 }

@@ -1378,7 +1378,7 @@ li.megamenu-img a {
   transform: scale(0.6);
 }
 .l_sale {
-  background: rgba(0, 0, 0, 0) url("img/icon/bg-l-sale.png") no-repeat scroll right center;
+  background: rgba(0, 0, 0, 0) url("") no-repeat scroll right center;
   bottom: 20px;
   color: #e62e04;
   font-size: 20px;

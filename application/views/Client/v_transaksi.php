@@ -15,7 +15,8 @@
                         elseif($x->Status=="2"){ $img = "2.jpg"; }
                         elseif($x->Status=="3"){ $img = "3.jpg"; }
                         elseif($x->Status=="4"){ $img = "4.jpg"; }
-                        else{$img = "";}
+                        elseif($x->Status=="5"){ $img = "5.jpg"; }
+                        else{$img = "6.jpg";}
                 ?>
                 <div class="single-latest-blog">
                     <div class="blog-img">
