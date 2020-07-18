@@ -76,8 +76,13 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
+                        <?php if($this->session->userdata("user") == "admin") { ?>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+                        <?php }else { ?>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+                        <?php } ?>
                     </div>
                 </div>
                 </form>

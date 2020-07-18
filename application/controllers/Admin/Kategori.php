@@ -28,6 +28,7 @@ class Kategori extends CI_Controller {
         $list   = array();
         $No     = 1;
         foreach ($result as $r) {
+            if($this->session->userdata("user") == "admin") {
             $row    = array(
                         "no"        => $No,
                         "id"        => html_escape($r->ID),
@@ -36,6 +37,16 @@ class Kategori extends CI_Controller {
                         "ket"       => html_escape($r->Ket),
                         "action"    => tombol(html_escape($r->ID))
             );
+        } else {
+            $row    = array(
+                "no"        => $No,
+                "id"        => html_escape($r->ID),
+                "kode"      => html_escape($r->Kode),
+                "nama"      => html_escape($r->Nama),
+                "ket"       => html_escape($r->Ket),
+                "action"    => tombol()
+            );
+        }
 
             $list[] = $row;
             $No++;

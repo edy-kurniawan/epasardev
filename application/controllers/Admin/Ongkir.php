@@ -29,6 +29,7 @@ class Ongkir extends CI_Controller {
         $list   = array();
         $No     = 1;
         foreach ($result as $r) {
+            if($this->session->userdata("user") == "admin") {
             $row    = array(
                         "no"       => $No,
                         "kec"      => html_escape($r->kec),
@@ -37,6 +38,16 @@ class Ongkir extends CI_Controller {
                         "status"   => html_escape($r->status),
                         "action"   => tombol(html_escape($r->id_kel))
             );
+        } else {
+            $row    = array(
+                "no"       => $No,
+                "kec"      => html_escape($r->kec),
+                "kel"      => html_escape($r->kel),
+                "ongkir"   => html_escape($r->ongkir),
+                "status"   => html_escape($r->status),
+                "action"   => tombol()
+            );
+        }
 
             $list[] = $row;
             $No++;

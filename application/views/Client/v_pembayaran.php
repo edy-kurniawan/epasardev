@@ -162,17 +162,6 @@
                 <div class="d-flex">
                     <h5>Menunggu Konfirmasi Ketersediaan Pesanan</h5>
                 </div>
-                <?php 
-                    foreach($detail as $x){ 
-                    ?>
-                <div class="d-flex flex-column text-sm-right">
-                    <p>Kode Transaksi : <span class="text-info font-weight-bold"><?php echo html_escape($x->Kode) ?></span></p>
-                    <p class="mb-0"><span>Silahkan Lakukan Pembayaran Sebesar</span></p>
-                    <p><span class="text-info font-weight-bold">Rp. <?php echo html_escape(number_format($x->Total)) ?></span></p>
-                    <p>Ke Rekening <span class="text-info font-weight-bold">Bank X</span></p>
-                    <p><span class="text-info font-weight-bold">AN : Epasar-dev / No Rek : XXXX-XX</span></p>
-                </div>
-                <?php } ?>
             </div> <!-- Add class 'active' to progress -->
             <div class="row d-flex justify-content-center">
                 <div class="col-12">

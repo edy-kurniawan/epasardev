@@ -21,6 +21,7 @@
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -252,6 +253,17 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url(); ?>assets/AdminLTE/dist/js/pages/dashboard2.js"></script>
+<?php if($this->session->userdata("user") == "trial") { ?>
+      <script>
+        $(document).ready(function() {
+          Swal.fire(
+          'Versi trial !',
+          'fitur CRUD dimatikan',
+          'error'
+        )
+        });
+      </script>
+    <?php } ?>
 
 </body>
 </html>

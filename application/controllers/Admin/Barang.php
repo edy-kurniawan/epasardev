@@ -44,6 +44,7 @@ class Barang extends CI_Controller {
         $list   = array();
         $No     = 1;
         foreach ($result as $r) {
+            if($this->session->userdata("user") == "admin") {
             $row    = array(
                         "no"        => $No,
                         "id"        => html_escape($r->ID),
@@ -57,6 +58,21 @@ class Barang extends CI_Controller {
                         "ket"       => html_escape($r->Ket),
                         "action"    => tombol(html_escape($r->ID))
             );
+        } else {
+            $row    = array(
+                "no"        => $No,
+                "id"        => html_escape($r->ID),
+                "kode"      => html_escape($r->Kode),
+                "img"       => add(html_escape($r->Img)),
+                "nama"      => html_escape($r->Nama),
+                "harga"     => html_escape(number_format($r->Harga)),
+                "kat"       => html_escape($r->kat),
+                "status"    => html_escape($r->Status),
+                "satuan"    => html_escape($r->Satuan),
+                "ket"       => html_escape($r->Ket),
+                "action"    => tombol()
+            );
+        }
 
             $list[] = $row;
             $No++;

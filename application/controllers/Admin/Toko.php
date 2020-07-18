@@ -40,6 +40,7 @@ class Toko extends CI_Controller {
         $list   = array();
         $No     = 1;
         foreach ($result as $r) {
+            if($this->session->userdata("user") == "admin") {
             $row    = array(
                         "no"        => $No,
                         "id"        => html_escape($r->ID),
@@ -55,6 +56,23 @@ class Toko extends CI_Controller {
                         "ket"       => html_escape($r->Ket),
                         "action"    => tombol(html_escape($r->ID))
             );
+        } else {
+            $row    = array(
+                "no"        => $No,
+                "id"        => html_escape($r->ID),
+                "kode"      => html_escape($r->Kode),
+                "nama"      => html_escape($r->Nama),
+                "pemilik"   => html_escape($r->Pemilik),
+                "ket"       => html_escape($r->Ket),
+                "lokasi"    => html_escape($r->Lokasi),
+                "telp"      => html_escape($r->Telp),
+                "jambuka"   => html_escape($r->Jambuka),
+                "jamtutup"  => html_escape($r->Jamtutup),
+                "status"    => html_escape($r->Status),
+                "ket"       => html_escape($r->Ket),
+                "action"    => tombol()
+            );
+        }
 
             $list[] = $row;
             $No++;
