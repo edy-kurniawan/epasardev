@@ -159,7 +159,7 @@
                     </table>
                   </div>
                 </div>
-                    <?php } ?>
+                    
                 <!-- /.col -->
               </div>
               <!-- /.row -->
@@ -167,11 +167,12 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="#" target="" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?php echo site_url('Admin/Transaksi/print/'); echo $x->ID;?>" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                   
                 </div>
               </div>
             </div>
+            <?php } ?>
             <!-- /.invoice -->
           </div><!-- /.col -->
         </div><!-- /.row -->

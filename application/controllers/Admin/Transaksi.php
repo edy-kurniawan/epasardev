@@ -72,6 +72,22 @@ class Transaksi extends CI_Controller {
         echo json_encode(array('data' => $list));
     }
 
+    function print(){
+      $id    = "25";
+      $cek   = $this->M_xpenjualan->get($id);
+      if($cek->num_rows()>0){ 
+        $data['trx']   = $this->M_xpenjualan->get($id)->result();
+        foreach ($data['trx'] as $r) {
+          $kode = $r->Kode;
+        }
+        $data['detail']   = $this->M_xpenjualand->get_by_kode($kode)->result();
+      }else {
+        redirect(base_url('administrator/transaksi'));
+      }
+      
+      $this->load->view('Admin/v_print',$data);
+    }
+
     function get_detail(){
       $id    = $this->uri->segment(3);
       $cek   = $this->M_xpenjualan->get($id);

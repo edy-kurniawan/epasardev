@@ -20,7 +20,7 @@ class M_xpenjualan extends CI_Model{
     }
 
     function get($id){
-        $this->db->select('xpenjualan.Kode, xpenjualan.Datei, xpenjualan.Refuser, xpenjualan.Status, xpenjualan.Ket, xpenjualan.Metode ,xpenjualan.Subtotal, xpenjualan.Ongkir, xpenjualan.Total, xpenjualan.An, xpenjualan.Telp, xpenjualan.Alamat, provinsi.nama prov, kabupaten.nama kab, kecamatan.nama kec, kelurahan.nama kel');
+        $this->db->select('xpenjualan.ID, xpenjualan.Kode, xpenjualan.Datei, xpenjualan.Refuser, xpenjualan.Status, xpenjualan.Ket, xpenjualan.Metode ,xpenjualan.Subtotal, xpenjualan.Ongkir, xpenjualan.Total, xpenjualan.An, xpenjualan.Telp, xpenjualan.Alamat, provinsi.nama prov, kabupaten.nama kab, kecamatan.nama kec, kelurahan.nama kel');
         $this->db->select('user.Email, xpenjualan.Telp hp');
         $this->db->from('xpenjualan');
         $this->db->join('user', 'user.Refuser=xpenjualan.Refuser','left');
