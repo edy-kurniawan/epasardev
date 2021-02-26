@@ -171,7 +171,9 @@
                     <h5><strong><?php echo $track ?></strong></h5>
                 </div>
                 <?php
-                  foreach ($status as $y) { if($y->Status=="1") {
+                  foreach ($status as $y) 
+                  { 
+                      if($y->Status=="1") {
                 ?>
                 <div class="d-flex flex-column text-sm-right">
                     <p>Kode Transaksi : <span class="text-info font-weight-bold"><?php echo html_escape($x->Kode) ?></span></p>
@@ -180,7 +182,14 @@
                     <p>Ke Rekening <span class="text-info font-weight-bold">Bank X</span></p>
                     <p><span class="text-info font-weight-bold">AN : Epasar-dev / No Rek : XXXX-XX</span></p>
                 </div>
-                  <?php } else{} } ?>
+                      <?php } if($y->Status=="3") {
+                ?>
+                <div class="d-flex flex-column text-sm-right">
+                    <p>Kode Transaksi : <span class="text-info font-weight-bold"><?php echo html_escape($x->Kode) ?></span></p>
+                    <p class="mb-0"><span>Barang akan dikirim tanggal</p>
+                    <p><span class="text-info font-weight-bold"><?php echo date('d / M / y'); ?> maksimal pukul 17.00 WIB</span></p>
+                </div>      
+                 <?php } else{} } ?>
             </div> <!-- Add class 'active' to progress -->
             <div class="row d-flex justify-content-center">
                 <div class="col-12">

@@ -162,6 +162,10 @@
                 <div class="d-flex">
                     <h5>Menunggu Konfirmasi Ketersediaan Pesanan</h5>
                 </div>
+                <div class="d-flex flex-column text-sm-right">
+                    <p class="mb-0"><span>Transaksi yang lebih dari <storng>jam 15.00WIB</storng></span></p>
+                    <p class="mb-0"><span>akan diproses dihari berikutnya.</span></p>
+                </div>
             </div> <!-- Add class 'active' to progress -->
             <div class="row d-flex justify-content-center">
                 <div class="col-12">
