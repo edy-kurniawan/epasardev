@@ -1,4 +1,4 @@
-<h1 align="center">E-pasar dev</h1>
+<h1 align="center">E-pasar Dev</h1>
 <h3 align="center">Startup App E-commerce</h3>
 
 # Use :
